@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Security.Claims;
 using EPES.Web.Models;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace EPES.Web.Controllers
 {
@@ -37,7 +38,7 @@ namespace EPES.Web.Controllers
                 LoginResponseDto loginResponseDto =
                     JsonConvert.DeserializeObject<LoginResponseDto>(Convert.ToString(responseDto.Result));
 
-              //  await SignInUser(loginResponseDto);
+                await SignInUser(loginResponseDto);
                 _tokenProvider.SetToken(loginResponseDto.Token);
                 return RedirectToAction("Index", "Home");
             }
@@ -105,7 +106,7 @@ namespace EPES.Web.Controllers
         }
 
 
-        /*private async Task SignInUser(LoginResponseDto model)
+        private async Task SignInUser(LoginResponseDto model)
         {
             var handler = new JwtSecurityTokenHandler();
 
@@ -129,7 +130,7 @@ namespace EPES.Web.Controllers
 
             var principal = new ClaimsPrincipal(identity);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-        }*/
+        }
 
     }
 }
