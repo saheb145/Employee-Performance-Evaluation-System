@@ -10,6 +10,8 @@ namespace EPES.Services.PerformanceEvaluationAPI.Data
         {
         }
         public DbSet<SelfEvaluation> SelfEvaluations { get; set; }
+        public DbSet<ManagerEvaluation> ManagerEvaluations { get; set; }
+
 
         //protected override void OnConfiguring(DbContextOptionsBuilder options)
         //{

@@ -11,6 +11,8 @@ namespace EPES.Services.PerformanceEvaluationAPI
             var mappingConfig = new MapperConfiguration(config =>
             {
                 config.CreateMap<SelfEvaluationDto, SelfEvaluation>().ReverseMap();
+                config.CreateMap<ManagerEvaluationDto, ManagerEvaluation>().ReverseMap();
+
             });
             return mappingConfig;
         }
