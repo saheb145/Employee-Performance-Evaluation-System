@@ -24,10 +24,17 @@ namespace EPES.Web.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            var roleList = new List<SelectListItem>()
+            {
+                new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
+                new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
+            };
+
+            ViewBag.RoleList = roleList;
             LoginRequestDto loginRequestDto = new();
             return View(loginRequestDto);
         }
-
+       
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequestDto obj)
         {
@@ -45,8 +52,16 @@ namespace EPES.Web.Controllers
             else
             {
                 TempData["error"] = responseDto.Message;
-                return View(obj);
+               
             }
+            var roleList = new List<SelectListItem>()
+            {
+                new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
+                new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
+            };
+
+            ViewBag.RoleList = roleList;
+            return View(obj);
         }
 
 

@@ -2,7 +2,7 @@
 
 namespace EPES.Web.Models
 {
-    public class RegistrationRequestDto
+   /* public class RegistrationRequestDto
     {
         [Required]
         public string Email { get; set; }
@@ -13,5 +13,5 @@ namespace EPES.Web.Models
         [Required]
         public string Password { get; set; }
         public string? Role { get; set; }
-    }
+    }*/
 }

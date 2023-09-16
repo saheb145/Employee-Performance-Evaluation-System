@@ -12,12 +12,12 @@ namespace EPES.Web.Services
             _baseService = baseService;
         }
 
-        public async Task<ResponseDto?> AssignRoleAsync(RegistrationRequestDto registrationRequestDto)
+        public async Task<ResponseDto?> AssignRoleAsync(LoginRequestDto loginRequestDto)
         {
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.POST,
-                Data = registrationRequestDto,
+                Data = loginRequestDto,
                 Url = SD.AuthAPIBase + "/api/auth/AssignRole"
             });
         }
@@ -32,7 +32,7 @@ namespace EPES.Web.Services
             });
         }
 
-        public async Task<ResponseDto?> RegisterAsync(RegistrationRequestDto registrationRequestDto)
+       /* public async Task<ResponseDto?> RegisterAsync(RegistrationRequestDto registrationRequestDto)
         {
             return await _baseService.SendAsync(new RequestDto()
             {
@@ -40,6 +40,6 @@ namespace EPES.Web.Services
                 Data = registrationRequestDto,
                 Url = SD.AuthAPIBase + "/api/auth/register"
             });
-        }
+        }*/
     }
 }

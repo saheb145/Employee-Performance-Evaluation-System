@@ -16,7 +16,7 @@ namespace EPES.Services.AuthAPI.Controllers
             _authService = authService;
             _response = new();
         }
-        [HttpPost("register")]
+        /*[HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegistrationRequestDto model)
         {
 
@@ -29,7 +29,7 @@ namespace EPES.Services.AuthAPI.Controllers
             }
             //  await _messageBus.PublishMessage(model.Email, _configuration.GetValue<string>("TopicAndQueueNames:RegisterUserQueue"));
             return Ok(_response);
-        }
+        }*/
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
@@ -47,9 +47,9 @@ namespace EPES.Services.AuthAPI.Controllers
         }
 
         [HttpPost("AssignRole")]
-        public async Task<IActionResult> AssignRole([FromBody] RegistrationRequestDto model)
+        public async Task<IActionResult> AssignRole([FromBody] LoginRequestDto model)
         {
-            var assignRoleSuccessful = await _authService.AssignRole(model.Email, model.Role.ToUpper());
+            var assignRoleSuccessful = await _authService.AssignRole(model.UserName, model.Role.ToUpper());
             if (!assignRoleSuccessful)
             {
                 _response.IsSuccess = false;

@@ -21,9 +21,10 @@ namespace EPES.Services.AuthAPI.Service
             _userManager = userManager;
             _roleManager = roleManager;
         }
-        public async Task<bool> AssignRole(string email, string roleName)
+        public async Task<bool> AssignRole(string userName, string roleName)
         {
-            var user = _db.ApplicationUsers.FirstOrDefault(u => u.Email.ToLower() == email.ToLower());
+            //i changed this code from email to username
+            var user = _db.ApplicationUsers.FirstOrDefault(u => u.UserName.ToLower() == userName.ToLower());
             if (user != null)
             {
                 if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
@@ -70,47 +71,49 @@ namespace EPES.Services.AuthAPI.Service
 
             return loginResponseDto;
         }
-        public async Task<string> Register(RegistrationRequestDto registrationRequestDto)
-        {
 
-            ApplicationUser user = new()
-            {
-                UserName = registrationRequestDto.Email,
-                Email = registrationRequestDto.Email,
-                NormalizedEmail = registrationRequestDto.Email.ToUpper(),
-                Name = registrationRequestDto.Name,
-                PhoneNumber = registrationRequestDto.PhoneNumber
-            };
-            try
-            {
-                var result = await _userManager.CreateAsync(user, registrationRequestDto.Password);
-                if (result.Succeeded)
-                {
-                    var userToReturn = _db.ApplicationUsers.First(u => u.UserName == registrationRequestDto.Email);
+       
+        /*public async Task<string> Register(RegistrationRequestDto registrationRequestDto)
+{
 
-                    UserDto userDto = new()
-                    {
-                        Email = userToReturn.Email,
-                        ID = userToReturn.Id,
-                        Name = userToReturn.Name,
-                        PhoneNumber = userToReturn.PhoneNumber
-                    };
+   ApplicationUser user = new()
+   {
+       UserName = registrationRequestDto.Email,
+       Email = registrationRequestDto.Email,
+       NormalizedEmail = registrationRequestDto.Email.ToUpper(),
+       Name = registrationRequestDto.Name,
+       PhoneNumber = registrationRequestDto.PhoneNumber
+   };
+   try
+   {
+       var result = await _userManager.CreateAsync(user, registrationRequestDto.Password);
+       if (result.Succeeded)
+       {
+           var userToReturn = _db.ApplicationUsers.First(u => u.UserName == registrationRequestDto.Email);
 
-                    return "";
-                }
+           UserDto userDto = new()
+           {
+               Email = userToReturn.Email,
+               ID = userToReturn.Id,
+               Name = userToReturn.Name,
+               PhoneNumber = userToReturn.PhoneNumber
+           };
 
-                else
-                {
-                    return result.Errors.FirstOrDefault().Description;
-                }
+           return "";
+       }
 
-            }
-            catch (Exception ex)
-            {
+       else
+       {
+           return result.Errors.FirstOrDefault().Description;
+       }
 
-            }
-            return "Error Encountered";
-        }
+   }
+   catch (Exception ex)
+   {
+
+   }
+   return "Error Encountered";
+}*/
 
 
     }
