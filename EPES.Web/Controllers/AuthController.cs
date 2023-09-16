@@ -50,7 +50,7 @@ namespace EPES.Web.Controllers
         }
 
 
-        [HttpGet]
+       /* [HttpGet]
         public IActionResult Register()
         {
             var roleList = new List<SelectListItem>()
@@ -96,7 +96,7 @@ namespace EPES.Web.Controllers
             ViewBag.RoleList = roleList;
             return View(obj);
         }
-
+*/
 
         public async Task<IActionResult> Logout()
         {
