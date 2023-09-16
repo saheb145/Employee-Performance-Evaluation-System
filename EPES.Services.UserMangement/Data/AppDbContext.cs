@@ -15,13 +15,17 @@ namespace EPES.Services.UserMangement.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+           modelBuilder.Entity<Employee>()
+          .HasIndex(e => e.UserName)
+          .IsUnique();
+
             base.OnModelCreating(modelBuilder);
-
-
+           
             modelBuilder.Entity<Employee>().HasData(new Employee
             {
                Id = 1,
                Email="saheb@gmail.com",
+               UserName="sahebKumar",
                Name="saheb",
                Password="Saheb@123",
                PhoneNumber="778-0828780",
@@ -34,6 +38,7 @@ namespace EPES.Services.UserMangement.Data
                 Id = 2,
                 Email = "ankit@gmail.com",
                 Name = "ankit",
+                UserName="ankitkumar",
                 Password = "Ankit@123",
                 PhoneNumber = "7903373058",
                 Role = "Employee"
@@ -44,6 +49,7 @@ namespace EPES.Services.UserMangement.Data
                 Id = 3,
                 Email = "bhargav@gmail.com",
                 Name = "bhargav",
+                UserName="bhargavKumar",
                 Password = "bhargav@123",
                 PhoneNumber = "7903373058",
                 Role = "Employee"

@@ -48,7 +48,14 @@ namespace EPES.Services.UserMangement.Migrations
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
 
                     b.ToTable("Employees");
 
@@ -60,7 +67,8 @@ namespace EPES.Services.UserMangement.Migrations
                             Name = "saheb",
                             Password = "Saheb@123",
                             PhoneNumber = "778-0828780",
-                            Role = "Employee"
+                            Role = "Employee",
+                            UserName = "sahebKumar"
                         },
                         new
                         {
@@ -69,7 +77,8 @@ namespace EPES.Services.UserMangement.Migrations
                             Name = "ankit",
                             Password = "Ankit@123",
                             PhoneNumber = "7903373058",
-                            Role = "Employee"
+                            Role = "Employee",
+                            UserName = "ankitkumar"
                         },
                         new
                         {
@@ -78,7 +87,8 @@ namespace EPES.Services.UserMangement.Migrations
                             Name = "bhargav",
                             Password = "bhargav@123",
                             PhoneNumber = "7903373058",
-                            Role = "Employee"
+                            Role = "Employee",
+                            UserName = "bhargavKumar"
                         });
                 });
 #pragma warning restore 612, 618
