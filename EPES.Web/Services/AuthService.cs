@@ -12,12 +12,12 @@ namespace EPES.Web.Services
             _baseService = baseService;
         }
 
-        public async Task<ResponseDto?> AssignRoleAsync(LoginRequestDto loginRequestDto)
+        public async Task<ResponseDto?> AssignRoleAsync(RegistrationRequestDto registrationRequestDto)
         {
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.POST,
-                Data = loginRequestDto,
+                Data = registrationRequestDto,
                 Url = SD.AuthAPIBase + "/api/auth/AssignRole"
             });
         }
@@ -32,25 +32,16 @@ namespace EPES.Web.Services
             });
         }
 
-		public async  Task<ResponseDto?> LoginEmployeeAsync(EmployeeLoginRequestDto employeeLoginRequestDto)
-		{
-			return await _baseService.SendAsync(new RequestDto()
-			{
-				ApiType = SD.ApiType.POST,
-				Data = employeeLoginRequestDto,
-				Url = SD.AuthAPIBase + "/api/auth/loginEmployee"
-			});
-		}
 
-		
-		/* public async Task<ResponseDto?> RegisterAsync(RegistrationRequestDto registrationRequestDto)
-		 {
-			 return await _baseService.SendAsync(new RequestDto()
-			 {
-				 ApiType = SD.ApiType.POST,
-				 Data = registrationRequestDto,
-				 Url = SD.AuthAPIBase + "/api/auth/register"
-			 });
-		 }*/
-	}
+
+        public async Task<ResponseDto?> RegisterAsync(RegistrationRequestDto registrationRequestDto)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.POST,
+                Data = registrationRequestDto,
+                Url = SD.AuthAPIBase + "/api/auth/register"
+            });
+        }
+    }
 }

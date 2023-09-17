@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EPES.Services.AuthAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230914153957_seedDataofManagerInitial2")]
-    partial class seedDataofManagerInitial2
+    [Migration("20230917163207_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,14 +98,14 @@ namespace EPES.Services.AuthAPI.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0a124cd0-c264-45f1-acde-35d27388a64b",
+                            ConcurrencyStamp = "c9fc54a3-6908-495f-ba2d-567518ba39c1",
                             Email = "manager@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "manager",
                             NormalizedEmail = "MANAGER@GMAIL.COM",
                             NormalizedUserName = "MANAGER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB6bhOeTo+TTdCypUyXubfW62MTBX4Iiee6f2pq8/dKldvjCejRGDgj194hIDHFjqw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELpvWlp7Vgox0b7nbv2kJjHyR/MhaX2myA6tubZxrEyHWQdrFb5LbvEj/A3BFZ+OAw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

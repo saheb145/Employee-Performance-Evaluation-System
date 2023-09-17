@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EPES.Services.AuthAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class seedDataofManagerInitial2 : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -165,7 +165,7 @@ namespace EPES.Services.AuthAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "0a124cd0-c264-45f1-acde-35d27388a64b", "manager@gmail.com", true, false, null, "manager", "MANAGER@GMAIL.COM", "MANAGER", "AQAAAAIAAYagAAAAEB6bhOeTo+TTdCypUyXubfW62MTBX4Iiee6f2pq8/dKldvjCejRGDgj194hIDHFjqw==", null, false, "", false, "Manager" });
+                values: new object[] { "1", 0, "c9fc54a3-6908-495f-ba2d-567518ba39c1", "manager@gmail.com", true, false, null, "manager", "MANAGER@GMAIL.COM", "MANAGER", "AQAAAAIAAYagAAAAELpvWlp7Vgox0b7nbv2kJjHyR/MhaX2myA6tubZxrEyHWQdrFb5LbvEj/A3BFZ+OAw==", null, false, "", false, "Manager" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

@@ -7,8 +7,7 @@ namespace EPES.Services.UserMangement.Model
     {
         public int Id {  get; set; }
         public string Email { get; set; }
-        [Required]
-        
+        [Required]   
         public string UserName { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
