@@ -36,7 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\Dto\" />
     <Folder Include="Service\IService\" />
   </ItemGroup>
 

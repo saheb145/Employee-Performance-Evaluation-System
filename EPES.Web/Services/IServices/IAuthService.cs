@@ -8,5 +8,7 @@ namespace EPES.Web.Services.IServices
         /*    Task<ResponseDto?> RegisterAsync(RegistrationRequestDto registrationRequestDto);*/
         /* Task<ResponseDto?> AssignRoleAsync(RegistrationRequestDto registrationRequestDto);*/
         Task<ResponseDto?> AssignRoleAsync(LoginRequestDto loginRequestDto);
-    }
+
+		Task<ResponseDto?> LoginEmployeeAsync(EmployeeLoginRequestDto employeeLoginRequestDto);
+	}
 }

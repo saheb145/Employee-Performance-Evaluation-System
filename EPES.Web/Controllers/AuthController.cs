@@ -64,56 +64,98 @@ namespace EPES.Web.Controllers
             return View(obj);
         }
 
+		public IActionResult LoginEmployee()
+		{
+			var roleList = new List<SelectListItem>()
+			{
+				new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
+				new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
+			};
 
-       /* [HttpGet]
-        public IActionResult Register()
-        {
-            var roleList = new List<SelectListItem>()
-            {
-                new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
-                new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
-            };
+			ViewBag.RoleList = roleList;
+            EmployeeLoginRequestDto employeeLoginRequestDto = new();
+			return View(employeeLoginRequestDto);
+		}
 
-            ViewBag.RoleList = roleList;
-            return View();
-        }
+		[HttpPost]
+		public async Task<IActionResult> LoginEmployee(EmployeeLoginRequestDto obj)
+		{
+			ResponseDto responseDto = await _authService.LoginEmployeeAsync(obj);
 
-        [HttpPost]
-        public async Task<IActionResult> Register(RegistrationRequestDto obj)
-        {
-            ResponseDto result = await _authService.RegisterAsync(obj);
-            ResponseDto assingRole;
+			if (responseDto != null && responseDto.IsSuccess)
+			{
+				LoginResponseDto loginResponseDto =
+					JsonConvert.DeserializeObject<LoginResponseDto>(Convert.ToString(responseDto.Result));
 
-            if (result != null && result.IsSuccess)
-            {
-                if (string.IsNullOrEmpty(obj.Role))
-                {
-                    obj.Role = SD.RoleEmployee;
-                }
-                assingRole = await _authService.AssignRoleAsync(obj);
-                if (assingRole != null && assingRole.IsSuccess)
-                {
-                    TempData["success"] = "Registration Successful";
-                    return RedirectToAction(nameof(Login));
-                }
-            }
-            else
-            {
-                TempData["error"] = result.Message;
-            }
+				await SignInUser(loginResponseDto);
+				_tokenProvider.SetToken(loginResponseDto.Token);
+				return RedirectToAction("Index", "Home");
+			}
+			else
+			{
+				TempData["error"] = responseDto.Message;
 
-            var roleList = new List<SelectListItem>()
-            {
-                new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
-                new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
-            };
+			}
+			var roleList = new List<SelectListItem>()
+			{
+				new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
+				new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
+			};
 
-            ViewBag.RoleList = roleList;
-            return View(obj);
-        }
-*/
+			ViewBag.RoleList = roleList;
+			return View(obj);
+		}
 
-        public async Task<IActionResult> Logout()
+
+		/* [HttpGet]
+		 public IActionResult Register()
+		 {
+			 var roleList = new List<SelectListItem>()
+			 {
+				 new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
+				 new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
+			 };
+
+			 ViewBag.RoleList = roleList;
+			 return View();
+		 }
+
+		 [HttpPost]
+		 public async Task<IActionResult> Register(RegistrationRequestDto obj)
+		 {
+			 ResponseDto result = await _authService.RegisterAsync(obj);
+			 ResponseDto assingRole;
+
+			 if (result != null && result.IsSuccess)
+			 {
+				 if (string.IsNullOrEmpty(obj.Role))
+				 {
+					 obj.Role = SD.RoleEmployee;
+				 }
+				 assingRole = await _authService.AssignRoleAsync(obj);
+				 if (assingRole != null && assingRole.IsSuccess)
+				 {
+					 TempData["success"] = "Registration Successful";
+					 return RedirectToAction(nameof(Login));
+				 }
+			 }
+			 else
+			 {
+				 TempData["error"] = result.Message;
+			 }
+
+			 var roleList = new List<SelectListItem>()
+			 {
+				 new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
+				 new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
+			 };
+
+			 ViewBag.RoleList = roleList;
+			 return View(obj);
+		 }
+ */
+
+		public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
             _tokenProvider.ClearToken();
