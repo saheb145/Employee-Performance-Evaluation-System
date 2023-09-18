@@ -3,6 +3,7 @@ using Azure;
 using EPES.Services.UserMangement.Data;
 using EPES.Services.UserMangement.Model;
 using EPES.Services.UserMangement.Model.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
 
@@ -12,6 +13,7 @@ namespace EPES.Services.UserMangement.Controllers
 {
     [Route("api/employee")]
     [ApiController]
+    [Authorize(Roles = "MANAGER")]
     public class UserManagementController : ControllerBase
 
     {

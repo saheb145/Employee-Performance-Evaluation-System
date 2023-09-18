@@ -12,6 +12,25 @@
 </head>
 <body >
     <header>
+        @* <script>
+            window.addEventListener('beforeunload', function (e) {
+                // Check if the user is authenticated before triggering logout
+                if (@User.Identity.IsAuthenticated.ToString().ToLower()) {
+                    // Make an AJAX request to the logout action
+                    $.ajax({
+                        url: '/Auth/Logout', // Adjust the URL to your logout action
+                        type: 'POST', // or 'GET' depending on your logout action
+                        success: function (data) {
+                            // Handle the success response, e.g., redirect to the login page
+                            window.location.href = '/Auth/Login'; // Adjust the URL
+                        },
+                        error: function () {
+                            // Handle any errors if needed
+                        }
+                    });
+                }
+            });
+        </script> *@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark  box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EPES.Web</a>
@@ -46,6 +65,10 @@
                             <li class="nav-item">
                                 <a class="nav-link " asp-controller="Auth" asp-action="Login">Login</a>
                             </li>
+                           
+                            <li class="nav-item">
+                                <a class="nav-link " asp-controller="Auth" asp-action="Register">Register</a>
+                            </li>
                             @* <li class="nav-item">
                                 <a class="nav-link " asp-controller="UserMangement" asp-action="Login">Login</a>
                             </li> 
@@ -61,12 +84,16 @@
                                     <a class="nav-link" asp-controller="UserManagement" asp-action="Login">Employee Login</a>
                                 </li>
                             } 
-                            @<li class="nav-item">
-                                <a class="nav-link " asp-controller="Auth" asp-action="Register">Register</a>
-                            </li> *@
+                             *@
                         }
                         else
                         {
+                            @* @if (User.IsInRole("Manager"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Auth" asp-action="Register">Register</a>
+                                </li>
+                            } *@
                             <li class="nav-item">
                                 <a class="nav-link " href="#">Hello @User.Identity.Name</a>
                             </li>
@@ -97,7 +124,9 @@
                 </div>
             </div>
         </nav>
+       
     </header>
+  
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -115,5 +144,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    
 </body>
 </html>

@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Security.Claims;
 using EPES.Web.Models;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EPES.Web.Controllers
 {
@@ -57,6 +58,7 @@ namespace EPES.Web.Controllers
 
 
         [HttpGet]
+
         public IActionResult Register()
         {
             var roleList = new List<SelectListItem>()
@@ -108,7 +110,9 @@ namespace EPES.Web.Controllers
         {
             await HttpContext.SignOutAsync();
             _tokenProvider.ClearToken();
+
             return RedirectToAction("Index", "Home");
+
         }
 
 
@@ -133,7 +137,6 @@ namespace EPES.Web.Controllers
                 jwt.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Email).Value));
             identity.AddClaim(new Claim(ClaimTypes.Role,
                 jwt.Claims.FirstOrDefault(u => u.Type == "role").Value));
-
 
 
             var principal = new ClaimsPrincipal(identity);

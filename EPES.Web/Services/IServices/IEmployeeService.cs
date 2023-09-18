@@ -10,5 +10,7 @@ namespace EPES.Web.Services.IServices
         Task<ResponseDto?> CreateEmployeeAsync(EmployeeDto employeeDto);
         Task<ResponseDto?> UpdateEmployeeAsync(EmployeeDto employeeDto);
         Task<ResponseDto?> DeleteEmployeeAsync(int id);
+
+
     }
 }
