@@ -11,21 +11,20 @@ namespace EPES.Services.AuthAPI.Service
     public class UserService : IUserService
     {
         private readonly AppDbContext _db;
-		//private readonly UserManager<ApplicationUser> _userManager;
+		private readonly UserManager<ApplicationUser> _userManager;
 
-		public UserService(AppDbContext db)
-        {
-
-            _db = db;
-           
-
+		public UserService(AppDbContext db, UserManager<ApplicationUser> userManager)
+		{
+			_db = db;
+			_userManager = userManager;
 		}
-        public async Task<IEnumerable<ApplicationUser>> GetAllUsers()
+		public async Task<IEnumerable<ApplicationUser>> GetAllUsers()
         {
 			// Implement logic to retrieve all users from your data store (e.g., database)
 
-			
-            var obj=_db.ApplicationUsers.ToList();
+			var employees = await _userManager.GetUsersInRoleAsync("employee");
+
+
             // Map the retrieved data to UserDto objects and return
             /*return obj.Select(u => new ApplicationUser
 			{
@@ -36,7 +35,7 @@ namespace EPES.Services.AuthAPI.Service
                 PhoneNumber=u.PhoneNumber
                 // Include other user properties as needed
             });*/
-            return obj;
+            return employees;
         }
 
 		
