@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EPES.Services.AuthAPI.Controllers
 {
-    [Route("api/[Controller]")]
+    [Route("api/user")]
     [ApiController]
     public class UserController : ControllerBase
     {
