@@ -1,0 +1,53 @@
+﻿@model EPES.Web.Models.SelfEvaluationDto
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h4>SelfEvaluationDto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateSelfEvaluation">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeId" class="control-label"></label>
+                <input asp-for="EmployeeId" class="form-control" />
+                <span asp-validation-for="EmployeeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubmissionDate" class="control-label"></label>
+                <input asp-for="SubmissionDate" class="form-control" />
+                <span asp-validation-for="SubmissionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskCompleted" class="control-label"></label>
+                <input asp-for="TaskCompleted" class="form-control" />
+                <span asp-validation-for="TaskCompleted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GoodAttendance" class="control-label"></label>
+                <input asp-for="GoodAttendance" class="form-control" />
+                <span asp-validation-for="GoodAttendance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

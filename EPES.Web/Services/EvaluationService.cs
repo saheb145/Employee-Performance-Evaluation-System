@@ -1,0 +1,25 @@
+﻿using EPES.Web.Models;
+using EPES.Web.Services.IServices;
+using EPES.Web.Utility;
+
+namespace EPES.Web.Services
+{
+    public class EvaluationService :IEvaluationService
+    {
+        private readonly IBaseService _baseService;
+        public EvaluationService(IBaseService baseService)
+        {
+            _baseService = baseService;
+        }
+
+        public async Task<ResponseDto?> CreateEvaluationAsync(SelfEvaluationDto selfEvaluationDto)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.POST,
+                Data = selfEvaluationDto,
+                Url = SD.SelfEvaluationAPIBase + "/api/selfevaluation"
+            });
+        }
+    }
+}

@@ -14,14 +14,21 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddHttpClient<IEmployeeService, EmployeeService>();
 builder.Services.AddHttpClient<IAuthService, AuthService>();
+builder.Services.AddHttpClient<IEvaluationService, EvaluationService>();
+
 
 SD.AuthAPIBase = builder.Configuration["ServiceUrls:AuthAPI"];
 SD.UserMangementAPIBase = builder.Configuration["ServiceUrls:UserMangementAPI"];
+SD.SelfEvaluationAPIBase = builder.Configuration["ServiceUrls:SelfEvaluationAPI"];
+
+
 
 builder.Services.AddScoped<ITokenProvider, TokenProvider>();
 builder.Services.AddScoped<IBaseService, BaseService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IEvaluationService, EvaluationService>();
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
