@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using EPES.Web.Services.IServices;
 using EPES.Web.Utility;
 using EPES.Web.Services;
+using Newtonsoft.Json;
 
 namespace EPES.Web.Controllers
 {
@@ -18,6 +19,24 @@ namespace EPES.Web.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public async Task<IActionResult> SelfEvaluationIndex()
+        {
+            List<SelfEvaluationDto>? list = new();
+
+            ResponseDto? response = await _evaluationService.GetAllEvaluationsAsync();
+
+            if (response != null && response.IsSuccess)
+            {
+                list = JsonConvert.DeserializeObject<List<SelfEvaluationDto>>(Convert.ToString(response.Result));
+            }
+            else
+            {
+                TempData["error"] = response?.Message;
+            }
+
+            return View(list);
         }
 
         public async Task<IActionResult> CreateSelfEvaluation()

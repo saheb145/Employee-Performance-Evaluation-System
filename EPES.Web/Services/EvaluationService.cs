@@ -21,5 +21,24 @@ namespace EPES.Web.Services
                 Url = SD.SelfEvaluationAPIBase + "/api/selfevaluation"
             });
         }
+
+        public async Task<ResponseDto?> GetAllEvaluationsAsync()
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.SelfEvaluationAPIBase + "/api/selfevaluation"
+            });
+        }
+
+        public async Task<ResponseDto?> GetEvaluationByIdAsync(int id)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.SelfEvaluationAPIBase + "/api/selfevaluation" + id
+            });
+        }
+
     }
 }

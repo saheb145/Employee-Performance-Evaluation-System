@@ -6,5 +6,9 @@ namespace EPES.Web.Services.IServices
     public interface IEvaluationService
     {
         Task<ResponseDto?> CreateEvaluationAsync(SelfEvaluationDto selfEvaluationDto);
+        Task<ResponseDto?> GetAllEvaluationsAsync( );
+        Task<ResponseDto?> GetEvaluationByIdAsync( int id);
+
+
     }
 }
