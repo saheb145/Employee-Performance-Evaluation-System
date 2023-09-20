@@ -5,6 +5,7 @@ using EPES.Services.UserMangement.Model;
 using EPES.Services.UserMangement.Model.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Stripe;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,7 +14,7 @@ namespace EPES.Services.UserMangement.Controllers
 {
     [Route("api/employee")]
     [ApiController]
-    [Authorize(Roles = "MANAGER")]
+   //  [Authorize]
     public class UserManagementController : ControllerBase
 
     {
@@ -28,6 +29,7 @@ namespace EPES.Services.UserMangement.Controllers
         }
         // GET: api/<UserManagementController>
         [HttpGet]
+        [Authorize(Roles = "MANAGER")]
         public ResponseDto Get()
         {
             try
@@ -43,8 +45,9 @@ namespace EPES.Services.UserMangement.Controllers
             return _response;
         }
 
-        // GET api/<UserManagementController>/5
+      // GET api/<UserManagementController>/5
         [HttpGet("{id:int}")]
+    //   [Authorize(Roles = "MANAGER")]
         public ResponseDto Get(int id)
         {
             try
@@ -59,9 +62,10 @@ namespace EPES.Services.UserMangement.Controllers
             }
             return _response;
         }
-
+    
         // POST api/<UserManagementController>
         [HttpPost]
+        [Authorize(Roles = "MANAGER")]
         public ResponseDto Post([FromBody] EmployeeDto employeeDto)
         {
             try
@@ -82,9 +86,10 @@ namespace EPES.Services.UserMangement.Controllers
        
         }
 
-
+      // 
         // PUT api/<UserManagementController>/5
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "MANAGER")]
         public ResponseDto Put([FromBody] EmployeeDto employeeDto)
         {
             try
@@ -103,9 +108,10 @@ namespace EPES.Services.UserMangement.Controllers
             return _response;
         }
 
-
+      
         // DELETE api/<UserManagementController>/5
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "MANAGER")]
         public ResponseDto Delete(int id)
         {
             try
@@ -123,5 +129,77 @@ namespace EPES.Services.UserMangement.Controllers
             }
             return _response;
         }
+		[HttpPost("login")]
+     //  [Authorize(Roles = "EMPLOYEE")]
+        public async Task<IActionResult> Login([FromBody] LoginRequestDto loginDto)
+		{
+            /*if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			// Find the user by email
+			var Employee = await _db.Employees.SingleOrDefaultAsync(u => u.UserName == loginDto.UserName);
+
+			if (Employee == null)
+			{
+				return NotFound("User not found.");
+			}
+
+			// Perform password validation (compare plain text password with stored hashed password)
+			if (loginDto.Password != Employee.Password)
+			{
+				return Unauthorized("Invalid credentials.");
+			}
+
+			// TODO: Generate and return a JWT token for authentication
+
+			return Ok("Login successful");*/
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ResponseDto
+                {
+                    IsSuccess = false,
+                    Message = "Invalid input data",
+                    Result = ModelState
+                });
+            }
+
+            // Find the user by username (or email, depending on your system)
+            var Employee = await _db.Employees.SingleOrDefaultAsync(u => u.UserName == loginDto.UserName);
+
+            if (Employee == null)
+            {
+                return NotFound(new ResponseDto
+                {
+                    IsSuccess = false,
+                    Message = "User not found",
+                    Result = null
+                });
+            }
+
+            // Perform password validation (compare plain text password with stored hashed password)
+            if (loginDto.Password != Employee.Password)
+            {
+                return Unauthorized(new ResponseDto
+                {
+                    IsSuccess = false,
+                    Message = "Invalid credentials",
+                    Result = null
+                });
+            }
+
+            // TODO: Generate and return a JWT token for authentication
+
+            return Ok(new ResponseDto
+            {
+                IsSuccess = true,
+                Message = "Login successful",
+                Result = Employee // You can include additional data here if needed
+            });
+        }
+
+        
     }
 }

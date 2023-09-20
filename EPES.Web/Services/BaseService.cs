@@ -84,21 +84,26 @@ namespace EPES.Web.Services
 
         }
 
-       /* public async Task<ResponseDto?> SendAsync(EmployeeDto employeeDto)
+        public async Task<ResponseDto?> SendAsync(EmployeeRequestDto employeeRequestDto, bool withBearer = true)
         {
             try
             {
                 HttpClient client = _httpClientFactory.CreateClient("EPESAPI");
                 HttpRequestMessage message = new();
-                message.Headers.Add("Accept", "application/json");
-                message.RequestUri = new Uri(employeeDto.Url);
-                if (employeeDto.Data != null)
+                if (withBearer)
                 {
-                    message.Content = new StringContent(JsonConvert.SerializeObject(employeeDto.Data), Encoding.UTF8, "application/json");
+                    var token = _tokenProvider.GetToken();
+                    message.Headers.Add("Authorization", $"Bearer {token}");
+                }
+                message.Headers.Add("Accept", "application/json");
+                message.RequestUri = new Uri(employeeRequestDto.Url);
+                if (employeeRequestDto.Data != null)
+                {
+                    message.Content = new StringContent(JsonConvert.SerializeObject(employeeRequestDto.Data), Encoding.UTF8, "application/json");
                 }
                 HttpResponseMessage? apiResponse = null;
 
-                switch (employeeDto.ApiType)
+                switch (employeeRequestDto.ApiType)
                 {
                     case ApiType.POST:
                         message.Method = HttpMethod.Post;
@@ -142,6 +147,6 @@ namespace EPES.Web.Services
                 };
                 return dto;
             }
-        }*/
+        }
     }
 }

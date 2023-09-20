@@ -1,18 +1,24 @@
 ﻿using EPES.Web.Models;
 using EPES.Web.Services.IServices;
 using EPES.Web.Utility;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace EPES.Web.Controllers
 {
     public class UserMangementController : Controller
     {
         private readonly IEmployeeService _employeeService;
-        public UserMangementController(IEmployeeService employeeService)
+        private readonly ITokenProvider _tokenProvider;
+        public UserMangementController(IEmployeeService employeeService, ITokenProvider tokenProvider)
         {
             _employeeService = employeeService;
+            _tokenProvider = tokenProvider;
         }
 
 
@@ -55,8 +61,8 @@ namespace EPES.Web.Controllers
                 {
                     TempData["error"] = response?.Message;
                 }
-				
-			}
+
+            }
             return View(model);
         }
 
@@ -92,7 +98,100 @@ namespace EPES.Web.Controllers
             }
             return View(employeeDto);
         }
+        private async Task SignInUser(EmployeeLoginResponseDto model)
+        {
 
+
+            var handler = new JwtSecurityTokenHandler();
+
+            var jwt = handler.ReadJwtToken(model.Token);
+
+            var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+            identity.AddClaim(new Claim(JwtRegisteredClaimNames.Email,
+                jwt.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Email).Value));
+            identity.AddClaim(new Claim(JwtRegisteredClaimNames.Sub,
+                jwt.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Sub).Value));
+            identity.AddClaim(new Claim(JwtRegisteredClaimNames.Name,
+                jwt.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Name).Value));
+
+
+            identity.AddClaim(new Claim(ClaimTypes.Name,
+                jwt.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Email).Value));
+            identity.AddClaim(new Claim(ClaimTypes.Role,
+                jwt.Claims.FirstOrDefault(u => u.Type == "role").Value));
+
+
+            var principal = new ClaimsPrincipal(identity);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+        }
+        [HttpGet]
+        public IActionResult Login()
+        {
+
+            LoginRequestDto loginRequestDto = new();
+            return View(loginRequestDto);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginRequestDto obj)
+        {
+            ResponseDto responseDto = await _employeeService.LoginAsync(obj);
+
+            if (responseDto != null && responseDto.IsSuccess)
+            {
+                LoginResponseDto loginResponseDto =
+                    JsonConvert.DeserializeObject<LoginResponseDto>(Convert.ToString(responseDto.Result));
+
+               // await SignInUser(loginResponseDto);
+                //_tokenProvider.SetToken(loginResponseDto.Token);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                TempData["error"] = responseDto.Message;
+                return View(obj);
+
+            }
+
+
+        }
+        /* [HttpGet]
+         public IActionResult Login()
+         {
+
+             LoginRequestDto loginRequestDto = new();
+             return View(loginRequestDto);
+         }
+         [HttpPost]
+         public async Task<IActionResult> Login(LoginRequestDto obj)
+         {
+             ResponseDto responseDto = await _employeeService.LoginAsync(obj);
+
+             if (responseDto != null && responseDto.IsSuccess)
+             {
+                 EmployeeLoginResponseDto employeeLoginResponseDto =
+                     JsonConvert.DeserializeObject<EmployeeLoginResponseDto>(Convert.ToString(responseDto.Result));
+
+                 await SignInUser(employeeLoginResponseDto);
+                 _tokenProvider.SetToken(employeeLoginResponseDto.Token);
+                 return RedirectToAction("Index", "Home");
+             }
+             else
+             {
+                 TempData["error"] = responseDto.Message;
+                 return View(obj);
+
+             }
+
+
+         }
+         public async Task<IActionResult> Logout()
+         {
+             await HttpContext.SignOutAsync();
+             _tokenProvider.ClearToken();
+
+             return RedirectToAction("Index", "Home");
+
+         }*/
     }
-}
 
+}
