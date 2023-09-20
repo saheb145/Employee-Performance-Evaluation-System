@@ -49,17 +49,17 @@ namespace EPES.Web.Services
             });
         }
 
-		public async  Task<ResponseDto?> LoginAsync(LoginRequestDto loginRequestDto)
-		{
-			return await _baseService.SendAsync(new RequestDto()
-			{
-				ApiType = SD.ApiType.POST,
-				Data = loginRequestDto,
-				Url = SD.UserMangementAPIBase + "/api/employee/login"
-			}, withBearer: false);
-		}
+        public async Task<ResponseDto?> LoginAsync(LoginRequestDto loginRequestDto)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.POST,
+                Data = loginRequestDto,
+                Url = SD.UserMangementAPIBase + "/api/employee/login"
+            }, withBearer: false);
+        }
 
-		public  async Task<ResponseDto?> UpdateEmployeeAsync(EmployeeDto employeeDto)
+        public  async Task<ResponseDto?> UpdateEmployeeAsync(EmployeeDto employeeDto)
         {
             return await _baseService.SendAsync(new RequestDto()
             {

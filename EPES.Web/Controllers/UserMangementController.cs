@@ -39,6 +39,25 @@ namespace EPES.Web.Controllers
 
             return View(list);
         }
+        public async Task<IActionResult> EmployeeDetails(int id)
+        {
+            EmployeeDto employee = new EmployeeDto(); // Initialize to null or an appropriate default value
+
+            ResponseDto response = await _employeeService.GetEmployeeByIdAsync(id);
+
+            if (response != null && response.IsSuccess)
+            {
+                employee = JsonConvert.DeserializeObject<EmployeeDto>(Convert.ToString(response.Result));
+            }
+            else
+            {
+                TempData["error"] = response?.Message;
+                /* return RedirectToAction("EmployeeIndex"); */// Redirect to the employee list if there's an error
+                return RedirectToAction("EmployeeDetails");
+            }
+
+            return View(employee);
+        }
 
         public async Task<IActionResult> CreateEmployee()
         {
@@ -141,9 +160,9 @@ namespace EPES.Web.Controllers
                 LoginResponseDto loginResponseDto =
                     JsonConvert.DeserializeObject<LoginResponseDto>(Convert.ToString(responseDto.Result));
 
-               // await SignInUser(loginResponseDto);
+                // await SignInUser(loginResponseDto);
                 //_tokenProvider.SetToken(loginResponseDto.Token);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Privacy", "Home");
             }
             else
             {
@@ -154,44 +173,47 @@ namespace EPES.Web.Controllers
 
 
         }
-        /* [HttpGet]
-         public IActionResult Login()
+
+
+    
+    /* [HttpGet]
+     public IActionResult Login()
+     {
+
+         LoginRequestDto loginRequestDto = new();
+         return View(loginRequestDto);
+     }
+     [HttpPost]
+     public async Task<IActionResult> Login(LoginRequestDto obj)
+     {
+         ResponseDto responseDto = await _employeeService.LoginAsync(obj);
+
+         if (responseDto != null && responseDto.IsSuccess)
          {
+             EmployeeLoginResponseDto employeeLoginResponseDto =
+                 JsonConvert.DeserializeObject<EmployeeLoginResponseDto>(Convert.ToString(responseDto.Result));
 
-             LoginRequestDto loginRequestDto = new();
-             return View(loginRequestDto);
-         }
-         [HttpPost]
-         public async Task<IActionResult> Login(LoginRequestDto obj)
-         {
-             ResponseDto responseDto = await _employeeService.LoginAsync(obj);
-
-             if (responseDto != null && responseDto.IsSuccess)
-             {
-                 EmployeeLoginResponseDto employeeLoginResponseDto =
-                     JsonConvert.DeserializeObject<EmployeeLoginResponseDto>(Convert.ToString(responseDto.Result));
-
-                 await SignInUser(employeeLoginResponseDto);
-                 _tokenProvider.SetToken(employeeLoginResponseDto.Token);
-                 return RedirectToAction("Index", "Home");
-             }
-             else
-             {
-                 TempData["error"] = responseDto.Message;
-                 return View(obj);
-
-             }
-
-
-         }
-         public async Task<IActionResult> Logout()
-         {
-             await HttpContext.SignOutAsync();
-             _tokenProvider.ClearToken();
-
+             await SignInUser(employeeLoginResponseDto);
+             _tokenProvider.SetToken(employeeLoginResponseDto.Token);
              return RedirectToAction("Index", "Home");
+         }
+         else
+         {
+             TempData["error"] = responseDto.Message;
+             return View(obj);
 
-         }*/
-    }
+         }
+
+
+     }
+     public async Task<IActionResult> Logout()
+     {
+         await HttpContext.SignOutAsync();
+         _tokenProvider.ClearToken();
+
+         return RedirectToAction("Index", "Home");
+
+     }*/
+}
 
 }

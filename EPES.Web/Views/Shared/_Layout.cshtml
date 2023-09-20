@@ -53,19 +53,7 @@
 
                                 <li><hr class="dropdown-divider"></li>
                              
-                                @* @if (!User.IsInRole("Employee"))
-                                {
-                                    <li><a class="dropdown-item " asp-controller="UserMangement" asp-action="Login">Employee Login</a></li>
-                                }
-                                else
-                                {
-                                    <li class="nav-item">
-                                        <a class="nav-link " href="#">Hello @User.Identity.Name</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link " asp-controller="Auth" asp-action="Logout">Logout</a>
-                                    </li>
-                                } *@
+                                
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -85,31 +73,11 @@
                             <li class="nav-item">
                                 <a class="nav-link " asp-controller="Auth" asp-action="Register">Register</a>
                             </li>
-                            @* <li class="nav-item">
-                                <a class="nav-link " asp-controller="UserMangement" asp-action="Login">Login</a>
-                            </li> 
-                            if (User.IsInRole("Manager"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Auth" asp-action="Login">Manager Login</a>
-                                </li>
-                            }
-                            else if (User.IsInRole("Employee"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="UserManagement" asp-action="Login">Employee Login</a>
-                                </li>
-                            } 
-                             *@
+                           
                         }
                         else
                         {
-                            @* @if (User.IsInRole("Manager"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Auth" asp-action="Register">Register</a>
-                                </li>
-                            } *@
+                          
                             <li class="nav-item">
                                 <a class="nav-link " href="#">Hello @User.Identity.Name</a>
                             </li>
@@ -119,24 +87,7 @@
                         }
                     </ul>
 
-                  @*    <ul class="navbar-nav">
-                        @if (!User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link " asp-controller="Auth" asp-action="LoginEmployee">LoginEmployee</a>
-                            </li>
-                                 
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link " href="#">Hello @User.Identity.Name</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link " asp-controller="Auth" asp-action="Logout">Logout</a>
-                            </li>
-                        }
-                    </ul> *@
+                  
                 </div>
             </div>
         </nav>

@@ -29,7 +29,7 @@ namespace EPES.Services.UserMangement.Controllers
         }
         // GET: api/<UserManagementController>
         [HttpGet]
-        [Authorize(Roles = "MANAGER")]
+       // [Authorize(Roles = "MANAGER")]
         public ResponseDto Get()
         {
             try
@@ -65,7 +65,7 @@ namespace EPES.Services.UserMangement.Controllers
     
         // POST api/<UserManagementController>
         [HttpPost]
-        [Authorize(Roles = "MANAGER")]
+       // [Authorize(Roles = "MANAGER")]
         public ResponseDto Post([FromBody] EmployeeDto employeeDto)
         {
             try
@@ -89,7 +89,7 @@ namespace EPES.Services.UserMangement.Controllers
       // 
         // PUT api/<UserManagementController>/5
         [HttpPut("{id:int}")]
-        [Authorize(Roles = "MANAGER")]
+      //  [Authorize(Roles = "MANAGER")]
         public ResponseDto Put([FromBody] EmployeeDto employeeDto)
         {
             try
@@ -111,7 +111,7 @@ namespace EPES.Services.UserMangement.Controllers
       
         // DELETE api/<UserManagementController>/5
         [HttpDelete("{id:int}")]
-        [Authorize(Roles = "MANAGER")]
+     //   [Authorize(Roles = "MANAGER")]
         public ResponseDto Delete(int id)
         {
             try
