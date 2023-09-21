@@ -9,7 +9,7 @@ using AutoMapper;
 
 namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/selfevaluation")]
     [ApiController]
 
     public class SelfEvaluationAPIController : ControllerBase
