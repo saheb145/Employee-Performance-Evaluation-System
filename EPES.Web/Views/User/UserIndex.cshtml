@@ -4,7 +4,7 @@
 	<div class="card-header bg-secondary bg-gradient ml-0 py-3">
 		<div class="row">
 			<div class="col-12 text-center">
-				<h1 class="text-white">Empoyees List</h1>
+				<h1 class="text-white">Employee List</h1>
 			</div>
 		</div>
 	</div>
@@ -13,7 +13,7 @@
 			<div class="col-6">
 			</div>
 			<div class="col-6 text-end">
-				<a asp-action="CreateEmployee" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create New Employee</a>
+				<a asp-action="Register" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create New Employee</a>
 
 			</div>
 		</div>
@@ -21,7 +21,7 @@
 			<thead>
 				<tr>
 					<th>
-						ID
+						Id
 					</th>
 					<th>
 						Name
@@ -32,15 +32,6 @@
 					<th>
 						UserName
 					</th>
-					@* <th>
-					Password
-					</th> *@
-					<th>
-						PhoneNumber
-					</th>
-					@* <th>
-					Role
-					</th> *@
 					<th></th>
 				</tr>
 			</thead>
@@ -57,18 +48,9 @@
 						<td>
 							@item.Email
 						</td>
-						@* <td>
-					@item.UserName
-					</td> *@
-						@* <td>
-					@item.Password
-					</td> *@
 						<td>
-							@item.PhoneNumber
+							@item.UserName
 						</td>
-						@* <td>
-					@item.Role
-					</td> *@
 						<td>
 							<a asp-action="DeleteEmployee" asp-route-Id="@item.ID" class="btn btn-danger">
 								<i class="bi bi-trash"></i>
@@ -76,9 +58,3 @@
 						</td>
 					</tr>
 				}
-			</tbody>
-		</table>
-
-	</div>
-
-</div>
