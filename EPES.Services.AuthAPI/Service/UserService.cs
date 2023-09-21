@@ -6,7 +6,7 @@ using EPES.Services.AuthAPI.Service.IService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace EPES.Services.AuthAPI.Service
+/*namespace EPES.Services.AuthAPI.Service
 {
     public class UserService : IUserService
     {
@@ -26,7 +26,7 @@ namespace EPES.Services.AuthAPI.Service
 
 
             // Map the retrieved data to UserDto objects and return
-            /*return obj.Select(u => new ApplicationUser
+            *//*return obj.Select(u => new ApplicationUser
 			{
                 ID = u.Id,
                 Email = u.Email,
@@ -34,10 +34,11 @@ namespace EPES.Services.AuthAPI.Service
                 Password=u.PasswordHash,
                 PhoneNumber=u.PhoneNumber
                 // Include other user properties as needed
-            });*/
+            });*//*
             return employees;
         }
 
 		
 	}
 }
+*/
