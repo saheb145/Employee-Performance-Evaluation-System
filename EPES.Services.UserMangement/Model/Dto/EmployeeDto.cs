@@ -1,4 +1,5 @@
-﻿namespace EPES.Services.UserMangement.Model.Dto
+﻿
+namespace EPES.Services.UserMangement.Model.Dto
 {
     public class EmployeeDto
     {
@@ -9,5 +10,5 @@
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
         public string? Role { get; set; }
-    }
+}
 }
