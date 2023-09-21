@@ -1,3 +1,8 @@
+using EPES.Services.NotificationsAndAlertsAPI.Models;
+using EPES.Services.NotificationsAndAlertsAPI.Services.IService;
+using EPES.Services.NotificationsAndAlertsAPI.Services;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +10,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Configure the email service
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
+builder.Services.AddTransient<IEmailService, EmailService>();
+
+builder.Services.AddHostedService<ReminderService>();
 
 var app = builder.Build();
 
