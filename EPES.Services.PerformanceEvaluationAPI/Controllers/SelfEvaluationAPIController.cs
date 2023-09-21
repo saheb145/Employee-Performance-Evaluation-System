@@ -46,10 +46,10 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         // GET api/<SelfEvaluationAPIController>/5
         [HttpGet("{id}")]
         public ResponseDto Get(int id)
-        {
+        {    
             try
             {
-                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.EmployeeId == id); // we will get the selfEvaluation data by EmployeeId
+                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.Id == id); // we will get the selfEvaluation data by EmployeeId
                 _response.Result = _mapper.Map<SelfEvaluationDto>(obj);
             }
             catch (Exception ex)

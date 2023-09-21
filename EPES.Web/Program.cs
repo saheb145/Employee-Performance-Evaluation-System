@@ -63,5 +63,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+	name: "SelfEvaluationById",
+	pattern: "{controller = SelfEvaluation}/{action = SelfEvaluationById}/{id} "
+);
 
 app.Run();

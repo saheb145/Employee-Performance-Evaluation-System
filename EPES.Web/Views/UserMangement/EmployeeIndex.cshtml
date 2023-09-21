@@ -66,9 +66,12 @@
 						<td>
 							@item.PhoneNumber
 						</td>
-						@* <td>
-							@item.Role
-						</td> *@
+						<td>
+						<td>
+							<a href="@Url.Action("SelfEvaluationById", "SelfEvaluation", new { id = item.Id })" class="btn btn-primary">Details</a>
+						</td>
+
+						</td>
 						<td>
 							<a asp-action="DeleteEmployee" asp-route-Id="@item.Id" class="btn btn-danger">
 								<i class="bi bi-trash"></i>

@@ -5,6 +5,7 @@ using EPES.Web.Services.IServices;
 using EPES.Web.Utility;
 using EPES.Web.Services;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace EPES.Web.Controllers
 {
@@ -38,8 +39,24 @@ namespace EPES.Web.Controllers
 
             return View(list);
         }
+        [HttpGet]
+		public async Task<IActionResult> SelfEvaluationById(int id)
+        {
+			SelfEvaluationDto? evaluation = null;
+			ResponseDto? response = await _evaluationService.GetEvaluationByIdAsync(id);
 
-        public async Task<IActionResult> CreateSelfEvaluation()
+			if (response != null && response.IsSuccess)
+			{
+				evaluation = JsonConvert.DeserializeObject<SelfEvaluationDto>(Convert.ToString(response.Result));
+			} 
+			else
+			{
+				TempData["error"] = response?.Message;
+			}
+			return View(evaluation);
+		}
+
+		public async Task<IActionResult> CreateSelfEvaluation()
         {
             return View();
         }
