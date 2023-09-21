@@ -1,6 +1,5 @@
 ﻿namespace EPES.Services.PerformanceEvaluationAPI.Models
 {
-    
     public class SelfEvaluation
     {
         public int Id { get; set; }
@@ -9,9 +8,6 @@
         public String TaskCompleted { get; set; }
 
         public string GoodAttendance { get; set; }
- 
 
-        
     }
-
 }

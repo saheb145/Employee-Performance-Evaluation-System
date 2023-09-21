@@ -6,6 +6,9 @@ namespace EPES.Web.Services.IServices
     {
         Task<ResponseDto?> LoginAsync(LoginRequestDto loginRequestDto);
         Task<ResponseDto?> RegisterAsync(RegistrationRequestDto registrationRequestDto);
-        Task<ResponseDto?> AssignRoleAsync(RegistrationRequestDto registrationRequestDto);
-    }
+         Task<ResponseDto?> AssignRoleAsync(RegistrationRequestDto registrationRequestDto);
+       // Task<ResponseDto?> AssignRoleAsync(LoginRequestDto loginRequestDto);
+
+		
+	}
 }

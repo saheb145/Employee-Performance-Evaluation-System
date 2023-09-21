@@ -46,6 +46,8 @@ namespace EPES.Services.AuthAPI.Controllers
 
         }
 
+       
+
         [HttpPost("AssignRole")]
         public async Task<IActionResult> AssignRole([FromBody] RegistrationRequestDto model)
         {

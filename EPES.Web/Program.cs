@@ -1,6 +1,7 @@
 using EPES.Web.Services;
 using EPES.Web.Services.IServices;
 using EPES.Web.Utility;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,15 +12,36 @@ builder.Services.AddHttpClient();
 
 
 
-
+builder.Services.AddHttpClient<IEmployeeService, EmployeeService>();
 builder.Services.AddHttpClient<IAuthService, AuthService>();
+builder.Services.AddHttpClient<IEvaluationService, EvaluationService>();
+builder.Services.AddHttpClient<IManagerEvaluationService, ManagerEvaluationService>();
+
 
 SD.AuthAPIBase = builder.Configuration["ServiceUrls:AuthAPI"];
+SD.UserMangementAPIBase = builder.Configuration["ServiceUrls:UserMangementAPI"];
+SD.SelfEvaluationAPIBase = builder.Configuration["ServiceUrls:SelfEvaluationAPI"];
+SD.ManagerEvaluationAPIBase = builder.Configuration["ServiceUrls:ManagerEvaluationAPI"];
+
+
+
 
 builder.Services.AddScoped<ITokenProvider, TokenProvider>();
 builder.Services.AddScoped<IBaseService, BaseService>();
-
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IEvaluationService, EvaluationService>();
+builder.Services.AddScoped<IManagerEvaluationService, ManagerEvaluationService>();
+
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromHours(10);
+        options.LoginPath = "/Auth/Login";
+        options.AccessDeniedPath = "/Auth/AccessDenied";
+    });
+
 
 var app = builder.Build();
 
@@ -35,7 +57,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

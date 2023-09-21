@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Security.Claims;
 using EPES.Web.Models;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace EPES.Web.Controllers
 {
@@ -23,10 +24,11 @@ namespace EPES.Web.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+           
             LoginRequestDto loginRequestDto = new();
             return View(loginRequestDto);
         }
-
+       
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequestDto obj)
         {
@@ -37,7 +39,7 @@ namespace EPES.Web.Controllers
                 LoginResponseDto loginResponseDto =
                     JsonConvert.DeserializeObject<LoginResponseDto>(Convert.ToString(responseDto.Result));
 
-              //  await SignInUser(loginResponseDto);
+                await SignInUser(loginResponseDto);
                 _tokenProvider.SetToken(loginResponseDto.Token);
                 return RedirectToAction("Index", "Home");
             }
@@ -45,18 +47,23 @@ namespace EPES.Web.Controllers
             {
                 TempData["error"] = responseDto.Message;
                 return View(obj);
+
             }
+        
+           
         }
+
+
 
 
         [HttpGet]
         public IActionResult Register()
         {
             var roleList = new List<SelectListItem>()
-            {
-                new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
-                new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
-            };
+             {
+                 new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
+                 new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
+             };
 
             ViewBag.RoleList = roleList;
             return View();
@@ -87,10 +94,10 @@ namespace EPES.Web.Controllers
             }
 
             var roleList = new List<SelectListItem>()
-            {
-                new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
-                new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
-            };
+             {
+                 new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
+                 new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
+             };
 
             ViewBag.RoleList = roleList;
             return View(obj);
@@ -105,8 +112,10 @@ namespace EPES.Web.Controllers
         }
 
 
-        /*private async Task SignInUser(LoginResponseDto model)
+        private async Task SignInUser(LoginResponseDto model)
         {
+          
+
             var handler = new JwtSecurityTokenHandler();
 
             var jwt = handler.ReadJwtToken(model.Token);
@@ -129,7 +138,8 @@ namespace EPES.Web.Controllers
 
             var principal = new ClaimsPrincipal(identity);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-        }*/
+        }
 
+        
     }
 }

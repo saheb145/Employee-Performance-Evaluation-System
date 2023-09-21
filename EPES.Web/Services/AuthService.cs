@@ -32,6 +32,8 @@ namespace EPES.Web.Services
             });
         }
 
+
+
         public async Task<ResponseDto?> RegisterAsync(RegistrationRequestDto registrationRequestDto)
         {
             return await _baseService.SendAsync(new RequestDto()

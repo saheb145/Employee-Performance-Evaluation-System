@@ -21,8 +21,10 @@ namespace EPES.Services.AuthAPI.Service
             _userManager = userManager;
             _roleManager = roleManager;
         }
+      
         public async Task<bool> AssignRole(string email, string roleName)
         {
+            //i changed this code from email to username
             var user = _db.ApplicationUsers.FirstOrDefault(u => u.Email.ToLower() == email.ToLower());
             if (user != null)
             {
@@ -37,7 +39,6 @@ namespace EPES.Services.AuthAPI.Service
             return false;
 
         }
-
         public async Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(u => u.UserName.ToLower() == loginRequestDto.UserName.ToLower());
@@ -70,6 +71,90 @@ namespace EPES.Services.AuthAPI.Service
 
             return loginResponseDto;
         }
+        /* public async Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto)
+         {
+             var user = _db.ApplicationUsers.FirstOrDefault(u => u.UserName.ToLower() == loginRequestDto.UserName.ToLower());
+
+             bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
+
+             if (user == null || isValid == false)
+             {
+                 return new LoginResponseDto() { User = null, Token = "" };
+             }
+
+             bool isManager = await _userManager.IsInRoleAsync(user, "MANAGER");
+
+             if (!isManager)
+             {
+                 return new LoginResponseDto() { User = null, Token = "" };
+             }
+             //if user was found , Generate JWT Token
+             var roles = await _userManager.GetRolesAsync(user);
+             var token = _jwtTokenGenerator.GenerateToken(user, roles);
+
+             UserDto userDTO = new()
+             {
+                 Email = user.Email,
+                 ID = user.Id,
+                 Name = user.Name,
+                 PhoneNumber = user.PhoneNumber
+             };
+
+             LoginResponseDto loginResponseDto = new LoginResponseDto()
+             {
+                 User = userDTO,
+                 Token = token
+                 // Token=""
+             };
+
+             return loginResponseDto;
+         }*/
+        /* public async Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto)
+         {
+             var user = _db.ApplicationUsers.FirstOrDefault(u => u.UserName.ToLower() == loginRequestDto.UserName.ToLower());
+
+             if (user == null)
+             {
+                 return new LoginResponseDto() { User = null, Token = "" };
+             }
+
+             bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
+
+             if (isValid)
+             {
+                 // Check if the user has the "Manager" role
+                 bool isManager = await _userManager.IsInRoleAsync(user, "MANAGER");
+
+                 if (isManager)
+                 {
+                     // Generate JWT Token
+                     var roles = await _userManager.GetRolesAsync(user);
+                     var token = _jwtTokenGenerator.GenerateToken(user, roles);
+
+                     UserDto userDTO = new()
+                     {
+                         Email = user.Email,
+                         ID = user.Id,
+                         Name = user.Name,
+                         PhoneNumber = user.PhoneNumber
+                     };
+
+                     LoginResponseDto loginResponseDto = new LoginResponseDto()
+                     {
+                         User = userDTO,
+                         Token = token
+                     };
+
+                     return loginResponseDto;
+                 }
+             }
+
+             // If user was not found, password is invalid, or the user is not a Manager, return an appropriate response.
+             return new LoginResponseDto() { User = null, Token = "" };
+         }
+        */
+
+
         public async Task<string> Register(RegistrationRequestDto registrationRequestDto)
         {
 

@@ -1,4 +1,5 @@
-﻿using EPES.Services.PerformanceEvaluationAPI.Models;
+﻿using System.Collections.Generic;
+using EPES.Services.PerformanceEvaluationAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EPES.Services.PerformanceEvaluationAPI.Data
@@ -8,17 +9,25 @@ namespace EPES.Services.PerformanceEvaluationAPI.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-
-        // Define DbSet properties for your data models, including SelfEvaluation.
         public DbSet<SelfEvaluation> SelfEvaluations { get; set; }
+        public DbSet<ManagerEvaluation> ManagerEvaluations { get; set; }
 
-        // Add DbSet properties for other models if needed.
 
+        //protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //{
+        //    var server = "(localdb)";
+        //    var instance = "mssqllocaldb";
+        //    var database = "SelfEvaluatioDB";
+        //    var authentication = "Integrated Security = true";
+
+        //    var conString = $"Data Source={server}\\{instance}; Initial Catalog={database};{authentication}";
+
+        //    options.UseSqlServer(conString);
+        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            // Configure your database relationships and constraints here.
-            // For example, configure foreign keys and indices.
+        }
+
         }
     }
-}
