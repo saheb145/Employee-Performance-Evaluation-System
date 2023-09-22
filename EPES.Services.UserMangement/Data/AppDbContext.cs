@@ -15,9 +15,9 @@ namespace EPES.Services.UserMangement.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           modelBuilder.Entity<Employee>()
-          .HasIndex(e => e.UserName)
-          .IsUnique();
+          // modelBuilder.Entity<Employee>()
+          //.HasIndex(e => e.UserName)
+          //.IsUnique();
 
             base.OnModelCreating(modelBuilder);
            

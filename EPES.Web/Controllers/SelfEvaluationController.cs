@@ -39,6 +39,11 @@ namespace EPES.Web.Controllers
 
             return View(list);
         }
+
+        public ActionResult SelfEvaluationById()
+        {
+            return View();
+        }
         [HttpGet]
 		public async Task<IActionResult> SelfEvaluationById(int id)
         {
@@ -70,7 +75,7 @@ namespace EPES.Web.Controllers
                 if (response != null && response.IsSuccess)
                 {
                     TempData["success"] = "SelfEvaluation created successfully";
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(SelfEvaluationIndex));
                 }
                 else
                 {
