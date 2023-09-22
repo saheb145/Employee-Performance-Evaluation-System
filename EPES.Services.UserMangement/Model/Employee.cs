@@ -15,6 +15,6 @@ namespace EPES.Services.UserMangement.Model
         public string Password { get; set; }
         public string? Role { get; set; }
 
-        public SelfEvaluation SelfEvaluation { get; set; }
+       // public SelfEvaluation SelfEvaluation { get; set; }
     }
 }

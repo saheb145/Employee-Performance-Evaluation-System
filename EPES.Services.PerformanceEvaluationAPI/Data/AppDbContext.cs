@@ -28,11 +28,12 @@ namespace EPES.Services.PerformanceEvaluationAPI.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-		//	modelBuilder.Entity<Employee>()
-		//.HasOne(e => e.SelfEvaluation)
-		//.WithOne(se => se.Employee)
-		//.HasForeignKey<SelfEvaluation>(se => se.EmployeeId);
-		}
+        //    modelBuilder.Entity<Employee>()
+        //.HasOne(e => e.SelfEvaluation)
+        //.WithOne(se => se.Employee)
+        //.HasForeignKey<SelfEvaluation>(se => se.EmployeeId);
+
+        }
 
         }
     }

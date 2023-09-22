@@ -13,6 +13,6 @@ namespace EPES.Services.PerformanceEvaluationAPI.Models
         public string Password { get; set; }
         public string? Role { get; set; }
 
-        public SelfEvaluation SelfEvaluation { get; set; }
+
     }
 }

@@ -7,7 +7,7 @@
 namespace EPES.Services.UserMangement.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class iniyial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
