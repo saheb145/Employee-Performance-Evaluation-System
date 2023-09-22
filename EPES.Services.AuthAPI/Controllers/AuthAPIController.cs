@@ -16,12 +16,14 @@ namespace EPES.Services.AuthAPI.Controllers
         private readonly IAuthService _authService;
         protected ResponseDto _response;
         private IHttpClientFactory _httpClientFactory;
+        private IConfiguration _configuration;
 
-        public AuthAPIController(IAuthService authService, IHttpClientFactory httpClientFactory)
+        public AuthAPIController(IAuthService authService, IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _authService = authService;
             _response = new();
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
         }
         [HttpPost("register")]
        /* [Authorize(Policy = "ManagerOnly")]*/
@@ -42,6 +44,7 @@ namespace EPES.Services.AuthAPI.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login( LoginRequestDto model)
         {
+            string identityApiUrl = _configuration["ServiceUrls:UserMangementAPI"];
             try
             {
                 var httpClient = _httpClientFactory.CreateClient();
@@ -71,7 +74,7 @@ namespace EPES.Services.AuthAPI.Controllers
             }
 
         }
-
+        
        
 
         [HttpPost("AssignRole")]

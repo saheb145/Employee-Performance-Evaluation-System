@@ -130,7 +130,12 @@ namespace EPES.Services.UserMangement.Controllers
             }
             return _response;
         }
-        [HttpPost]
+
+
+
+
+
+       /* [HttpPost]
         public async Task<IActionResult> login(LoginRequestDto loginDto)
         {
             try
@@ -175,7 +180,7 @@ namespace EPES.Services.UserMangement.Controllers
 
 
             
-}
+}*/
 		/*[HttpPost("login")]
      //  [Authorize(Roles = "EMPLOYEE")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto loginDto)
