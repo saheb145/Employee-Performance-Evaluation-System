@@ -31,14 +31,15 @@ namespace EPES.Web.Services
             });
         }
 
-        public async Task<ResponseDto?> GetEvaluationByIdAsync(int id)
+       
+
+        public async Task<ResponseDto?> GetEvaluationByEmialAsync(string email)
         {
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.GET,
-                Url = SD.SelfEvaluationAPIBase + "/api/selfevaluation" + id
+                Url = SD.SelfEvaluationAPIBase + "/api/selfevaluation" + email
             });
         }
-
     }
 }

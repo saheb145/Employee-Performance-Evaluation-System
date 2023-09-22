@@ -7,7 +7,7 @@ namespace EPES.Web.Services.IServices
     {
         Task<ResponseDto?> CreateEvaluationAsync(SelfEvaluationDto selfEvaluationDto);
         Task<ResponseDto?> GetAllEvaluationsAsync( );
-        Task<ResponseDto?> GetEvaluationByIdAsync( int id);
+        Task<ResponseDto?> GetEvaluationByEmialAsync( string email);
 
 
     }

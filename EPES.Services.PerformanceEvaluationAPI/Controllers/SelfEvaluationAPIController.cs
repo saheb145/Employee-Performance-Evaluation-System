@@ -44,12 +44,12 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
 
         // GET api/<SelfEvaluationAPIController>/5
-        [HttpGet("{id}")]
-        public ResponseDto Get(int id)
+        [HttpGet("{email}")]
+        public ResponseDto Get(string email)
         {
             try
             {
-                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.EmployeeId == id); // we will get the selfEvaluation data by EmployeeId
+                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.ApplicationUserDtoEmail == email); // we will get the selfEvaluation data by EmployeeId
                 _response.Result = _mapper.Map<SelfEvaluationDto>(obj);
             }
             catch (Exception ex)
@@ -62,13 +62,14 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 
         // POST api/<SelfEvaluationAPIController>
         [HttpPost]
-        public ResponseDto Post(SelfEvaluationDto SelfEvaluationDto)
+        public ResponseDto Post([FromBody] SelfEvaluationDto selfEvaluationDto)
         {
             try
             {
-                SelfEvaluation evaluation = _mapper.Map<SelfEvaluation>(SelfEvaluationDto);
+                SelfEvaluation evaluation = _mapper.Map<SelfEvaluation>(selfEvaluationDto);
                 _db.SelfEvaluations.Add(evaluation);
                 _db.SaveChanges();
+                _response.Result = _mapper.Map<SelfEvaluationDto>(evaluation);
             }
             catch (Exception ex)
             {
@@ -85,7 +86,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
 
         // DELETE api/<SelfEvaluationAPIController>/5
-        [HttpDelete("{id}")]
+        /*[HttpDelete("{id}")]
         public ResponseDto Delete(int id)
         {
             try
@@ -94,12 +95,13 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
                 _db.SelfEvaluations.Remove(obj);
                 _db.SaveChanges();
             }
-              catch (Exception ex)
+            catch (Exception ex)
             {
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
             return _response;
-        }
+        }*/
     }
+
 }

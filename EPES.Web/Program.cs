@@ -14,7 +14,7 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddHttpClient<IEmployeeService, EmployeeService>();
 builder.Services.AddHttpClient<IAuthService, AuthService>();
-builder.Services.AddHttpClient<UserService, UserService>();
+builder.Services.AddHttpClient<IUserService, UserService>();
 builder.Services.AddHttpClient<IEvaluationService, EvaluationService>();
 builder.Services.AddHttpClient<IManagerEvaluationService, ManagerEvaluationService>();
 

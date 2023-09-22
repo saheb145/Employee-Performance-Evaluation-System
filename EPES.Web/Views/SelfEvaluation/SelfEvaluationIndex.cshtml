@@ -12,10 +12,10 @@
 		<div class="row pb-3">
 			<div class="col-6">
 			</div>
-			@* <div class="col-6 text-end">
-				<a asp-action="CreateEmployee" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create New Employee</a>
+			<div class="col-6 text-end">
+				<a asp-action="CreateSelfEvaluation" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create new SelfEvaluation</a>
 
-			</div> *@
+			</div>
 		</div>
 		<table class="table">
 			<thead>
@@ -24,7 +24,7 @@
 						Id
 					</th>
 					<th>
-						EmployeeId
+						ApplicationUserDtoEmail
 					</th>
 					<th>
 						SubmissionDate
@@ -51,7 +51,7 @@
 							@item.Id
 						</td>
 						<td>
-							@item.EmployeeId
+							@item.ApplicationUserDtoEmail
 						</td>
 						<td>
 							@item.SubmissionDate
@@ -67,7 +67,7 @@
 					@item.Role
 					</td> *@
 						<td>
-							<a asp-action="DeleteEmployee" asp-route-Id="@item.Id" class="btn btn-danger">
+							<a asp-action="DeleteSelfEvaluation" asp-route-Id="@item.Id" class="btn btn-danger">
 								<i class="bi bi-trash"></i>
 							</a>
 						</td>
