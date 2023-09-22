@@ -2,6 +2,9 @@
 using EPES.Services.AuthAPI.Service.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Net.Http.Headers ;
+using System.Text;
 
 namespace EPES.Services.AuthAPI.Controllers
 {
@@ -12,11 +15,13 @@ namespace EPES.Services.AuthAPI.Controllers
     {
         private readonly IAuthService _authService;
         protected ResponseDto _response;
+        private IHttpClientFactory _httpClientFactory;
 
-        public AuthAPIController(IAuthService authService)
+        public AuthAPIController(IAuthService authService, IHttpClientFactory httpClientFactory)
         {
             _authService = authService;
             _response = new();
+            _httpClientFactory = httpClientFactory;
         }
         [HttpPost("register")]
        /* [Authorize(Policy = "ManagerOnly")]*/
@@ -35,17 +40,35 @@ namespace EPES.Services.AuthAPI.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
+        public async Task<IActionResult> Login( LoginRequestDto model)
         {
-            var loginResponse = await _authService.Login(model);
-            if (loginResponse.User == null)
+            try
             {
-                _response.IsSuccess = false;
-                _response.Message = "Username or password is incorrect";
-                return BadRequest(_response);
+                var httpClient = _httpClientFactory.CreateClient();
+
+                var searchResults = new LoginResponseDto();
+
+                // Serialize the requestDTO to JSON
+                var requestContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+
+                // Send the POST request with the requestDTO in the request body
+                var candidateResponse = await httpClient.PostAsync("https://localhost:7003/login", requestContent);
+
+                if (candidateResponse.IsSuccessStatusCode)
+                {
+                    candidateResponse.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                    var responseJson = candidateResponse.Content.ReadAsStringAsync().Result;
+                    var candidates = JsonConvert.DeserializeObject<LoginResponseDto>(responseJson);
+                    searchResults = candidates;
+                }
+
+                return Ok(searchResults);
             }
-            _response.Result = loginResponse;
-            return Ok(_response);
+            catch (Exception ex)
+            {
+                throw;
+            }
 
         }
 

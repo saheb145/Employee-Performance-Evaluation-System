@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿/*using AutoMapper;
 using EPES.Services.AuthAPI.Data;
 using EPES.Services.AuthAPI.Models;
 using EPES.Services.AuthAPI.Models.Dto;
@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EPES.Services.AuthAPI.Controllers
 {
-	/* [Route("api/[Controller]")]
+	*//* [Route("api/[Controller]")]
 	 //[Route("api/user")]
 	 [ApiController]*/
 	/*public class UserController : ControllerBase
@@ -27,7 +27,7 @@ namespace EPES.Services.AuthAPI.Controllers
 			
 		}
 		
-    }*/
+    }*//*
 
 	[Route("api/user")]
 	[ApiController]
@@ -46,7 +46,7 @@ namespace EPES.Services.AuthAPI.Controllers
 			_userManager = userManager;
 		}
 		[HttpGet]
-		public ResponseDto Get()
+		*//*public ResponseDto Get()
 		{
 			try
 			{
@@ -62,9 +62,10 @@ namespace EPES.Services.AuthAPI.Controllers
 				_response.Message = ex.Message;
 			}
 
-			return _response;
+			return _response;*//*
 
 		}
 
 	}
 }
+*/
