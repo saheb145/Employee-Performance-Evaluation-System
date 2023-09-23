@@ -173,9 +173,9 @@ namespace EPES.Services.AuthAPI.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "5f904921-8a49-4417-93b2-12adec0f8cf9", "manager@gmail.com", true, false, null, "manager", "MANAGER@GMAIL.COM", "MANAGER", "AQAAAAIAAYagAAAAEEDmUrnugYnYUUD5oGLD9q27dMlSSm2gL26lIYHjVEigF0fEpmDPwJO6OWjV/2aOcg==", null, false, "", false, "Manager" },
-                    { "2", 0, "b0fa1835-a42f-4ec2-9a9f-18e56f41d8c3", "Saheb@gmail.com", true, false, null, "saheb kumar", "SAHEB@GMAIL.COM", "SAHEBKUMAR", "AQAAAAIAAYagAAAAEIgq4yKmW8LZq62x8LhxbiEiwWZC3HADbbppe/K41S+37OMTttmSU/rAZX8KzJbOLw==", null, false, "", false, "SahebKumar" },
-                    { "3", 0, "54935892-ec2e-4bfc-bac5-02b00c632514", "ankit@gmail.com", true, false, null, "Ankit Kumar", "ANKIT@GMAIL.COM", "ANKITKUMAR", "AQAAAAIAAYagAAAAEBLT20LoW7y078nxOvgZI3QjjnRfbnDYdk0hflVai1W6OoQpS3X3ZrXxROQi+x4Q2g==", null, false, "", false, "AnkitKumar" }
+                    { "1", 0, "88d59a0a-df78-4ca0-8a48-786810b140db", "manager@gmail.com", true, false, null, "manager", "MANAGER@GMAIL.COM", "MANAGER", "AQAAAAIAAYagAAAAEE1Qp3o5R9o0mqwGFspl0ZUGRXLFbadSPBN38G5SE4Wu+d5iTlkcfQ9LqZeKV0rC/g==", null, false, "", false, "Manager" },
+                    { "2", 0, "eeb91583-139d-4050-a438-14acca4ec41c", "Saheb@gmail.com", true, false, null, "saheb kumar", "SAHEB@GMAIL.COM", "SAHEBKUMAR", "AQAAAAIAAYagAAAAECECF4rTVlN/jNxoYI5zMXzXEB13+7fk3FVIk5ZUejL4vlVlJv3asG6KMtgczhh88w==", null, false, "", false, "SahebKumar" },
+                    { "3", 0, "fc234698-a8af-4df0-bbeb-bfab6f2e991c", "ankit@gmail.com", true, false, null, "Ankit Kumar", "ANKIT@GMAIL.COM", "ANKITKUMAR", "AQAAAAIAAYagAAAAEBiMEfJLNaYJMZb4P9mBcxGQwJuUxqOg47jCTS9z5MP7KfcAs2zV3HeaERcKDMCjtQ==", null, false, "", false, "AnkitKumar" }
                 });
 
             migrationBuilder.InsertData(

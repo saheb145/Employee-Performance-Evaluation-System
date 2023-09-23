@@ -72,7 +72,7 @@ namespace EPES.Web.Controllers
         }
 
         // GET: SelfEvaluationController1/Create
-        public ActionResult Create()
+       /* public ActionResult Create()
         {
             return View();
         }
@@ -91,7 +91,7 @@ namespace EPES.Web.Controllers
                 return View();
             }
         }
-
+*/
         // GET: SelfEvaluationController1/Edit/5
         public ActionResult Edit(int id)
         {

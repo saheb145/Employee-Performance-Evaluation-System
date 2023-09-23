@@ -44,12 +44,12 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
 
         // GET api/<SelfEvaluationAPIController>/5
-        [HttpGet("{email}")]
-        public ResponseDto Get(string email)
+        [HttpGet("{applicationUserDtoemail}")]
+        public ResponseDto Get(string applicationUserDtoemail)
         {
             try
             {
-                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.ApplicationUserDtoEmail == email); // we will get the selfEvaluation data by EmployeeId
+                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.ApplicationUserDtoEmail== applicationUserDtoemail); // we will get the selfEvaluation data by EmployeeId
                 _response.Result = _mapper.Map<SelfEvaluationDto>(obj);
             }
             catch (Exception ex)
@@ -80,13 +80,27 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
 
         // PUT api/<SelfEvaluationAPIController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{id:int}")]
+        public ResponseDto Put([FromBody] SelfEvaluationDto selfEvaluationDto)
         {
+            try
+            {
+                SelfEvaluation obj = _mapper.Map<SelfEvaluation>(selfEvaluationDto);
+                _db.SelfEvaluations.Update(obj);
+                _db.SaveChanges();
+
+                _response.Result = _mapper.Map<SelfEvaluationDto>(obj);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
         }
 
         // DELETE api/<SelfEvaluationAPIController>/5
-        /*[HttpDelete("{id}")]
+        [HttpDelete("{id}")]
         public ResponseDto Delete(int id)
         {
             try
@@ -101,7 +115,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
                 _response.Message = ex.Message;
             }
             return _response;
-        }*/
+        }
     }
 
 }

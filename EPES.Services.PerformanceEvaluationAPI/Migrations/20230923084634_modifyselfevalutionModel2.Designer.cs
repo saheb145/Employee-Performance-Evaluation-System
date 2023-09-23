@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230922025457_ForeignKeyAdded")]
-    partial class ForeignKeyAdded
+    [Migration("20230923084634_modifyselfevalutionModel2")]
+    partial class modifyselfevalutionModel2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,12 +25,12 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EPES.Services.PerformanceEvaluationAPI.Models.Dto.ApplicationUserDto", b =>
+            modelBuilder.Entity("EPES.Services.PerformanceEvaluationAPI.Models.ApplicationUser", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("ID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -50,7 +50,37 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Email");
+
+                    b.ToTable("ApplicationUsers");
+                });
+
+            modelBuilder.Entity("EPES.Services.PerformanceEvaluationAPI.Models.Dto.ApplicationUserDto", b =>
+                {
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Email");
 
                     b.ToTable("ApplicationUserDto");
                 });
@@ -90,27 +120,34 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Adaptability")
+                        .HasColumnType("int");
+
                     b.Property<string>("ApplicationUserDtoEmail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ApplicationUserDtoID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("GoodAttendance")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Commmunication")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("SubmissionDate")
+                    b.Property<int>("GoalAchievement")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("SubmissionDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("TaskCompleted")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Technical")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TimeManagement")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserDtoID");
+                    b.HasIndex("ApplicationUserDtoEmail");
 
                     b.ToTable("SelfEvaluations");
                 });
@@ -119,7 +156,9 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
                 {
                     b.HasOne("EPES.Services.PerformanceEvaluationAPI.Models.Dto.ApplicationUserDto", "ApplicationUserDto")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserDtoID");
+                        .HasForeignKey("ApplicationUserDtoEmail")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ApplicationUserDto");
                 });

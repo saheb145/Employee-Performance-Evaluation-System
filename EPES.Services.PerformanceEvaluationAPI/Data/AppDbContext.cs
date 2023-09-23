@@ -12,7 +12,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Data
         public DbSet<SelfEvaluation> SelfEvaluations { get; set; }
         public DbSet<ManagerEvaluation> ManagerEvaluations { get; set; }
 
-
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         //protected override void OnConfiguring(DbContextOptionsBuilder options)
         //{
         //    var server = "(localdb)";
