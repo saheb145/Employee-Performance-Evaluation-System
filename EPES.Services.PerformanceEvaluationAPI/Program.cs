@@ -64,9 +64,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-ApplyMigration();
+//ApplyMigration();
 app.Run();
-void ApplyMigration()
+/*void ApplyMigration()
 {
     using (var scope = app.Services.CreateScope())
     {
@@ -77,4 +77,4 @@ void ApplyMigration()
             _db.Database.Migrate();
         }
     }
-}
+}*/
