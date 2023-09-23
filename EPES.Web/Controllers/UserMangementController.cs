@@ -1,4 +1,4 @@
-﻿/*using EPES.Web.Models;
+﻿using EPES.Web.Models;
 using EPES.Web.Services.IServices;
 using EPES.Web.Utility;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +14,25 @@ namespace EPES.Web.Controllers
         {
             _employeeService = employeeService;
         }
+		public string GenerateUniqueEmployeeId()
+		{
+			// Generate a new unique GUID
+			Guid uniqueGuid = Guid.NewGuid();
 
+			// Convert the GUID to a string representation
+			string uniqueEmployeeId = uniqueGuid.ToString();
 
-        public async Task<IActionResult> EmployeeIndex()
+			// You may want to remove hyphens or other characters from the generated ID
+			uniqueEmployeeId = uniqueEmployeeId.Replace("-", "");
+
+			// Ensure the ID is of a specific length or format, if needed
+			// For example, you can pad it to a certain length
+			uniqueEmployeeId = uniqueEmployeeId.Substring(0, 10).PadLeft(10, '0'); // Adjust the length as needed
+
+			return uniqueEmployeeId;
+		}
+
+		public async Task<IActionResult> EmployeeIndex()
         {
             List<EmployeeDto>? list = new();
 
@@ -42,9 +58,13 @@ namespace EPES.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateEmployee(EmployeeDto model)
         {
-            if (ModelState.IsValid)
+			string uniqueEmployeeId = GenerateUniqueEmployeeId();
+
+			// Populate the EmployeeId property with the generated ID
+			model.UniqueEID = uniqueEmployeeId;
+			if (ModelState.IsValid)
             {
-                ResponseDto? response = await _employeeService.CreateEmployeeAsync(model);
+				ResponseDto? response = await _employeeService.CreateEmployeeAsync(model);
 
                 if (response != null && response.IsSuccess)
                 {
@@ -96,4 +116,3 @@ namespace EPES.Web.Controllers
     }
 }
 
-*/
