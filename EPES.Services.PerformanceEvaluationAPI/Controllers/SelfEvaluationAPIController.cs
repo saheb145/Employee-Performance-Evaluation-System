@@ -12,7 +12,8 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 {
     [Route("api/selfevaluation")]
     [ApiController]
-    [Authorize]
+  //[Authorize]
+    [Authorize(Roles = "EMPLOYEE")]
     public class SelfEvaluationAPIController : ControllerBase
     {
 
@@ -28,7 +29,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
         // GET: api/<SelfEvaluationAPIController>
         [HttpGet]
-        [Authorize(Roles = "MANAGER")]
+       // [Authorize(Roles = "EMPLOYEE")]
         public ResponseDto Get()
         {
 
@@ -47,7 +48,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 
         // GET api/<SelfEvaluationAPIController>/5
         [HttpGet("{applicationUserDtoemail}")]
-        [Authorize(Roles = "MANAGER")]
+        //[Authorize(Roles = "EMPLOYEE")]
         public ResponseDto Get(string applicationUserDtoemail)
         {
             try
@@ -65,7 +66,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 
         // POST api/<SelfEvaluationAPIController>
         [HttpPost]
-        [Authorize(Roles = "EMPLOYEE")]
+       // [Authorize(Roles = "EMPLOYEE")]
         public ResponseDto Post([FromBody] SelfEvaluationDto selfEvaluationDto)
         {
             try
@@ -85,7 +86,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 
         // PUT api/<SelfEvaluationAPIController>/5
         [HttpPut("{id:int}")]
-        [Authorize(Roles = "EMPLOYEE")]
+       // [Authorize(Roles = "EMPLOYEE")]
         public ResponseDto Put([FromBody] SelfEvaluationDto selfEvaluationDto)
         {
             try
