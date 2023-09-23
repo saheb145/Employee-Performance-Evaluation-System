@@ -24,8 +24,9 @@ namespace EPES.Services.UserMangement.Controllers
             _mapper = mapper;
             _response = new ResponseDto();
         }
-        // GET: api/<UserManagementController>
-        [HttpGet]
+		
+		// GET: api/<UserManagementController>
+		[HttpGet]
         public ResponseDto Get()
         {
             try
@@ -62,9 +63,11 @@ namespace EPES.Services.UserMangement.Controllers
         [HttpPost]
         public ResponseDto Post([FromBody] EmployeeDto employeeDto)
         {
-            try
+			
+			try
             {
-                Employee obj = _mapper.Map<Employee>(employeeDto);
+				
+				Employee obj = _mapper.Map<Employee>(employeeDto);
                 _db.Employees.Add(obj);
                 _db.SaveChanges();
 

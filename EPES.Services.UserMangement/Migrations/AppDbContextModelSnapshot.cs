@@ -48,6 +48,10 @@ namespace EPES.Services.UserMangement.Migrations
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UniqueEID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -65,6 +69,7 @@ namespace EPES.Services.UserMangement.Migrations
                             Password = "Saheb@123",
                             PhoneNumber = "778-0828780",
                             Role = "Employee",
+                            UniqueEID = "xxchhhhhui",
                             UserName = "sahebKumar"
                         },
                         new
@@ -75,6 +80,7 @@ namespace EPES.Services.UserMangement.Migrations
                             Password = "Ankit@123",
                             PhoneNumber = "7903373058",
                             Role = "Employee",
+                            UniqueEID = "xxchjhhhui",
                             UserName = "ankitkumar"
                         },
                         new
@@ -85,6 +91,7 @@ namespace EPES.Services.UserMangement.Migrations
                             Password = "bhargav@123",
                             PhoneNumber = "7903373058",
                             Role = "Employee",
+                            UniqueEID = "xxythhhhui",
                             UserName = "bhargavKumar"
                         });
                 });

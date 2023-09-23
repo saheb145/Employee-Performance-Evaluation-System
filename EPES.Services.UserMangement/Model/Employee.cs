@@ -7,7 +7,9 @@ namespace EPES.Services.UserMangement.Model
     public class Employee
     {
         public int Id {  get; set; }
-        public string Email { get; set; }
+		public string UniqueEID { get; set; }
+
+		public string Email { get; set; }
         [Required]   
         public string UserName { get; set; }
         public string Name { get; set; }

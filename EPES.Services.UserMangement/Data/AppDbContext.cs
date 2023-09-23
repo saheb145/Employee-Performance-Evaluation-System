@@ -26,6 +26,7 @@ namespace EPES.Services.UserMangement.Data
                Id = 1,
                Email="saheb@gmail.com",
                UserName="sahebKumar",
+               UniqueEID="xxchhhhhui",
                Name="saheb",
                Password="Saheb@123",
                PhoneNumber="778-0828780",
@@ -38,7 +39,9 @@ namespace EPES.Services.UserMangement.Data
                 Id = 2,
                 Email = "ankit@gmail.com",
                 Name = "ankit",
-                UserName="ankitkumar",
+				UniqueEID = "xxchjhhhui",
+
+				UserName = "ankitkumar",
                 Password = "Ankit@123",
                 PhoneNumber = "7903373058",
                 Role = "Employee"
@@ -51,7 +54,9 @@ namespace EPES.Services.UserMangement.Data
                 Name = "bhargav",
                 UserName="bhargavKumar",
                 Password = "bhargav@123",
-                PhoneNumber = "7903373058",
+				UniqueEID = "xxythhhhui",
+
+				PhoneNumber = "7903373058",
                 Role = "Employee"
             });
         }

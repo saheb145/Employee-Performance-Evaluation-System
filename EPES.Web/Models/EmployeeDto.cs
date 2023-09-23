@@ -12,7 +12,8 @@ namespace EPES.Web.Models
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
         public string? Role { get; set; }
-        
+		public string? UniqueEID { get; set; }
 
-    }
+
+	}
 }

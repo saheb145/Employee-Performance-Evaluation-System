@@ -24,13 +24,12 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
             _db = db;
             _mapper = mapper;
             _response = new ResponseDto();
-        }
+        }  
         // GET: api/<SelfEvaluationAPIController>
         [HttpGet]
         public ResponseDto Get()
         {
-
-            try
+          try
             {
                 IEnumerable<SelfEvaluation> objList = _db.SelfEvaluations.ToList();
                 _response.Result = _mapper.Map<IEnumerable<SelfEvaluationDto>>(objList);
@@ -45,6 +44,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 
         // GET api/<SelfEvaluationAPIController>/5
         [HttpGet("{id}")]
+
         public ResponseDto Get(int id)
         {    
             try

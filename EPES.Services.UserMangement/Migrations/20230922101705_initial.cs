@@ -7,7 +7,7 @@
 namespace EPES.Services.UserMangement.Migrations
 {
     /// <inheritdoc />
-    public partial class initial1 : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,6 +18,7 @@ namespace EPES.Services.UserMangement.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    UniqueEID = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -32,12 +33,12 @@ namespace EPES.Services.UserMangement.Migrations
 
             migrationBuilder.InsertData(
                 table: "Employees",
-                columns: new[] { "Id", "Email", "Name", "Password", "PhoneNumber", "Role", "UserName" },
+                columns: new[] { "Id", "Email", "Name", "Password", "PhoneNumber", "Role", "UniqueEID", "UserName" },
                 values: new object[,]
                 {
-                    { 1, "saheb@gmail.com", "saheb", "Saheb@123", "778-0828780", "Employee", "sahebKumar" },
-                    { 2, "ankit@gmail.com", "ankit", "Ankit@123", "7903373058", "Employee", "ankitkumar" },
-                    { 3, "bhargav@gmail.com", "bhargav", "bhargav@123", "7903373058", "Employee", "bhargavKumar" }
+                    { 1, "saheb@gmail.com", "saheb", "Saheb@123", "778-0828780", "Employee", "xxchhhhhui", "sahebKumar" },
+                    { 2, "ankit@gmail.com", "ankit", "Ankit@123", "7903373058", "Employee", "xxchjhhhui", "ankitkumar" },
+                    { 3, "bhargav@gmail.com", "bhargav", "bhargav@123", "7903373058", "Employee", "xxythhhhui", "bhargavKumar" }
                 });
         }
 

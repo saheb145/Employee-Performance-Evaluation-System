@@ -6,34 +6,52 @@
 			<div class="col-12 text-center">
 				<h1 class="text-white">SelfEvaluation data</h1>
 			</div>
-		</div>
-	</div>
-	<div class="card-body p-4">
-		<div class="row pb-3">
+			<div class="row pb-3">
 			<div class="col-6">
 			</div>
-			@* <div class="col-6 text-end">
-				<a asp-action="CreateEmployee" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create New Employee</a>
+			<div class="col-6 text-end">
+				<a asp-action="CreateSelfEvaluation" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create New Evaluation</a>
 
-			</div> *@
+			</div>
 		</div>
+		</div>
+		
+	</div>
+	<div class="card-body p-4">
+		
 		<table class="table">
 			<thead>
 				<tr>
-					<th>
-						Id
+					@* <th scope="col">
+						ID
+					</th> *@
+					<th scope="col">
+						UniqueEID
 					</th>
-					<th>
-						EmployeeId
+					<th scope="col">
+						Name
 					</th>
-					<th>
-						SubmissionDate
+					<th scope="col">
+						Email
+					</th >
+					<th scope ="col">
+					Technical
+
 					</th>
-					<th>
-						TaskCompleted
+					<th scope="col">
+						Communication
+
 					</th>
+					<th scope="col">
+						Adaptability
+
+					</th >
 					<th>
-					GoodAttendance
+						TimeManagement
+
+					</th>
+					<th scope="col">
+						Goal Achievement
 
 					</th>
 		
@@ -47,30 +65,37 @@
 				@foreach (var item in Model)
 				{
 					<tr>
+						     @*  <th scope="row">@item.Id</th> *@
+
 						<td>
-							@item.Id
+							@item.UniqueEID
 						</td>
 						<td>
-							@item.EmployeeId
+							@item.Name
 						</td>
 						<td>
-							@item.SubmissionDate
+							@item.Email
 						</td>
 						<td>
-							@item.TaskCompleted
+							@item.Technical
 						</td>
 						<td>
-							@item.GoodAttendance
+							@item.Communication
+						</td>
+						<td>
+							@item.Adaptability
+						</td>
+						<td>
+							@item.TimeManagement
+						</td>
+						<td>
+							@item.GoalAchievement
 						</td>
 						
 						@* <td>
 					@item.Role
 					</td> *@
-						<td>
-							<a asp-action="DeleteEmployee" asp-route-Id="@item.Id" class="btn btn-danger">
-								<i class="bi bi-trash"></i>
-							</a>
-						</td>
+						
 					</tr>
 				}
 			</tbody>

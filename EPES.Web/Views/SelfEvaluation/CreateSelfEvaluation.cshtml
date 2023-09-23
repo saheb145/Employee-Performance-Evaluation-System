@@ -4,7 +4,7 @@
     ViewData["Title"] = "CreateSelfEvaluation";
 }
 
-<h1>CreateSelfEvaluation</h1>
+@* <h1>CreateSelfEvaluation</h1>
 
 <h4>EvaluationService</h4>
 <hr />
@@ -18,7 +18,7 @@
                     <input asp-for="Id" class="form-control" />
                     <span asp-validation-for="Id" class="text-danger"></span>
                 </div> *@
-                <div class="form-group">
+               @*  <div class="form-group">
                     <label asp-for="EmployeeId" class="control-label"></label>
                     <input asp-for="EmployeeId" class="form-control" />
                     <span asp-validation-for="EmployeeId" class="text-danger"></span>
@@ -46,8 +46,106 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="SelfEvaluationIndex">Back to List</a>
+</div>  *@*
+
+<div class="container-fluid mx-auto ">
+    <div class="row d-flex justify-content-center ">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center ">
+            <h3 >Employee Evaluation page</h3>
+            
+            <div class="card ">
+                <p class="text-center mb-4">Rate yourself on the basis of following skills on the scale of 10</p>
+                <form class="form-card" asp-action="CreateSelfEvaluation" >
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label asp-for="UniqueEID" class="form-control-label px-3">EID<span class="text-danger"> *</span></label> <input asp-for="UniqueEID" id="UniqueEID" name="UniqueEID" placeholder="Enter your EID"> </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label asp-for="Name" class="form-control-label px-3"> Name<span class="text-danger"> *</span></label> <input asp-for="Name"  id="Name" name="Name" placeholder="Enter your  name" > </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label asp-for="Email" class="form-control-label px-3">Email<span class="text-danger"> *</span></label> <input asp-for="Email" id="Email" name="Email" placeholder="Enter your Email" > </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label asp-for="Technical" class="form-control-label px-3">Technical skills<span class="text-danger"> *</span></label> <input asp-for="Technical" id="Technical" name="Technical" placeholder="Rate your Technical Skills" > </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label asp-for="Communication" class="form-control-label px-3">Communication skills<span class="text-danger"> *</span></label> <input asp-for="Communication" id="Communication" name="Communication" placeholder="Rate your Communication Skills" > </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label asp-for="Adaptability" class="form-control-label px-3">Adaptability<span class="text-danger"> *</span></label> <input asp-for="Adaptability" id="Adaptability" name="Adaptability" placeholder="Rate yourself on Adaptability" > </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label asp-for="TimeManagement" class="form-control-label px-3">Time Management<span class="text-danger"> *</span></label> <input asp-for="TimeManagement" id="TimeManagement" name="TimeManagement" placeholder="Rate yourself on TimeManagement" > </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label asp-for="GoalAchievement" class="form-control-label px-3">Goal Achievement<span class="text-danger"> *</span></label> <input asp-for="GoalAchievement" id="GoalAchievement" name="GoalAchievement" placeholder="Rate yourself on GoalAchievement" > </div>
+
+                    </div>
+                   
+                   
+                    @* <div class="row justify-content-between text-left">
+                        <div class="form-group col-12 flex-column d-flex"> <label class="form-control-label px-3">What would you be using Flinks for?<span class="text-danger"> *</span></label> <input type="text" id="ans" name="ans" placeholder="" onblur="validate(6)"> </div>
+                    </div> *@
+                    <div class="row justify-content-end">
+                        <div class="form-group col-sm-6"> <button type="submit" value="Create" class="btn-block btn-primary">Submit</button> </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+<style>
+    body {
+        color: #000;
+        overflow-x: hidden;
+        height: 100%;
+        background-image: url("https://i.imgur.com/GMmCQHC.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%
+    }
+
+    .card {
+        padding: 30px 40px;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        border: none !important;
+        box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2)
+    }
+
+    .blue-text {
+        color: #00BCD4
+    }
+
+    .form-control-label {
+        margin-bottom: 0
+    }
+
+    input, textarea, button {
+        padding: 8px 15px;
+        border-radius: 5px !important;
+        margin: 5px 0px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        font-size: 18px !important;
+        font-weight: 300
+    }
+
+        input:focus, textarea:focus {
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            border: 1px solid #00BCD4;
+            outline-width: 0;
+            font-weight: 400
+        }
+
+    .btn-block {
+        text-transform: uppercase;
+        font-size: 15px !important;
+        font-weight: 400;
+        height: 43px;
+        cursor: pointer
+    }
+
+        .btn-block:hover {
+            color: #fff !important
+        }
+
+    button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0
+    }
+</style>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
