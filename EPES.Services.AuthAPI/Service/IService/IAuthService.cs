@@ -6,8 +6,8 @@ namespace EPES.Services.AuthAPI.Service.IService
     {
        Task<string> Register(RegistrationRequestDto registrationRequestDto);
         Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto);
-        Task<bool> AssignRole(string email, string roleName);
-        //Task<bool> AssignRole(string userName, string roleName);
+       Task<bool> AssignRole(string email, string roleName);
+       // Task<bool> AssignRole(string userName, string roleName);
 
         
          

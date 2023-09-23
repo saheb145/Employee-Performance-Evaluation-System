@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Common;
 using Stripe;
+using Token = NuGet.Common.Token;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -135,7 +136,7 @@ namespace EPES.Services.UserMangement.Controllers
 
 
 
-       /* [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> login(LoginRequestDto loginDto)
         {
             try
@@ -153,34 +154,22 @@ namespace EPES.Services.UserMangement.Controllers
                     return StatusCode(404, "Employee Not Found");
                 }
 
-                var xyz = new EmployeeDto(Name = Employee.Name,ID=Employee.Id,)
+             //   var xyz = new EmployeeDto(Name = Employee.Name, ID = Employee.Id)
 
                 LoginResponseDto loginResponseDto = new LoginResponseDto()
                 {
-                    Employee = xyz;
-                    Token = token
+                    Employee = EmployeeDto;
+                    token = Token;
                     // Token=""
                 };
 
-                return Ok(loginResponseDto);
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.Message;
-            }
-            // TODO: Generate and return a JWT token for authentication
-
-            return Ok(new ResponseDto
-                {
-                    IsSuccess = true,
-                    Message = "Login successful",
-                    Result = Employee // You can include additional data here if needed
-                });
+            return Ok(loginResponseDto);
+        }
+          
 
 
             
-}*/
+}
 		/*[HttpPost("login")]
      //  [Authorize(Roles = "EMPLOYEE")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto loginDto)
