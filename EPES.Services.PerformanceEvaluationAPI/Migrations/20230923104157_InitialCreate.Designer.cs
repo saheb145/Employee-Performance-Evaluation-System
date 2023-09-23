@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230923084207_modifyselfevalutionModel")]
-    partial class modifyselfevalutionModel
+    [Migration("20230923104157_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

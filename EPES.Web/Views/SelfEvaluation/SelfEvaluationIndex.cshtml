@@ -14,7 +14,6 @@
 			</div>
 			<div class="col-6 text-end">
 				<a asp-action="CreateSelfEvaluation" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create new SelfEvaluation</a>
-
 			</div>
 		</div>
 		<table class="table">
@@ -33,13 +32,21 @@
 						TaskCompleted
 					</th>
 					<th>
-					GoodAttendance
-
+						Technical
 					</th>
-		
-					@* <th>
-					Role
-					</th> *@
+					<th>
+						Commmunication
+					</th>
+					<th>
+						Adaptability
+					</th>
+					<th>
+						TimeManagement
+					</th>
+					<th>
+						GoalAchievement
+					</th>
+					<!-- Add more columns for additional properties as needed -->
 					<th></th>
 				</tr>
 			</thead>
@@ -59,23 +66,30 @@
 						<td>
 							@item.TaskCompleted
 						</td>
-						@* <td>
-							@item.GoodAttendance
-						</td> *@
-						
-						@* <td>
-					@item.Role
-					</td> *@
 						<td>
-							<a asp-action="DeleteSelfEvaluation" asp-route-Id="@item.Id" class="btn btn-danger">
+							@item.Technical
+						</td>
+						<td>
+							@item.Commmunication
+						</td>
+						<td>
+							@item.Adaptability
+						</td>
+						<td>
+							@item.TimeManagement
+						</td>
+						<td>
+							@item.GoalAchievement
+						</td>
+						<!-- Add more <td> elements for additional properties as needed -->
+						<td>
+							@* <a asp-action="DeleteSelfEvaluation" asp-route-Id="@item.Id" class="btn btn-danger">
 								<i class="bi bi-trash"></i>
-							</a>
+							</a> *@
 						</td>
 					</tr>
 				}
 			</tbody>
 		</table>
-
 	</div>
-
 </div>

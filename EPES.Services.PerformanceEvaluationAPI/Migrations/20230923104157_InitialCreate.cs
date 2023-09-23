@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate1 : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -66,9 +66,13 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ApplicationUserDtoEmail = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SubmissionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TaskCompleted = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GoodAttendance = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    SubmissionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    TaskCompleted = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Technical = table.Column<int>(type: "int", nullable: false),
+                    Commmunication = table.Column<int>(type: "int", nullable: false),
+                    Adaptability = table.Column<int>(type: "int", nullable: false),
+                    TimeManagement = table.Column<int>(type: "int", nullable: false),
+                    GoalAchievement = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

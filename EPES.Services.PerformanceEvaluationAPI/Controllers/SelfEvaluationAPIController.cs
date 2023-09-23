@@ -3,6 +3,7 @@ using EPES.Services.PerformanceEvaluationAPI.Data;
 using EPES.Services.PerformanceEvaluationAPI.Models;
 using EPES.Services.PerformanceEvaluationAPI.Models.Dto;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,7 +12,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 {
     [Route("api/selfevaluation")]
     [ApiController]
-
+    [Authorize]
     public class SelfEvaluationAPIController : ControllerBase
     {
 
@@ -27,6 +28,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
         // GET: api/<SelfEvaluationAPIController>
         [HttpGet]
+        [Authorize(Roles = "MANAGER")]
         public ResponseDto Get()
         {
 
@@ -45,6 +47,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 
         // GET api/<SelfEvaluationAPIController>/5
         [HttpGet("{applicationUserDtoemail}")]
+        [Authorize(Roles = "MANAGER")]
         public ResponseDto Get(string applicationUserDtoemail)
         {
             try
@@ -62,6 +65,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 
         // POST api/<SelfEvaluationAPIController>
         [HttpPost]
+        [Authorize(Roles = "EMPLOYEE")]
         public ResponseDto Post([FromBody] SelfEvaluationDto selfEvaluationDto)
         {
             try
@@ -81,6 +85,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 
         // PUT api/<SelfEvaluationAPIController>/5
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "EMPLOYEE")]
         public ResponseDto Put([FromBody] SelfEvaluationDto selfEvaluationDto)
         {
             try
