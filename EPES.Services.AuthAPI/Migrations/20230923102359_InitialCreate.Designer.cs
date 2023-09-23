@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EPES.Services.AuthAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230919055551_InitialCreate")]
+    [Migration("20230923102359_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -98,14 +98,14 @@ namespace EPES.Services.AuthAPI.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "dbc44ef3-d11b-4fda-b5cb-94e2b81eccea",
+                            ConcurrencyStamp = "add3870b-6197-4d1b-b3e4-d3546192be7e",
                             Email = "manager@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "manager",
                             NormalizedEmail = "MANAGER@GMAIL.COM",
                             NormalizedUserName = "MANAGER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEA16WGu5AyxPMwgDRiKaBOs4EKGbD0Z+Rd6HUwoggu1CFvubm+YSCuHGcpK6SpBxZA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPNiF9AGWZlODvWMo9mAmKG/48dReuitQqoShDTDwPbtzb5QktPsEfI6qEmi4ilPPg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -115,14 +115,14 @@ namespace EPES.Services.AuthAPI.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3326bda2-2641-475f-b83d-9a737fa56f04",
+                            ConcurrencyStamp = "b408a5d8-af2d-4722-acd8-0b3c478d2d75",
                             Email = "Saheb@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "saheb kumar",
                             NormalizedEmail = "SAHEB@GMAIL.COM",
                             NormalizedUserName = "SAHEBKUMAR",
-                            PasswordHash = "AQAAAAIAAYagAAAAENDlji1PH7rhYRao0l9rCxGXQ+vhgd6htGAyL92yiJsRecj5hKT0Ai0LK0hlN7wgXg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL2b1/Toq2NKJUAnLYbYvC8Yov3YUiDiRVm3QkRb6pbCJvLJs1+DbgXHi5y8CqYXlA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -132,14 +132,14 @@ namespace EPES.Services.AuthAPI.Migrations
                         {
                             Id = "3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "37103874-0776-4455-bc69-fa310a523946",
+                            ConcurrencyStamp = "0639278d-1579-4db9-b1b9-2b78ed1beb2d",
                             Email = "ankit@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Ankit Kumar",
                             NormalizedEmail = "ANKIT@GMAIL.COM",
                             NormalizedUserName = "ANKITKUMAR",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGJiFerkyJXPBA4163S2ejDrBi/lO7dYu82ep1a4LaV4slhLz1eqFPXCLqoJsKHzUg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKDxUCfT3UNoiVqkCQs++vfaXXtANFXfCVT/YiA19cyiOrg7gUauyB3oVP/x/0Gzzg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
