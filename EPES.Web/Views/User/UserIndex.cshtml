@@ -1,10 +1,10 @@
-﻿@* @model IEnumerable<EmployeeDto>
+﻿@model IEnumerable<ApplicationUserDto>
 
 <div class="card shadow border-0 mt-4">
 	<div class="card-header bg-secondary bg-gradient ml-0 py-3">
 		<div class="row">
 			<div class="col-12 text-center">
-				<h1 class="text-white">Empoyees List</h1>
+				<h1 class="text-white">Employee List</h1>
 			</div>
 		</div>
 	</div>
@@ -13,7 +13,7 @@
 			<div class="col-6">
 			</div>
 			<div class="col-6 text-end">
-				<a asp-action="CreateEmployee" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create New Employee</a>
+				<a asp-action="Register" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create New Employee</a>
 
 			</div>
 		</div>
@@ -32,13 +32,6 @@
 					<th>
 						UserName
 					</th>
-					<th>
-						Password
-					</th>
-					<th>
-						PhoneNumber
-					</th>
-					
 					<th></th>
 				</tr>
 			</thead>
@@ -47,7 +40,7 @@
 				{
 					<tr>
 						<td>
-							@item.Id
+							@item.ID
 						</td>
 						<td>
 							@item.Name
@@ -59,22 +52,9 @@
 							@item.UserName
 						</td>
 						<td>
-							@item.Password
-						</td>
-						<td>
-							@item.PhoneNumber
-						</td>
-						
-						<td>
-							<a asp-action="DeleteEmployee" asp-route-Id="@item.Id" class="btn btn-danger">
+							<a asp-action="DeleteEmployee" asp-route-Id="@item.ID" class="btn btn-danger">
 								<i class="bi bi-trash"></i>
 							</a>
 						</td>
 					</tr>
 				}
-			</tbody>
-		</table>
-
-	</div>
-
-</div> *@

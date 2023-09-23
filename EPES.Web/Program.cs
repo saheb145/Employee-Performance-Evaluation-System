@@ -12,16 +12,31 @@ builder.Services.AddHttpClient();
 
 
 
-builder.Services.AddHttpClient<IEmployeeService, EmployeeService>();
+/*builder.Services.AddHttpClient<IEmployeeService, EmployeeService>();*/
 builder.Services.AddHttpClient<IAuthService, AuthService>();
+builder.Services.AddHttpClient<IUserService, UserService>();
+builder.Services.AddHttpClient<IEvaluationService, EvaluationService>();
+builder.Services.AddHttpClient<IManagerEvaluationService, ManagerEvaluationService>();
+
 
 SD.AuthAPIBase = builder.Configuration["ServiceUrls:AuthAPI"];
-SD.UserMangementAPIBase = builder.Configuration["ServiceUrls:UserMangementAPI"];
+SD.UserAPIBase = builder.Configuration["ServiceUrls:AuthAPI"];
+//SD.UserMangementAPIBase = builder.Configuration["ServiceUrls:UserMangementAPI"];
+SD.SelfEvaluationAPIBase = builder.Configuration["ServiceUrls:SelfEvaluationAPI"];
+SD.ManagerEvaluationAPIBase = builder.Configuration["ServiceUrls:ManagerEvaluationAPI"];
+
+
+
 
 builder.Services.AddScoped<ITokenProvider, TokenProvider>();
 builder.Services.AddScoped<IBaseService, BaseService>();
-builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+//builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IEvaluationService, EvaluationService>();
+builder.Services.AddScoped<IManagerEvaluationService, ManagerEvaluationService>();
+
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {

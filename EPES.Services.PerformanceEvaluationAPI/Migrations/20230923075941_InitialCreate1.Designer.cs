@@ -4,6 +4,7 @@ using EPES.Services.PerformanceEvaluationAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230923075941_InitialCreate1")]
+    partial class InitialCreate1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,30 +120,20 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Adaptability")
-                        .HasColumnType("int");
-
                     b.Property<string>("ApplicationUserDtoEmail")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("Commmunication")
-                        .HasColumnType("int");
+                    b.Property<string>("GoodAttendance")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GoalAchievement")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("SubmissionDate")
+                    b.Property<DateTime>("SubmissionDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("TaskCompleted")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Technical")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TimeManagement")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

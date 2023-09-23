@@ -1,10 +1,10 @@
-﻿@* @model IEnumerable<EmployeeDto>
+﻿@model IEnumerable<SelfEvaluationDto>
 
 <div class="card shadow border-0 mt-4">
 	<div class="card-header bg-secondary bg-gradient ml-0 py-3">
 		<div class="row">
 			<div class="col-12 text-center">
-				<h1 class="text-white">Empoyees List</h1>
+				<h1 class="text-white">SelfEvaluation data</h1>
 			</div>
 		</div>
 	</div>
@@ -13,7 +13,7 @@
 			<div class="col-6">
 			</div>
 			<div class="col-6 text-end">
-				<a asp-action="CreateEmployee" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create New Employee</a>
+				<a asp-action="CreateSelfEvaluation" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create new SelfEvaluation</a>
 
 			</div>
 		</div>
@@ -24,21 +24,22 @@
 						Id
 					</th>
 					<th>
-						Name
+						ApplicationUserDtoEmail
 					</th>
 					<th>
-						Email
+						SubmissionDate
 					</th>
 					<th>
-						UserName
+						TaskCompleted
 					</th>
 					<th>
-						Password
+					GoodAttendance
+
 					</th>
-					<th>
-						PhoneNumber
-					</th>
-					
+		
+					@* <th>
+					Role
+					</th> *@
 					<th></th>
 				</tr>
 			</thead>
@@ -50,23 +51,23 @@
 							@item.Id
 						</td>
 						<td>
-							@item.Name
+							@item.ApplicationUserDtoEmail
 						</td>
 						<td>
-							@item.Email
+							@item.SubmissionDate
 						</td>
 						<td>
-							@item.UserName
+							@item.TaskCompleted
 						</td>
-						<td>
-							@item.Password
-						</td>
-						<td>
-							@item.PhoneNumber
-						</td>
+						@* <td>
+							@item.GoodAttendance
+						</td> *@
 						
+						@* <td>
+					@item.Role
+					</td> *@
 						<td>
-							<a asp-action="DeleteEmployee" asp-route-Id="@item.Id" class="btn btn-danger">
+							<a asp-action="DeleteSelfEvaluation" asp-route-Id="@item.Id" class="btn btn-danger">
 								<i class="bi bi-trash"></i>
 							</a>
 						</td>
@@ -77,4 +78,4 @@
 
 	</div>
 
-</div> *@
+</div>

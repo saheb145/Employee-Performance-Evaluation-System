@@ -49,9 +49,22 @@
                                 User Management
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item " asp-controller="UserMangement" asp-action="EmployeeIndex">Employee</a></li>
+                                @* <li><a class="dropdown-item " asp-controller="UserMangement" asp-action="EmployeeIndex">Employee</a></li>
+ *@
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item " asp-controller="User" asp-action="UserIndex">User(Employee)</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Evaluation
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item " asp-controller="SelfEvaluation" asp-action="SelfEvaluationIndex">Self Evaluation</a></li>
 
                                 <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item " asp-controller="ManagerEvaluation" asp-action="ManagerEvaluation">Manager Evaluation</a></li>
 
                             </ul>
                         </li>
@@ -66,61 +79,28 @@
                                 <a class="nav-link " asp-controller="Auth" asp-action="Login">Login</a>
                             </li>
                            
-                            <li class="nav-item">
+                          @*   <li class="nav-item">
                                 <a class="nav-link " asp-controller="Auth" asp-action="Register">Register</a>
-                            </li>
-                            @* <li class="nav-item">
-                                <a class="nav-link " asp-controller="UserMangement" asp-action="Login">Login</a>
-                            </li> 
-                            if (User.IsInRole("Manager"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Auth" asp-action="Login">Manager Login</a>
-                                </li>
-                            }
-                            else if (User.IsInRole("Employee"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="UserManagement" asp-action="Login">Employee Login</a>
-                                </li>
-                            } 
-                             *@
+                            </li> *@
+                           
                         }
                         else
                         {
-                            @* @if (User.IsInRole("Manager"))
-                            {
+                           
+                            <li class="nav-item">
+                                <a class="nav-link " href="#">Hello @User.Identity.Name</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " asp-controller="Auth" asp-action="Logout">Logout</a>
+                            </li>
+                          @*   @if (User.IsInRole("Manager"))
+                            { *@
                                 <li class="nav-item">
                                     <a class="nav-link" asp-controller="Auth" asp-action="Register">Register</a>
                                 </li>
-                            } *@
-                            <li class="nav-item">
-                                <a class="nav-link " href="#">Hello @User.Identity.Name</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link " asp-controller="Auth" asp-action="Logout">Logout</a>
-                            </li>
+                          //  }
                         }
                     </ul>
-
-                  @*    <ul class="navbar-nav">
-                        @if (!User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link " asp-controller="Auth" asp-action="LoginEmployee">LoginEmployee</a>
-                            </li>
-                                 
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link " href="#">Hello @User.Identity.Name</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link " asp-controller="Auth" asp-action="Logout">Logout</a>
-                            </li>
-                        }
-                    </ul> *@
                 </div>
             </div>
         </nav>

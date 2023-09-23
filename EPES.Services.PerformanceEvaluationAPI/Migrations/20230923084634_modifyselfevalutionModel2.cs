@@ -5,7 +5,7 @@
 namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class updateddatabaseName : Migration
+    public partial class modifyselfevalutionModel2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
