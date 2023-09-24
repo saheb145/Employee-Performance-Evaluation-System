@@ -1,5 +1,6 @@
 ﻿using EPES.Web.Models;
 using EPES.Web.Services.IServices;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -8,26 +9,30 @@ namespace EPES.Web.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
+       
         public UserController(IUserService userService )
         {
             _userService= userService;
         }
         public async  Task<IActionResult> UserIndex()
         {
-            List<UserDto>? list = new();
+         
+            UserDto userDto= new UserDto();
 
             ResponseDto? response = await _userService.GetAllUserAsync();
 
             if (response != null && response.IsSuccess)
             {
-                list = JsonConvert.DeserializeObject<List<UserDto>>(Convert.ToString(response.Result));
+				userDto = JsonConvert.DeserializeObject<UserDto>(Convert.ToString(response.Result));
             }
             else
             {
                 TempData["error"] = response?.Message;
             }
 
-            return View(list);
+            return View(userDto);
         }
+
+       
     }
 }

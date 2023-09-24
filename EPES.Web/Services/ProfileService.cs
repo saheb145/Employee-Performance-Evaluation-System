@@ -4,20 +4,21 @@ using EPES.Web.Utility;
 
 namespace EPES.Web.Services
 {
-    public class UserService : IUserService
+    public class ProfileService:IProfileService
     {
         private readonly IBaseService _baseService;
-        public UserService(IBaseService baseService)
+        public ProfileService(IBaseService baseService)
         {
-			_baseService=baseService;
+            _baseService = baseService;
 
-		}
-        public async Task<ResponseDto?> GetAllUserAsync()
+        }
+
+        public async Task<ResponseDto?> GetProfileByEmail()
         {
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.GET,
-                Url = SD.UserAPIBase + "/api/user"
+                Url = SD.ProfileAPIBase + "/api/user"
             });
         }
 

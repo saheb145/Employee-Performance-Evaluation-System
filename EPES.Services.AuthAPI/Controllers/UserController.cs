@@ -4,6 +4,7 @@ using EPES.Services.AuthAPI.Models;
 using EPES.Services.AuthAPI.Models.Dto;
 using EPES.Services.AuthAPI.Service.IService;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EPES.Services.AuthAPI.Controllers
@@ -43,7 +44,7 @@ namespace EPES.Services.AuthAPI.Controllers
 			return _response;
 
 		}
-
+		
 
 	}
 }

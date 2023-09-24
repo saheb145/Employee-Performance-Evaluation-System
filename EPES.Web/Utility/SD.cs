@@ -6,6 +6,7 @@
         public static string SelfEvaluationAPIBase { get; set; }
         public static string UserMangementAPIBase { get; set; }
         public static string UserAPIBase { get; set; }
+        public static string ProfileAPIBase { get; set; }
 
         public const string RoleManager = "MANAGER";
         public static string ManagerEvaluationAPIBase { get; set; }
