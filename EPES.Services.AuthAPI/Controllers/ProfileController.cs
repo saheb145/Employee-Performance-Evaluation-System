@@ -27,7 +27,7 @@ namespace EPES.Services.AuthAPI.Controllers
 			_mapper = mapper;
 		}
 
-		/*[HttpGet("FetchUserData")]*/
+		
 		[HttpGet]
 		public ResponseDto FetchUserDataByUserId(string userId)
 		{
@@ -42,10 +42,7 @@ namespace EPES.Services.AuthAPI.Controllers
 					var employeeDtos = _mapper.Map<IEnumerable<UserDto>>(profiles);
 					_response.Result = employeeDtos;
 				}
-				/*else
-				{
-					return NotFound($"User with ID {userId} not found.");
-				}*/
+				
 			}
 			catch (Exception ex)
 			{
@@ -54,5 +51,7 @@ namespace EPES.Services.AuthAPI.Controllers
 			}
 			return _response;
 		}
+
+		
 	}
 }

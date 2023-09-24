@@ -6,7 +6,6 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 {
@@ -20,12 +19,13 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         private readonly AppDbContext _db;
         private ResponseDto _response;
         private IMapper _mapper;
-
+       
         public SelfEvaluationAPIController(AppDbContext db, IMapper mapper)
         {
             _db = db;
             _mapper = mapper;
             _response = new ResponseDto();
+            
         }
         // GET: api/<SelfEvaluationAPIController>
         [HttpGet]
@@ -53,7 +53,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         {
             try
             {
-                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.UserDtoEmail== userDtoemail); // we will get the selfEvaluation data by EmployeeId
+                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.UserDtoEmail== userDtoemail); 
                 _response.Result = _mapper.Map<SelfEvaluationDto>(obj);
             }
             catch (Exception ex)
@@ -69,6 +69,8 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
        [Authorize(Roles = "EMPLOYEE")]
         public ResponseDto Post([FromBody] SelfEvaluationDto selfEvaluationDto)
         {
+     
+            
             try
             {
                 SelfEvaluation evaluation = _mapper.Map<SelfEvaluation>(selfEvaluationDto);
@@ -84,7 +86,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
             return _response;
         }
 
-        // PUT api/<SelfEvaluationAPIController>/5
+        
         [HttpPut("{id:int}")]
         [Authorize(Roles = "EMPLOYEE")]
         public ResponseDto Put([FromBody] SelfEvaluationDto selfEvaluationDto)

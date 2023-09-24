@@ -5,17 +5,33 @@ using EPES.Web.Services.IServices;
 using EPES.Web.Utility;
 using EPES.Web.Services;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace EPES.Web.Controllers
 {
     public class SelfEvaluationController : Controller
     {
         private readonly IEvaluationService _evaluationService;
-        public SelfEvaluationController(IEvaluationService evaluationService)
+		private readonly IProfileService _profileService;
+		private ResponseDto _response;
+		public SelfEvaluationController(IEvaluationService evaluationService, IProfileService profileService)
         {
             _evaluationService = evaluationService;
-        }
-        // GET: SelfEvaluationController1
+            _profileService = profileService;
+			_response = new ResponseDto();
+
+		}
+
+       /* public  GetLoggedInUserProfile()
+        {
+
+            string email = User.Identity.Name;
+            var loggedInUser = _profileService.GetProfileByEmail(email);
+            UserDto userDto = new UserDto();
+
+
+            return View(user);
+        }*/
         public ActionResult Index()
         {
             return View();
@@ -39,13 +55,56 @@ namespace EPES.Web.Controllers
             return View(list);
         }
 
+       /* public class SelfEvaluationViewModel
+        {
+            public SelfEvaluationDto SelfEvaluation { get; set; }
+            public UserDto User { get; set; }
+        }*/
+
         public async Task<IActionResult> CreateSelfEvaluation()
         {
+            /*string email = User.Identity.Name;
+
+            List<UserDto>? list = new();
+
+            ResponseDto? response1 = await _profileService.GetProfileByEmail(email);
+
+            return View(response1.Result);*/
+
+            /* string email = User.Identity.Name;
+
+             // Retrieve the SelfEvaluationDto from the service
+            ResponseDto selfEvaluationResponse = await _evaluationService.GetEvaluationByEmialAsync(email);
+
+             // Retrieve the UserDto from the service
+             ResponseDto userResponse = await _profileService.GetProfileByEmail(email);
+
+             if (selfEvaluationResponse.IsSuccess && userResponse.IsSuccess)
+             {
+                 var selfEvaluation = (SelfEvaluationDto)selfEvaluationResponse.Result;
+                 var user = (UserDto)userResponse.Result;
+
+                 // Create a ViewModel and populate it with SelfEvaluation and User data
+                 var viewModel = new SelfEvaluationViewModel
+                 {
+                     SelfEvaluation = selfEvaluation,
+                     User = user
+                 };
+
+                 return View(viewModel);
+             }
+             else
+             {
+                 // Handle the case where the service call fails (e.g., user not found)
+                 // You can return an error view or take appropriate action.
+                 return View("ErrorView"); // Replace "ErrorView" with the name of your error view.
+             }*/
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> CreateSelfEvaluation(SelfEvaluationDto model)
         {
+            
             if (ModelState.IsValid)
             {
                 ResponseDto? response = await _evaluationService.CreateEvaluationAsync(model);
