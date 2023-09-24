@@ -4,6 +4,6 @@ namespace EPES.Web.Services.IServices
 {
     public interface IProfileService
     {
-        Task<ResponseDto?> GetProfileByEmail();
+        Task<ResponseDto?> GetProfileByEmail(string email);
     }
 }

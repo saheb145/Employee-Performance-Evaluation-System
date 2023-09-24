@@ -13,13 +13,13 @@ namespace EPES.Web.Services
 
         }
 
-        public async Task<ResponseDto?> GetProfileByEmail()
+        public async Task<ResponseDto?> GetProfileByEmail(string email)
         {
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.GET,
-                Url = SD.ProfileAPIBase + "/api/user"
-            });
+                Url = SD.ProfileAPIBase + "/api/profile?userId="+email
+			}); 
         }
 
        

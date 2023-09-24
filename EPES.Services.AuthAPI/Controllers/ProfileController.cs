@@ -16,16 +16,20 @@ namespace EPES.Services.AuthAPI.Controllers
 		private readonly AppDbContext _db;
 		private ResponseDto _response;
 		private readonly IProfileByEmail _profileByEmail;
-        public ProfileController(IProfileByEmail profileByEmail, AppDbContext db)
+		private IMapper _mapper;
+
+		public ProfileController(IProfileByEmail profileByEmail, AppDbContext db, IMapper mapper)
 
 		{
 			_profileByEmail = profileByEmail;
-			
+			_response = new ResponseDto();
 			_db = db;
+			_mapper = mapper;
 		}
 
-        [HttpGet("FetchUserData")]
-		public IActionResult FetchUserDataByUserId(string userId)
+		/*[HttpGet("FetchUserData")]*/
+		[HttpGet]
+		public ResponseDto FetchUserDataByUserId(string userId)
 		{
 			try
 			{
@@ -35,17 +39,20 @@ namespace EPES.Services.AuthAPI.Controllers
 
 				if (profiles != null && profiles.Count > 0)
 				{
-					return Ok(profiles);
+					var employeeDtos = _mapper.Map<IEnumerable<UserDto>>(profiles);
+					_response.Result = employeeDtos;
 				}
-				else
+				/*else
 				{
 					return NotFound($"User with ID {userId} not found.");
-				}
+				}*/
 			}
 			catch (Exception ex)
 			{
-				return StatusCode(500, $"Internal server error: {ex.Message}");
+				_response.IsSuccess = false;
+				_response.Message = ex.Message;
 			}
+			return _response;
 		}
 	}
 }

@@ -2,6 +2,7 @@
 using EPES.Web.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Security.Claims;
 
 namespace EPES.Web.Controllers
 {
@@ -13,13 +14,17 @@ namespace EPES.Web.Controllers
         {
             _profileService = profileService;
         }
-        public async Task<IActionResult> ProfileIndex()
+     
+		public async Task<IActionResult> ProfileIndex() 
         {
-            List<UserDto>? list = new();
+			string email = User.Identity.Name;
 
-            ResponseDto? response = await _profileService.GetProfileByEmail();
+			List<UserDto>? list = new();
+            
+            ResponseDto? response = await _profileService.GetProfileByEmail(email);
 
-            if (response != null && response.IsSuccess)
+
+			if (response != null && response.IsSuccess)
             {
                 list = JsonConvert.DeserializeObject<List<UserDto>>(Convert.ToString(response.Result));
             }
