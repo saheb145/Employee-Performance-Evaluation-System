@@ -10,18 +10,27 @@ namespace EPES.Web.Services
     public class BaseService : IBaseService
     {
         private IHttpClientFactory _httpClientFactory;
-        public BaseService(IHttpClientFactory httpClientFactory)
+        private ITokenProvider _tokenProvider;
+        public BaseService(IHttpClientFactory httpClientFactory, ITokenProvider tokenProvider)
         {
             _httpClientFactory = httpClientFactory;
+            _tokenProvider = tokenProvider;
         }
-        public async Task<ResponseDto?> SendAsync(RequestDto requestDto)
+        public async Task<ResponseDto?> SendAsync(RequestDto requestDto, bool withBearer = true)
         {
             try
             {
                 HttpClient client = _httpClientFactory.CreateClient("EPESAPI");
                 HttpRequestMessage message = new();
+                //token
+                if (withBearer)
+                {
+                    var token = _tokenProvider.GetToken();
+                    message.Headers.Add("Authorization", $"Bearer {token}");
+                }
                 message.Headers.Add("Accept", "application/json");
                 message.RequestUri = new Uri(requestDto.Url);
+
                 if (requestDto.Data != null)
                 {
                     message.Content = new StringContent(JsonConvert.SerializeObject(requestDto.Data), Encoding.UTF8, "application/json");

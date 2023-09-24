@@ -1,11 +1,13 @@
 ﻿using EPES.Services.AuthAPI.Models.Dto;
 using EPES.Services.AuthAPI.Service.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EPES.Services.AuthAPI.Controllers
 {
     [Route("api/auth")]
     [ApiController]
+    
     public class AuthAPIController : Controller
     {
         private readonly IAuthService _authService;
@@ -17,6 +19,7 @@ namespace EPES.Services.AuthAPI.Controllers
             _response = new();
         }
         [HttpPost("register")]
+       /* [Authorize(Policy = "ManagerOnly")]*/
         public async Task<IActionResult> Register([FromBody] RegistrationRequestDto model)
         {
 

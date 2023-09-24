@@ -95,18 +95,52 @@ namespace EPES.Services.AuthAPI.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c9fc54a3-6908-495f-ba2d-567518ba39c1",
+                            ConcurrencyStamp = "46eba99a-ce8b-48a2-b61d-ad790444f677",
                             Email = "manager@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "manager",
                             NormalizedEmail = "MANAGER@GMAIL.COM",
                             NormalizedUserName = "MANAGER",
-                            PasswordHash = "AQAAAAIAAYagAAAAELpvWlp7Vgox0b7nbv2kJjHyR/MhaX2myA6tubZxrEyHWQdrFb5LbvEj/A3BFZ+OAw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMwPk5I8bkC438OkuK3x+K9ePmOU0dUjpRWHhhQYoYnNqTbgofRCqUOWzvJ6VorDGg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "Manager"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "56226647-a607-4b50-a80f-1796d19796ca",
+                            Email = "Saheb@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            Name = "saheb kumar",
+                            NormalizedEmail = "SAHEB@GMAIL.COM",
+                            NormalizedUserName = "SAHEBKUMAR",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBduJ2/SIRC18hBZbokacXmtdtW2PaD/NeGx4Hwbam/4LSIVKoFdYkuc1bEsL5xRZw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "SahebKumar"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f47add0e-2520-4a8d-a89e-27f040855526",
+                            Email = "ankit@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            Name = "Ankit Kumar",
+                            NormalizedEmail = "ANKIT@GMAIL.COM",
+                            NormalizedUserName = "ANKITKUMAR",
+                            PasswordHash = "AQAAAAIAAYagAAAAEALmvegt5OA3hKlPzAf/yl1M9zhxlHojKxPkuKtemrYHvLl+ooyKNkzj4roLlqhvww==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "AnkitKumar"
                         });
                 });
 
@@ -142,6 +176,12 @@ namespace EPES.Services.AuthAPI.Migrations
                             Id = "1",
                             Name = "MANAGER",
                             NormalizedName = "MANAGER"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            Name = "EMPLOYEE",
+                            NormalizedName = "EMPLOYEE"
                         });
                 });
 
@@ -236,6 +276,16 @@ namespace EPES.Services.AuthAPI.Migrations
                         {
                             UserId = "1",
                             RoleId = "1"
+                        },
+                        new
+                        {
+                            UserId = "2",
+                            RoleId = "2"
+                        },
+                        new
+                        {
+                            UserId = "3",
+                            RoleId = "2"
                         });
                 });
 

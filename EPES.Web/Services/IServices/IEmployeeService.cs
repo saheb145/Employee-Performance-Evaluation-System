@@ -1,4 +1,4 @@
-﻿using EPES.Web.Models;
+﻿/*using EPES.Web.Models;
 
 namespace EPES.Web.Services.IServices
 {
@@ -10,5 +10,8 @@ namespace EPES.Web.Services.IServices
         Task<ResponseDto?> CreateEmployeeAsync(EmployeeDto employeeDto);
         Task<ResponseDto?> UpdateEmployeeAsync(EmployeeDto employeeDto);
         Task<ResponseDto?> DeleteEmployeeAsync(int id);
+
+
     }
 }
+*/

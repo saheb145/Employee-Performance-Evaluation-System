@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace EPES.Services.AuthAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initialcreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -160,17 +162,31 @@ namespace EPES.Services.AuthAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "1", null, "MANAGER", "MANAGER" });
+                values: new object[,]
+                {
+                    { "1", null, "MANAGER", "MANAGER" },
+                    { "2", null, "EMPLOYEE", "EMPLOYEE" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "c9fc54a3-6908-495f-ba2d-567518ba39c1", "manager@gmail.com", true, false, null, "manager", "MANAGER@GMAIL.COM", "MANAGER", "AQAAAAIAAYagAAAAELpvWlp7Vgox0b7nbv2kJjHyR/MhaX2myA6tubZxrEyHWQdrFb5LbvEj/A3BFZ+OAw==", null, false, "", false, "Manager" });
+                values: new object[,]
+                {
+                    { "1", 0, "46eba99a-ce8b-48a2-b61d-ad790444f677", "manager@gmail.com", true, false, null, "manager", "MANAGER@GMAIL.COM", "MANAGER", "AQAAAAIAAYagAAAAEMwPk5I8bkC438OkuK3x+K9ePmOU0dUjpRWHhhQYoYnNqTbgofRCqUOWzvJ6VorDGg==", null, false, "", false, "Manager" },
+                    { "2", 0, "56226647-a607-4b50-a80f-1796d19796ca", "Saheb@gmail.com", true, false, null, "saheb kumar", "SAHEB@GMAIL.COM", "SAHEBKUMAR", "AQAAAAIAAYagAAAAEBduJ2/SIRC18hBZbokacXmtdtW2PaD/NeGx4Hwbam/4LSIVKoFdYkuc1bEsL5xRZw==", null, false, "", false, "SahebKumar" },
+                    { "3", 0, "f47add0e-2520-4a8d-a89e-27f040855526", "ankit@gmail.com", true, false, null, "Ankit Kumar", "ANKIT@GMAIL.COM", "ANKITKUMAR", "AQAAAAIAAYagAAAAEALmvegt5OA3hKlPzAf/yl1M9zhxlHojKxPkuKtemrYHvLl+ooyKNkzj4roLlqhvww==", null, false, "", false, "AnkitKumar" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "1", "1" });
+                values: new object[,]
+                {
+                    { "1", "1" },
+                    { "2", "2" },
+                    { "2", "3" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

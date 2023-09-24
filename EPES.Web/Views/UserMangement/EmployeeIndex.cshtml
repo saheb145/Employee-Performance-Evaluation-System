@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmployeeDto>
+﻿@* @model IEnumerable<EmployeeDto>
 
 <div class="card shadow border-0 mt-4">
 	<div class="card-header bg-secondary bg-gradient ml-0 py-3">
@@ -38,9 +38,7 @@
 					<th>
 						PhoneNumber
 					</th>
-					@* <th>
-						Role
-					</th> *@
+					
 					<th></th>
 				</tr>
 			</thead>
@@ -66,9 +64,7 @@
 						<td>
 							@item.PhoneNumber
 						</td>
-						@* <td>
-							@item.Role
-						</td> *@
+						
 						<td>
 							<a asp-action="DeleteEmployee" asp-route-Id="@item.Id" class="btn btn-danger">
 								<i class="bi bi-trash"></i>
@@ -81,4 +77,4 @@
 
 	</div>
 
-</div>
+</div> *@

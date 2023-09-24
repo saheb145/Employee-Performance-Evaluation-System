@@ -9,50 +9,100 @@ namespace EPES.Services.AuthAPI.Data
 {
     public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
+        public AppDbContext()
+        {
+
+        }
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            var hasher = new PasswordHasher<ApplicationUser>();
-           
-             var user=   new ApplicationUser
-                {
-                    Id = "1", // Replace with a unique ID for the user
-                    UserName = "Manager",
-                    NormalizedUserName = "MANAGER",
-                    Name = "manager",
-                    Email = "manager@gmail.com",
-                    NormalizedEmail = "MANAGER@GMAIL.COM",
-                    EmailConfirmed = true,
-                    PasswordHash = hasher.HashPassword(null, "Manager@123"), // Hash the password
-                    SecurityStamp = string.Empty
-                };
-            
-            modelBuilder.Entity<ApplicationUser>().HasData(user);
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
+			var hasher = new PasswordHasher<ApplicationUser>();
 
-            // Define the role
-            var role = new IdentityRole
-            {
-                Id = "1", // Replace with a unique ID for the role
-                Name = "MANAGER", // Replace with your desired role name
-                NormalizedName = "MANAGER"
-            };
+			var managerUser = new ApplicationUser
+			{
+				Id = "1", // Replace with a unique ID for the Manager user
+				UserName = "Manager",
+				NormalizedUserName = "MANAGER",
+				Name = "manager",
+				Email = "manager@gmail.com",
+				NormalizedEmail = "MANAGER@GMAIL.COM",
+				EmailConfirmed = true,
+				PasswordHash = hasher.HashPassword(null, "Manager@123"), // Hash the password
+				SecurityStamp = string.Empty
+			};
 
-            // Add the role to the database
-            modelBuilder.Entity<IdentityRole>().HasData(role);
+			var employee1User = new ApplicationUser
+			{
+				Id = "2", // Replace with a unique ID for the first Employee user
+				UserName = "SahebKumar",
+				NormalizedUserName = "SAHEBKUMAR",
+				Name = "saheb kumar",
+				Email = "Saheb@gmail.com",
+				NormalizedEmail = "SAHEB@GMAIL.COM",
+				EmailConfirmed = true,
+				PasswordHash = hasher.HashPassword(null, "Saheb@123"), // Hash the password
+				SecurityStamp = string.Empty
+			};
 
-            // Assign the role to the user
-            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
-            {
-                UserId = user.Id,
-                RoleId = role.Id
-            });
+			var employee2User = new ApplicationUser
+			{
+				Id = "3", // Replace with a unique ID for the second Employee user
+				UserName = "AnkitKumar",
+				NormalizedUserName = "ANKITKUMAR",
+				Name = "Ankit Kumar",
+				Email = "ankit@gmail.com",
+				NormalizedEmail = "ANKIT@GMAIL.COM",
+				EmailConfirmed = true,
+				PasswordHash = hasher.HashPassword(null, "Ankit@123"), // Hash the password
+				SecurityStamp = string.Empty
+			};
 
-        }
-    }
+			modelBuilder.Entity<ApplicationUser>().HasData(managerUser, employee1User, employee2User);
+
+			// Define the roles
+			var managerRole = new IdentityRole
+			{
+				Id = "1", // Replace with a unique ID for the Manager role
+				Name = "MANAGER", // Replace with your desired role name
+				NormalizedName = "MANAGER"
+			};
+
+			var employeeRole = new IdentityRole
+			{
+				Id = "2", // Replace with a unique ID for the Employee role
+				Name = "EMPLOYEE", // Replace with your desired role name
+				NormalizedName = "EMPLOYEE"
+			};
+
+			// Add the roles to the database
+			modelBuilder.Entity<IdentityRole>().HasData(managerRole, employeeRole);
+
+			// Assign roles to users
+			modelBuilder.Entity<IdentityUserRole<string>>().HasData(
+				new IdentityUserRole<string>
+				{
+					UserId = managerUser.Id,
+					RoleId = managerRole.Id
+				},
+				new IdentityUserRole<string>
+				{
+					UserId = employee1User.Id,
+					RoleId = employeeRole.Id
+				},
+				new IdentityUserRole<string>
+				{
+					UserId = employee2User.Id,
+					RoleId = employeeRole.Id
+				}
+			);
+		}
+	}
 }

@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿/*using AutoMapper;
 using EPES.Services.UserMangement.Model;
 using EPES.Services.UserMangement.Model.Dto;
 
@@ -17,3 +17,4 @@ namespace EPES.Services.UserMangement
         }
     }
 }
+*/

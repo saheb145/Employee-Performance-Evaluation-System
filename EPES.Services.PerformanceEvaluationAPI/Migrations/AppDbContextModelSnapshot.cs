@@ -22,6 +22,28 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("EPES.Services.PerformanceEvaluationAPI.Models.Dto.UserDto", b =>
+                {
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Email");
+
+                    b.ToTable("UserDto");
+                });
+
             modelBuilder.Entity("EPES.Services.PerformanceEvaluationAPI.Models.ManagerEvaluation", b =>
                 {
                     b.Property<int>("Id")
@@ -57,23 +79,69 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("EmployeeId")
+                    b.Property<int>("Adaptability")
                         .HasColumnType("int");
 
-                    b.Property<string>("GoodAttendance")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Commmunication")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("SubmissionDate")
+                    b.Property<int>("GoalAchievement")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("SubmissionDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("TaskCompleted")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Technical")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TimeManagement")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserDtoEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserDtoEmail");
+
                     b.ToTable("SelfEvaluations");
+                });
+
+            modelBuilder.Entity("EPES.Services.PerformanceEvaluationAPI.Models.User", b =>
+                {
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Email");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("EPES.Services.PerformanceEvaluationAPI.Models.SelfEvaluation", b =>
+                {
+                    b.HasOne("EPES.Services.PerformanceEvaluationAPI.Models.Dto.UserDto", "UserDto")
+                        .WithMany()
+                        .HasForeignKey("UserDtoEmail")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserDto");
                 });
 #pragma warning restore 612, 618
         }
