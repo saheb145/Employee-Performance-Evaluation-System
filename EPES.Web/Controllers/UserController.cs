@@ -14,13 +14,13 @@ namespace EPES.Web.Controllers
         }
         public async  Task<IActionResult> UserIndex()
         {
-            List<ApplicationUserDto>? list = new();
+            List<UserDto>? list = new();
 
             ResponseDto? response = await _userService.GetAllUserAsync();
 
             if (response != null && response.IsSuccess)
             {
-                list = JsonConvert.DeserializeObject<List<ApplicationUserDto>>(Convert.ToString(response.Result));
+                list = JsonConvert.DeserializeObject<List<UserDto>>(Convert.ToString(response.Result));
             }
             else
             {

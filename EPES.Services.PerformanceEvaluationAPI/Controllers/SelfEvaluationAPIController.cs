@@ -47,13 +47,13 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
 
         // GET api/<SelfEvaluationAPIController>/5
-        [HttpGet("{applicationUserDtoemail}")]
+        [HttpGet("{userDtoemail}")]
         [Authorize(Roles = "EMPLOYEE")]
-        public ResponseDto Get(string applicationUserDtoemail)
+        public ResponseDto Get(string userDtoemail)
         {
             try
             {
-                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.ApplicationUserDtoEmail== applicationUserDtoemail); // we will get the selfEvaluation data by EmployeeId
+                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.UserDtoEmail== userDtoemail); // we will get the selfEvaluation data by EmployeeId
                 _response.Result = _mapper.Map<SelfEvaluationDto>(obj);
             }
             catch (Exception ex)

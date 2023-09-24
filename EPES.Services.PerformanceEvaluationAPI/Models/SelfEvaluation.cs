@@ -6,9 +6,9 @@ namespace EPES.Services.PerformanceEvaluationAPI.Models
     public class SelfEvaluation
     {
         public int Id { get; set; }
-        //  public int EmployeeId { get; set; } // The ID of the employee who is submitting the evaluation.
-        [ForeignKey("ApplicationUserDtoEmail")]
-        public string ApplicationUserDtoEmail {  get; set; }
+       
+        [ForeignKey("UserEmail")]
+        public string UserDtoEmail {  get; set; }
       
         public DateTime? SubmissionDate { get; set; }
         public String? TaskCompleted { get; set; }
@@ -19,7 +19,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Models
         public int TimeManagement { get; set; }
         public int GoalAchievement { get; set; }
 
-        public ApplicationUserDto? ApplicationUserDto { get; set; }
+        public UserDto UserDto { get; set; }
 
     }
 }

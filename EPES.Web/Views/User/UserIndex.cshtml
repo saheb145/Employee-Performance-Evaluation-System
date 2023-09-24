@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ApplicationUserDto>
+﻿@model IEnumerable<UserDto>
 
 <div class="card shadow border-0 mt-4">
 	<div class="card-header bg-secondary bg-gradient ml-0 py-3">
@@ -12,10 +12,7 @@
 		<div class="row pb-3">
 			<div class="col-6">
 			</div>
-			<div class="col-6 text-end">
-				<a asp-action="Register" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create New Employee</a>
-
-			</div>
+			
 		</div>
 		<table class="table">
 			<thead>
@@ -30,7 +27,7 @@
 						Email
 					</th>
 					<th>
-						UserName
+						PhoneNumber
 					</th>
 					<th></th>
 				</tr>
@@ -49,12 +46,12 @@
 							@item.Email
 						</td>
 						<td>
-							@item.UserName
+							@item.PhoneNumber
 						</td>
 						<td>
-							<a asp-action="DeleteEmployee" asp-route-Id="@item.ID" class="btn btn-danger">
+							@* <a asp-action="DeleteEmployee" asp-route-Id="@item.ID" class="btn btn-danger">
 								<i class="bi bi-trash"></i>
-							</a>
+							</a> *@
 						</td>
 					</tr>
 				}

@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
       
-        public string ApplicationUserDtoEmail { get; set; }
+        public string UserDtoEmail { get; set; }
         public DateTime SubmissionDate { get; set; }
         public String TaskCompleted { get; set; }
         public int Technical { get; set; }
@@ -12,6 +12,6 @@
         public int Adaptability { get; set; }
         public int TimeManagement { get; set; }
         public int GoalAchievement { get; set; }
-        public ApplicationUserDto? ApplicationUserDto { get; set; }
+        public UserDto UserDto { get; set; }
     }
 }

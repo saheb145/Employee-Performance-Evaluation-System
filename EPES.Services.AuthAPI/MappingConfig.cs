@@ -10,8 +10,8 @@ namespace EPES.Services.AuthAPI
 		{
 			var mappingConfig = new MapperConfiguration(config =>
 			{
-				config.CreateMap<ApplicationUserDto, ApplicationUser>();
-				config.CreateMap<ApplicationUser, ApplicationUserDto>();
+				config.CreateMap<UserDto, ApplicationUser>();
+				config.CreateMap<ApplicationUser, UserDto>();
 			});
 			return mappingConfig;
 		}

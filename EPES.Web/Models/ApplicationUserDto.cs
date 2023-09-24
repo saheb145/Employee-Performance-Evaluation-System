@@ -1,4 +1,4 @@
-﻿namespace EPES.Web.Models
+﻿/*namespace EPES.Web.Models
 {
     public class ApplicationUserDto
     {
@@ -11,3 +11,4 @@
         public string PhoneNumber { get; set; }
     }
 }
+*/

@@ -30,8 +30,8 @@ namespace EPES.Services.AuthAPI.Controllers
 			{
 				var employees = _userManager.GetUsersInRoleAsync("employee").Result;
 
-				// Map the list of employees to ApplicationUserDto
-				var employeeDtos = _mapper.Map<IEnumerable<ApplicationUserDto>>(employees);
+				
+				var employeeDtos = _mapper.Map<IEnumerable<UserDto>>(employees);
 				_response.Result = employeeDtos;
 			}
 			catch (Exception ex)

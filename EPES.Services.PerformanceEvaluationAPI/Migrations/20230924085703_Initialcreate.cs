@@ -6,43 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initialcreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "ApplicationUserDto",
-                columns: table => new
-                {
-                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ApplicationUserDto", x => x.Email);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ApplicationUsers",
-                columns: table => new
-                {
-                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ApplicationUsers", x => x.Email);
-                });
-
             migrationBuilder.CreateTable(
                 name: "ManagerEvaluations",
                 columns: table => new
@@ -60,12 +28,40 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserDto",
+                columns: table => new
+                {
+                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserDto", x => x.Email);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Email);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SelfEvaluations",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ApplicationUserDtoEmail = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserDtoEmail = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     SubmissionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     TaskCompleted = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Technical = table.Column<int>(type: "int", nullable: false),
@@ -78,25 +74,22 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
                 {
                     table.PrimaryKey("PK_SelfEvaluations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SelfEvaluations_ApplicationUserDto_ApplicationUserDtoEmail",
-                        column: x => x.ApplicationUserDtoEmail,
-                        principalTable: "ApplicationUserDto",
+                        name: "FK_SelfEvaluations_UserDto_UserDtoEmail",
+                        column: x => x.UserDtoEmail,
+                        principalTable: "UserDto",
                         principalColumn: "Email",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_SelfEvaluations_ApplicationUserDtoEmail",
+                name: "IX_SelfEvaluations_UserDtoEmail",
                 table: "SelfEvaluations",
-                column: "ApplicationUserDtoEmail");
+                column: "UserDtoEmail");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "ApplicationUsers");
-
             migrationBuilder.DropTable(
                 name: "ManagerEvaluations");
 
@@ -104,7 +97,10 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
                 name: "SelfEvaluations");
 
             migrationBuilder.DropTable(
-                name: "ApplicationUserDto");
+                name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "UserDto");
         }
     }
 }

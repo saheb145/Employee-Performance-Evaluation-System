@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿/*using System.ComponentModel.DataAnnotations;
 
 namespace EPES.Services.PerformanceEvaluationAPI.Models.Dto
 {
@@ -15,3 +15,4 @@ namespace EPES.Services.PerformanceEvaluationAPI.Models.Dto
         public string PhoneNumber { get; set; }
     }
 }
+*/
