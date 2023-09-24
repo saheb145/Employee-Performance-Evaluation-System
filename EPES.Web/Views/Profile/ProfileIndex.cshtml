@@ -4,7 +4,7 @@
 	<div class="card-header bg-secondary bg-gradient ml-0 py-3">
 		<div class="row">
 			<div class="col-12 text-center">
-				<h1 class="text-white">Employee List</h1>
+				<h1 class="text-white">Profile</h1>
 			</div>
 		</div>
 	</div>
@@ -49,9 +49,8 @@
 							@item.PhoneNumber
 						</td>
 						<td>
-							@* <a asp-action="DeleteEmployee" asp-route-Id="@item.ID" class="btn btn-danger">
-						<i class="bi bi-trash"></i>
-						</a> *@
+							<a asp-controller="Auth" asp-action="Logout" asp-route-Id="@item.ID" class="btn btn-danger">Logout</a>
+
 						</td>
 					</tr>
 				}

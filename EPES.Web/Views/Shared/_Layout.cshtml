@@ -88,12 +88,17 @@
 						}
 						else
 						{
+								<li class="nav-item" style="margin-left:300px">
+									<a class="nav-link" asp-controller="Profile" asp-action="ProfileIndex">Profile</a>
+								
+								</li>
+							
 							<li class="nav-item">
 								<a class="nav-link " href="#">Hello @User.Identity.Name</a>
 							</li>
-							<li class="nav-item">
+						@* 	<li class="nav-item">
 								<a class="nav-link " asp-controller="Auth" asp-action="Logout">Logout</a>
-							</li>
+							</li> *@
 						}
 					</ul>
 				</div>
