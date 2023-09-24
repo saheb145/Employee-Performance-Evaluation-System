@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿/*using AutoMapper;
 using Azure;
 using EPES.Services.UserMangement.Data;
 using EPES.Services.UserMangement.Model;
@@ -125,3 +125,4 @@ namespace EPES.Services.UserMangement.Controllers
         }
     }
 }
+*/

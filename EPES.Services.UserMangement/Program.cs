@@ -1,4 +1,4 @@
-using AutoMapper;
+/*using AutoMapper;
 using EPES.Services.UserMangement;
 using EPES.Services.UserMangement.Data;
 using EPES.Services.UserMangement.Extensions;
@@ -76,4 +76,4 @@ void ApplyMigration()
             _db.Database.Migrate();
         }
     }
-}
+}*/

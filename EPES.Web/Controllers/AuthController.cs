@@ -63,7 +63,7 @@ namespace EPES.Web.Controllers
         {
             var roleList = new List<SelectListItem>()
              {
-                 new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
+               //  new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
                  new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
              };
 
@@ -97,7 +97,7 @@ namespace EPES.Web.Controllers
 
             var roleList = new List<SelectListItem>()
              {
-                 new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
+                // new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
                  new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
              };
 

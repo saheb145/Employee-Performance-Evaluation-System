@@ -1,4 +1,4 @@
-﻿using EPES.Services.UserMangement.Model;
+﻿/*using EPES.Services.UserMangement.Model;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
 using System.Collections.Generic;
@@ -56,4 +56,4 @@ namespace EPES.Services.UserMangement.Data
             });
         }
     }
-}
+}*/

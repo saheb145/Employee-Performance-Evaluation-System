@@ -1,4 +1,4 @@
-﻿namespace EPES.Services.UserMangement.Model.Dto
+﻿/*namespace EPES.Services.UserMangement.Model.Dto
 {
     public class ResponseDto
     {
@@ -7,3 +7,4 @@
         public string Message { get; set; } = "";
     }
 }
+*/

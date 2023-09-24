@@ -1,4 +1,4 @@
-﻿namespace EPES.Services.UserMangement.Model.Dto
+﻿/*namespace EPES.Services.UserMangement.Model.Dto
 {
     public class EmployeeDto
     {
@@ -11,3 +11,4 @@
         public string? Role { get; set; }
     }
 }
+*/

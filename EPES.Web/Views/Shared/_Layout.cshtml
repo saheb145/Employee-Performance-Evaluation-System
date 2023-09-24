@@ -45,15 +45,18 @@
                         </li>
                         
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                User Management
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                @if (User.IsInRole("MANAGER"))
-                                {
-                                <li><a class="dropdown-item " asp-controller="User" asp-action="UserIndex">User(Employee) List</a></li>
-                                }
-                            </ul>
+                             @if (User.IsInRole("MANAGER"))
+                            {
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    User Management
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                    <a class="nav-link" asp-controller="Auth" asp-action="Register">Create Employee</a>
+                                    <li><a class="dropdown-item " asp-controller="User" asp-action="UserIndex">Employee List</a></li>
+
+                                </ul>
+                            }
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -63,6 +66,7 @@
                                
                                 @if (User.IsInRole("EMPLOYEE"))
                                 {
+
                                 <li><a class="dropdown-item " asp-controller="SelfEvaluation" asp-action="CreateSelfEvaluation">Create Self Evaluation</a></li>
                                 }
                                 else{
@@ -85,12 +89,12 @@
                         }
                         else
                         {
-                            if (User.IsInRole("MANAGER"))
+                          @*   if (User.IsInRole("MANAGER"))
                             {
                                 <li class="nav-item" style="margin-right:300px">
                                     <a class="nav-link" asp-controller="Auth" asp-action="Register">Create Employee</a>
                                 </li>
-                            }
+                            } *@
                             <li class="nav-item">
                                 <a class="nav-link " href="#">Hello @User.Identity.Name</a>
                             </li>

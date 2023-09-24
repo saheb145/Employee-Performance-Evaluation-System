@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿/*using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace EPES.Services.UserMangement.Model
@@ -15,3 +15,4 @@ namespace EPES.Services.UserMangement.Model
         public string? Role { get; set; }
     }
 }
+*/
