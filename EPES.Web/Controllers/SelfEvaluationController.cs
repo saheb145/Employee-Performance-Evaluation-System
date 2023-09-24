@@ -130,27 +130,7 @@ namespace EPES.Web.Controllers
             return View();
         }
 
-        // GET: SelfEvaluationController1/Create
-       /* public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SelfEvaluationController1/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-*/
+      
         // GET: SelfEvaluationController1/Edit/5
         public ActionResult Edit(int id)
         {
