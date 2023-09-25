@@ -38,7 +38,7 @@ namespace EPES.Web.Services
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.GET,
-                Url = SD.SelfEvaluationAPIBase + "/api/selfevaluation" + email
+                Url = SD.SelfEvaluationAPIBase + "/api/selfevaluation?employeeEmail=" + email
             });
         }
     }

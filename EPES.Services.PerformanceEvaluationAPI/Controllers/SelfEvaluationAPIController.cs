@@ -107,13 +107,14 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
             return _response;
         }
 
-        // DELETE api/<SelfEvaluationAPIController>/5
-      //  [HttpDelete("{id}")]
-        /*public ResponseDto Delete(int id)
+		// DELETE api/<SelfEvaluationAPIController>/5
+		
+		[HttpGet("{employeeEmail}")]
+		public ResponseDto Delete(string employeeEmail)
         {
             try
             {
-                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.Id == id); // will delete by selfEvaluation Id
+                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.EmployeeEmail == employeeEmail); // will delete by selfEvaluation Id
                 _db.SelfEvaluations.Remove(obj);
                 _db.SaveChanges();
             }
@@ -123,7 +124,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
                 _response.Message = ex.Message;
             }
             return _response;
-        }*/
+        }
     }
 
 }
