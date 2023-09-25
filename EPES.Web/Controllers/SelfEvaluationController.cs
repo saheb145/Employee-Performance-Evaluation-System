@@ -63,42 +63,7 @@ namespace EPES.Web.Controllers
 
         public async Task<IActionResult> CreateSelfEvaluation()
         {
-            /*string email = User.Identity.Name;
-
-            List<UserDto>? list = new();
-
-            ResponseDto? response1 = await _profileService.GetProfileByEmail(email);
-
-            return View(response1.Result);*/
-
-            /* string email = User.Identity.Name;
-
-             // Retrieve the SelfEvaluationDto from the service
-            ResponseDto selfEvaluationResponse = await _evaluationService.GetEvaluationByEmialAsync(email);
-
-             // Retrieve the UserDto from the service
-             ResponseDto userResponse = await _profileService.GetProfileByEmail(email);
-
-             if (selfEvaluationResponse.IsSuccess && userResponse.IsSuccess)
-             {
-                 var selfEvaluation = (SelfEvaluationDto)selfEvaluationResponse.Result;
-                 var user = (UserDto)userResponse.Result;
-
-                 // Create a ViewModel and populate it with SelfEvaluation and User data
-                 var viewModel = new SelfEvaluationViewModel
-                 {
-                     SelfEvaluation = selfEvaluation,
-                     User = user
-                 };
-
-                 return View(viewModel);
-             }
-             else
-             {
-                 // Handle the case where the service call fails (e.g., user not found)
-                 // You can return an error view or take appropriate action.
-                 return View("ErrorView"); // Replace "ErrorView" with the name of your error view.
-             }*/
+           
             return View();
         }
         [HttpPost]
@@ -112,8 +77,9 @@ namespace EPES.Web.Controllers
                 if (response != null && response.IsSuccess)
                 {
                     TempData["success"] = "SelfEvaluation created successfully";
-                    return RedirectToAction(nameof(Index));
-                }
+                    return RedirectToAction("Index", "Home");
+					/* RedirectToAction(nameof(Index));*/
+				}
                 else
                 {
                     TempData["error"] = response?.Message;

@@ -29,7 +29,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
         // GET: api/<SelfEvaluationAPIController>
         [HttpGet]
-        [Authorize(Roles = "EMPLOYEE")]
+        [Authorize(Roles = "MANAGER")]
         public ResponseDto Get()
         {
 

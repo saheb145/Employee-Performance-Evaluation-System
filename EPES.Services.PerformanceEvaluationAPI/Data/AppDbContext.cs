@@ -13,7 +13,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Data
         public DbSet<SelfEvaluation> SelfEvaluations { get; set; }
         public DbSet<ManagerEvaluation> ManagerEvaluations { get; set; }
 
-       /* public DbSet<UserDto> Users { get; set; }*/
+     
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

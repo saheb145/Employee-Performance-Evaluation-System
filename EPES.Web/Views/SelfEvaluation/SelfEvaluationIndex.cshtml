@@ -17,9 +17,9 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>
+					@* <th>
 						Id
-					</th>
+					</th> *@
 					<th>
 						UserDtoEmail
 					</th>
@@ -52,11 +52,11 @@
 				@foreach (var item in Model)
 				{
 					<tr>
-						<td>
+						@* <td>
 							@item.Id
-						</td>
+						</td> *@
 						<td>
-							@item.Email
+							@item.EmployeeEmail
 						</td>
 						<td>
 							@item.SubmissionDate
