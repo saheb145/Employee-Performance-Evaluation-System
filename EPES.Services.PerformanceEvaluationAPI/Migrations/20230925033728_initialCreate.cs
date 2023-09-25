@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Initialcreate : Migration
+    public partial class initialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,20 +25,6 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ManagerEvaluations", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserDto",
-                columns: table => new
-                {
-                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserDto", x => x.Email);
                 });
 
             migrationBuilder.CreateTable(
@@ -61,11 +47,11 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserDtoEmail = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     SubmissionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     TaskCompleted = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Technical = table.Column<int>(type: "int", nullable: false),
-                    Commmunication = table.Column<int>(type: "int", nullable: false),
+                    Communication = table.Column<int>(type: "int", nullable: false),
                     Adaptability = table.Column<int>(type: "int", nullable: false),
                     TimeManagement = table.Column<int>(type: "int", nullable: false),
                     GoalAchievement = table.Column<int>(type: "int", nullable: false)
@@ -74,17 +60,17 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
                 {
                     table.PrimaryKey("PK_SelfEvaluations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SelfEvaluations_UserDto_UserDtoEmail",
-                        column: x => x.UserDtoEmail,
-                        principalTable: "UserDto",
+                        name: "FK_SelfEvaluations_Users_Email",
+                        column: x => x.Email,
+                        principalTable: "Users",
                         principalColumn: "Email",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_SelfEvaluations_UserDtoEmail",
+                name: "IX_SelfEvaluations_Email",
                 table: "SelfEvaluations",
-                column: "UserDtoEmail");
+                column: "Email");
         }
 
         /// <inheritdoc />
@@ -98,9 +84,6 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "UserDto");
         }
     }
 }

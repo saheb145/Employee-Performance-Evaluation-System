@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230924085703_Initialcreate")]
-    partial class Initialcreate
+    [Migration("20230925033728_initialCreate")]
+    partial class initialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,7 +44,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 
                     b.HasKey("Email");
 
-                    b.ToTable("UserDto");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("EPES.Services.PerformanceEvaluationAPI.Models.ManagerEvaluation", b =>
@@ -85,8 +85,12 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
                     b.Property<int>("Adaptability")
                         .HasColumnType("int");
 
-                    b.Property<int>("Commmunication")
+                    b.Property<int>("Communication")
                         .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("GoalAchievement")
                         .HasColumnType("int");
@@ -103,48 +107,20 @@ namespace EPES.Services.PerformanceEvaluationAPI.Migrations
                     b.Property<int>("TimeManagement")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserDtoEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserDtoEmail");
+                    b.HasIndex("Email");
 
                     b.ToTable("SelfEvaluations");
                 });
 
-            modelBuilder.Entity("EPES.Services.PerformanceEvaluationAPI.Models.User", b =>
-                {
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Email");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("EPES.Services.PerformanceEvaluationAPI.Models.SelfEvaluation", b =>
                 {
-                    b.HasOne("EPES.Services.PerformanceEvaluationAPI.Models.Dto.UserDto", "UserDto")
+                    b.HasOne("EPES.Services.PerformanceEvaluationAPI.Models.Dto.UserDto", null)
                         .WithMany()
-                        .HasForeignKey("UserDtoEmail")
+                        .HasForeignKey("Email")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("UserDto");
                 });
 #pragma warning restore 612, 618
         }

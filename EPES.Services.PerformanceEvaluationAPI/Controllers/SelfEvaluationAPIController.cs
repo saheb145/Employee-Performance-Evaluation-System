@@ -29,7 +29,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
         // GET: api/<SelfEvaluationAPIController>
         [HttpGet]
-        [Authorize(Roles = "MANAGER")]
+        [Authorize(Roles = "EMPLOYEE")]
         public ResponseDto Get()
         {
 
@@ -53,7 +53,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         {
             try
             {
-                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.UserDtoEmail== userDtoemail); 
+                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.Email== userDtoemail); 
                 _response.Result = _mapper.Map<SelfEvaluationDto>(obj);
             }
             catch (Exception ex)
