@@ -53,7 +53,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         {
             try
             {
-                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.Email== userDtoemail); 
+                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.EmployeeEmail== userDtoemail); 
                 _response.Result = _mapper.Map<SelfEvaluationDto>(obj);
             }
             catch (Exception ex)
