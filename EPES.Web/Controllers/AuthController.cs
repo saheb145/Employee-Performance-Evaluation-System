@@ -111,7 +111,7 @@ namespace EPES.Web.Controllers
             await HttpContext.SignOutAsync();
             _tokenProvider.ClearToken();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Auth");
 
         }
 

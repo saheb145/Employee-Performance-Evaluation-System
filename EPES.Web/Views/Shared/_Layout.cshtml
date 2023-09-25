@@ -38,70 +38,73 @@
 						aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-					<ul class="navbar-nav flex-grow-1">
-						<li class="nav-item">
-							<a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-						</li>
+				@if (User.Identity.IsAuthenticated)
+				{
+					<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+						<ul class="navbar-nav flex-grow-1">
+							<li class="nav-item">
+								<a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+							</li>
 
-						<li class="nav-item dropdown">
-							@if (User.IsInRole("MANAGER"))
-							{
+							<li class="nav-item dropdown">
+								@if (User.IsInRole("MANAGER"))
+								{
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										User Management
+									</a>
+									<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+										<a class="nav-link" asp-controller="Auth" asp-action="Register">Create Employee</a>
+										<li><a class="dropdown-item " asp-controller="User" asp-action="UserIndex">Employee List</a></li>
+
+									</ul>
+								}
+							</li>
+							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									User Management
+									Evaluation
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-									<a class="nav-link" asp-controller="Auth" asp-action="Register">Create Employee</a>
-									<li><a class="dropdown-item " asp-controller="User" asp-action="UserIndex">Employee List</a></li>
-
+									@if (User.IsInRole("EMPLOYEE"))
+									{
+										<li><a class="dropdown-item " asp-controller="SelfEvaluation" asp-action="CreateSelfEvaluation">Create Self Evaluation</a></li>
+									}
+									else
+									{
+										<li><a class="dropdown-item " asp-controller="SelfEvaluation" asp-action="SelfEvaluationIndex">Self Evaluation Data</a></li>
+										<li><a class="dropdown-item " asp-controller="ManagerEvaluation" asp-action="CreateManagerEvaluation">Create ManagerEvaluation</a></li>
+									}
 								</ul>
-							}
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Evaluation
-							</a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-								@if (User.IsInRole("EMPLOYEE"))
-								{
-									<li><a class="dropdown-item " asp-controller="SelfEvaluation" asp-action="CreateSelfEvaluation">Create Self Evaluation</a></li>
-								}
-								else
-								{
-									<li><a class="dropdown-item " asp-controller="SelfEvaluation" asp-action="SelfEvaluationIndex">Self Evaluation Data</a></li>
-									<li><a class="dropdown-item " asp-controller="ManagerEvaluation" asp-action="CreateManagerEvaluation">Create ManagerEvaluation</a></li>
-								}
-							</ul>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-						</li>
-					</ul>
-					<ul class="navbar-nav">
-						@if (!User.Identity.IsAuthenticated)
-						{
-							<li class="nav-item">
-								<a class="nav-link " asp-controller="Auth" asp-action="Login">Login</a>
 							</li>
-						}
-						else
-						{
+							<li class="nav-item">
+								<a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+							</li>
+						</ul>
+						<ul class="navbar-nav">
+							@if (!User.Identity.IsAuthenticated)
+							{
+								<li class="nav-item">
+									<a class="nav-link " asp-controller="Auth" asp-action="Login">Login</a>
+								</li>
+							}
+							else
+							{
 								<li class="nav-item" style="margin-left:300px">
 									<a class="nav-link" asp-controller="Profile" asp-action="ProfileIndex">Profile</a>
-								
+
 								</li>
-							
-							<li class="nav-item">
-								<a class="nav-link " href="#">Hello @User.Identity.Name</a>
-							</li>
-						@* 	<li class="nav-item">
+
+								<li class="nav-item">
+									<a class="nav-link " href="#">Hello @User.Identity.Name</a>
+								</li>
+								@* 	<li class="nav-item">
 								<a class="nav-link " asp-controller="Auth" asp-action="Logout">Logout</a>
 							</li> *@
-						}
-					</ul>
-				</div>
+							}
+						</ul>
+					</div>
+				}
 			</div>
 		</nav>
 

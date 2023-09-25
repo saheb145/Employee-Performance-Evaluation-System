@@ -1,56 +1,68 @@
 ﻿@model IEnumerable<UserDto>
 
-<div class="card shadow border-0 mt-4">
-	<div class="card-header bg-secondary bg-gradient ml-0 py-3">
-		<div class="row">
-			<div class="col-12 text-center">
-				<h1 class="text-white">Profile</h1>
-			</div>
-		</div>
-	</div>
-	<div class="card-body p-4">
-		<div class="row pb-3">
-			<div class="col-6">
-			</div>
+<div class="card" style="margin-top:50px">
+	<img src="data:image/jpeg;base64,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" alt="John" style="width:100%">
+	@foreach (var item in Model)
+	{
+		<h1>@item.Name</h1>
 
-		</div>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>
-						Id
-					</th>
-					<th>
-						Name
-					</th>
-					<th>
-						Email
-					</th>
-					<th>
-						PhoneNumber
-					</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach (var item in Model)
-				{
-					<tr>
-						<td>
-							@item.ID
-						</td>
-						<td>
-							@item.Name
-						</td>
-						<td>
-							@item.Email
-						</td>
-						<td>
-							@item.PhoneNumber
-						</td>
-						<td>
-							<a asp-controller="Auth" asp-action="Logout" asp-route-Id="@item.ID" class="btn btn-danger">Logout</a>
+		<p class="title">
+			@item.Email
+		</p>
+		<p>@item.PhoneNumber</p>
 
-						</td>
-					</tr>
-				}
+
+
+		<a asp-controller="Auth" asp-action="Logout" asp-route-Id="@item.ID" class="btn btn-danger">Logout</a>
+
+
+
+	}
+</div>
+
+
+
+<style>
+	.card {
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+		max-width: 300px;
+		margin: auto;
+		text-align: center;
+	}
+
+
+
+	.title {
+		color: grey;
+		font-size: 18px;
+	}
+
+
+
+	button {
+		border: none;
+		outline: 0;
+		display: inline-block;
+		padding: 8px;
+		color: white;
+		background-color: #000;
+		text-align: center;
+		cursor: pointer;
+		width: 100%;
+		font-size: 18px;
+	}
+
+
+
+	a {
+		text-decoration: none;
+		font-size: 22px;
+		color: black;
+	}
+
+
+
+		button:hover, a:hover {
+			opacity: 0.7;
+		}
+</style>
