@@ -7,7 +7,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Models
     public class SelfEvaluation
     {
       
-            public int Id { get; set; }
+          
 
             public DateTime? SubmissionDate { get; set; }
             public String? TaskCompleted { get; set; }
@@ -20,7 +20,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Models
             public int TimeManagement { get; set; }
             public int GoalAchievement { get; set; }
 
-            
+		public virtual ManagerEvaluation ManagerEvaluation { get; set; }
 
-    }
+	}
 }

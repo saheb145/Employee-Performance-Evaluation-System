@@ -20,14 +20,9 @@
 		<table class="table">
 			<thead>
 				<tr>
+					
 					<th>
-						Id
-					</th>
-					<th>
-						EmployeeId
-					</th>
-					<th>
-						Name
+						EmployeeEmail
 					</th>
 					<th>
 						Remarks
@@ -36,11 +31,6 @@
 						Score
 
 					</th>
-
-					@* <th>
-					Role
-					</th> *@
-					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -48,13 +38,7 @@
 				{
 					<tr>
 						<td>
-							@item.Id
-						</td>
-						<td>
-							@item.EmployeeId
-						</td>
-						<td>
-							@item.Name
+							@item.EmployeeEmail
 						</td>
 						<td>
 							@item.Remarks
@@ -62,14 +46,10 @@
 						<td>
 							@item.Score
 						</td>
-
-						@* <td>
-					@item.Role
-					</td> *@
 						<td>
-							<a asp-action="DeleteEmployee" asp-route-Id="@item.Id" class="btn btn-danger">
+							@* <a asp-action="DeleteEmployee" asp-route-Id="@item.EmployeeEmail" class="btn btn-danger">
 								<i class="bi bi-trash"></i>
-							</a>
+							</a> *@
 						</td>
 					</tr>
 				}

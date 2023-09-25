@@ -17,7 +17,7 @@ namespace EPES.Web.Services
 			{
 				ApiType = SD.ApiType.POST,
 				Data = managerEvaluationDto,
-				Url = SD.ManagerEvaluationAPIBase + "/api/managerevaluationAPI"
+				Url = SD.ManagerEvaluationAPIBase + "/api/managerevaluation"
 			});
 		}
 
@@ -26,7 +26,7 @@ namespace EPES.Web.Services
 			return await _baseService.SendAsync(new RequestDto()
 			{
 				ApiType = SD.ApiType.GET,
-				Url = SD.ManagerEvaluationAPIBase + "/api/managerevaluationAPI"
+				Url = SD.ManagerEvaluationAPIBase + "/api/managerevaluation"
 			});
 
 		}
@@ -35,7 +35,7 @@ namespace EPES.Web.Services
 			return await _baseService.SendAsync(new RequestDto()
 			{
 				ApiType = SD.ApiType.GET,
-				Url = SD.ManagerEvaluationAPIBase + "/api/managerevaluationAPI"
+				Url = SD.ManagerEvaluationAPIBase + "/api/managerevaluation"+id
 			});
 
 		}

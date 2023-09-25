@@ -47,13 +47,13 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
 
         // GET api/<SelfEvaluationAPIController>/5
-        [HttpGet("{userDtoemail}")]
+        [HttpGet("{employeeEmail}")]
         [Authorize(Roles = "EMPLOYEE")]
-        public ResponseDto Get(string userDtoemail)
+        public ResponseDto Get(string employeeEmail)
         {
             try
             {
-                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.EmployeeEmail== userDtoemail); 
+                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.EmployeeEmail== employeeEmail); 
                 _response.Result = _mapper.Map<SelfEvaluationDto>(obj);
             }
             catch (Exception ex)
@@ -108,8 +108,8 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
 
         // DELETE api/<SelfEvaluationAPIController>/5
-        [HttpDelete("{id}")]
-        public ResponseDto Delete(int id)
+      //  [HttpDelete("{id}")]
+        /*public ResponseDto Delete(int id)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
                 _response.Message = ex.Message;
             }
             return _response;
-        }
+        }*/
     }
 
 }

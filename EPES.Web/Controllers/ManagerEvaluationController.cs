@@ -37,9 +37,13 @@ namespace EPES.Web.Controllers
 
 			return View(list);
 		}
+		public async Task<IActionResult> CreateManagerEvaluation()
+		{
+			return View();
+		}
 
 		[HttpPost]
-		public async Task<IActionResult> CreateSelfEvaluation(ManagerEvaluationDto model)
+		public async Task<IActionResult> CreateManagerEvaluation(ManagerEvaluationDto model)
 		{
 			if (ModelState.IsValid)
 			{
@@ -66,10 +70,7 @@ namespace EPES.Web.Controllers
 		}
 
 		// GET: ManagerEvaluationController/Create
-		public ActionResult Create()
-		{
-			return View();
-		}
+		
 
 		// POST: ManagerEvaluationController/Create
 		[HttpPost]

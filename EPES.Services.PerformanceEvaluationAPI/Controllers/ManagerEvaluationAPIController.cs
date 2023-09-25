@@ -3,13 +3,15 @@ using EPES.Services.PerformanceEvaluationAPI.Data;
 using EPES.Services.PerformanceEvaluationAPI.Models;
 using EPES.Services.PerformanceEvaluationAPI.Models.Dto;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/managerevaluation")]
     [ApiController]
-    public class ManagerEvaluationAPIController : ControllerBase
+	[Authorize]
+	public class ManagerEvaluationAPIController : ControllerBase
     {
         private readonly AppDbContext _db;
         private ResponseDto _response;
@@ -23,7 +25,8 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
         // GET: api/<ManagerEvaluationAPIController>
         [HttpGet]
-        public ResponseDto Get()
+		[Authorize(Roles = "MANAGER")]
+		public ResponseDto Get()
         {
             try
             {
@@ -40,7 +43,8 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 
         // GET api/<ManagerEvaluationAPIController>/5
         [HttpGet("{id}")]
-        public ResponseDto Get(int id)
+		[Authorize(Roles = "MANAGER")]
+		public ResponseDto Get(int id)
         {
             try
             {
@@ -54,10 +58,26 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
             }
             return _response;
         }
-
-        // POST api/<ManagerEvaluationAPIController>
-        [HttpPost]
-        public ResponseDto Post(ManagerEvaluationDto ManagerEvaluationDto)
+		[HttpGet("{employeeEmail}")]
+		[Authorize(Roles = "EMPLOYEE")]
+		public ResponseDto Get(string employeeEmail)
+		{
+			try
+			{
+				ManagerEvaluation obj = _db.ManagerEvaluations.First(u => u.EmployeeEmail == employeeEmail); // we will get the selfEvaluation data by EmployeeId
+				_response.Result = _mapper.Map<ManagerEvaluationDto>(obj);
+			}
+			catch (Exception ex)
+			{
+				_response.IsSuccess = false;
+				_response.Message = ex.Message;
+			}
+			return _response;
+		}
+		// POST api/<ManagerEvaluationAPIController>
+		[HttpPost]
+		[Authorize(Roles = "MANAGER")]
+		public ResponseDto Post(ManagerEvaluationDto ManagerEvaluationDto)
         {   
             try
             {
@@ -81,7 +101,8 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 
         // DELETE api/<ManagerEvaluationAPIController>/5
         [HttpDelete("{id}")]
-        public ResponseDto Delete(int id)
+		[Authorize(Roles = "MANAGER")]
+		public ResponseDto Delete(int id)
         {
             try
             {
