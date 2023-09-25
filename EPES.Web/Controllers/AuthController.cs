@@ -87,7 +87,7 @@ namespace EPES.Web.Controllers
                 if (assingRole != null && assingRole.IsSuccess)
                 {
                     TempData["success"] = "Registration Successful";
-                    return RedirectToAction(nameof(Login));
+                    return RedirectToAction("Index","Home");
                 }
             }
             else
