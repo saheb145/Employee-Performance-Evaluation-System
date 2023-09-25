@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EPES.Services.AuthAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Initialcreate : Migration
+    public partial class first : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -173,9 +173,9 @@ namespace EPES.Services.AuthAPI.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "46eba99a-ce8b-48a2-b61d-ad790444f677", "manager@gmail.com", true, false, null, "manager", "MANAGER@GMAIL.COM", "MANAGER", "AQAAAAIAAYagAAAAEMwPk5I8bkC438OkuK3x+K9ePmOU0dUjpRWHhhQYoYnNqTbgofRCqUOWzvJ6VorDGg==", null, false, "", false, "Manager" },
-                    { "2", 0, "56226647-a607-4b50-a80f-1796d19796ca", "Saheb@gmail.com", true, false, null, "saheb kumar", "SAHEB@GMAIL.COM", "SAHEBKUMAR", "AQAAAAIAAYagAAAAEBduJ2/SIRC18hBZbokacXmtdtW2PaD/NeGx4Hwbam/4LSIVKoFdYkuc1bEsL5xRZw==", null, false, "", false, "SahebKumar" },
-                    { "3", 0, "f47add0e-2520-4a8d-a89e-27f040855526", "ankit@gmail.com", true, false, null, "Ankit Kumar", "ANKIT@GMAIL.COM", "ANKITKUMAR", "AQAAAAIAAYagAAAAEALmvegt5OA3hKlPzAf/yl1M9zhxlHojKxPkuKtemrYHvLl+ooyKNkzj4roLlqhvww==", null, false, "", false, "AnkitKumar" }
+                    { "1", 0, "bb7e2e26-e4fa-46c3-91a4-aa6e9605dc38", "manager@gmail.com", true, false, null, "manager", "MANAGER@GMAIL.COM", "MANAGER", "AQAAAAIAAYagAAAAEPLzpiIo0j9jH5tfS73PPqT7jw+qVX9kWuZioJ7oN1jMYxzNh5uW53c2hsyjMCNmnQ==", null, false, "", false, "Manager" },
+                    { "2", 0, "2ddc571d-cb1e-492a-9b36-66aee1624c26", "Saheb@gmail.com", true, false, null, "saheb kumar", "SAHEB@GMAIL.COM", "SAHEBKUMAR", "AQAAAAIAAYagAAAAEH8xBw4RvuOQ+7SUgwMM0oOUcsCuxynlspYOdx8SZyAWrYnX0Mgp4SHhn+5xF5qQiw==", null, false, "", false, "SahebKumar" },
+                    { "3", 0, "c96e7d56-468e-4c22-b7ad-b4b1350f3203", "ankit@gmail.com", true, false, null, "Ankit Kumar", "ANKIT@GMAIL.COM", "ANKITKUMAR", "AQAAAAIAAYagAAAAEHcRTpjF4MDDQETignfXenNAjcwa7Y70DQJhRihMmammWZwsQZgLl9YPQT2hyLEBhA==", null, false, "", false, "AnkitKumar" }
                 });
 
             migrationBuilder.InsertData(
