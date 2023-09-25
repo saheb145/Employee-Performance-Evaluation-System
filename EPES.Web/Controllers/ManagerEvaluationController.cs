@@ -52,7 +52,7 @@ namespace EPES.Web.Controllers
 				if (response != null && response.IsSuccess)
 				{
 					TempData["success"] = "ManagerEvaluation created successfully";
-					return RedirectToAction(nameof(Index));
+					return RedirectToAction("Index","Home");
 				}
 				else
 				{
