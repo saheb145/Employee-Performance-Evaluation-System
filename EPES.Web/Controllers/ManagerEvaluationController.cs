@@ -15,7 +15,7 @@ namespace EPES.Web.Controllers
 		{
 			_managerevaluationService = managerevaluationService;
 		}
-		// GET: ManagerEvaluationController
+	
 		public ActionResult Index()
 		{
 			return View();
@@ -81,70 +81,6 @@ namespace EPES.Web.Controllers
 
 			return View(obj);
 		}
-		/*// GET: ManagerEvaluationController/Details/5
-		public ActionResult Details(int id)
-		{
-			return View();
-		}
-
-		// GET: ManagerEvaluationController/Create
 		
-
-		// POST: ManagerEvaluationController/Create
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Create(IFormCollection collection)
-		{
-			try
-			{
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
-
-		// GET: ManagerEvaluationController/Edit/5
-		public ActionResult Edit(int id)
-		{
-			return View();
-		}
-
-		// POST: ManagerEvaluationController/Edit/5
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
-		{
-			try
-			{
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
-
-		// GET: ManagerEvaluationController/Delete/5
-		public ActionResult Delete(int id)
-		{
-			return View();
-		}
-
-		// POST: ManagerEvaluationController/Delete/5
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, IFormCollection collection)
-		{
-			try
-			{
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}*/
 	}
 }

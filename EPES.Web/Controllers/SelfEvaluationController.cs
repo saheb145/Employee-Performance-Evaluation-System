@@ -63,7 +63,7 @@ namespace EPES.Web.Controllers
                 {
                     TempData["success"] = "SelfEvaluation created successfully";
                     return RedirectToAction("Index", "Home");
-					/* RedirectToAction(nameof(Index));*/
+					
 				}
                 else
                 {
@@ -74,7 +74,7 @@ namespace EPES.Web.Controllers
             return View(model);
         }
 
-        /*[HttpGet("{email}")]*/
+      
      
         public async Task<IActionResult> SelfEvaluationByEmail()
 		{
@@ -98,50 +98,8 @@ namespace EPES.Web.Controllers
 
 			return View(obj);
 		}
-		// GET: SelfEvaluationController1/Details/5
-		public ActionResult Details(int id)
-        {
-            return View();
-        }
+	
 
-        // GET: SelfEvaluationController1/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: SelfEvaluationController1/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        // GET: SelfEvaluationController1/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-        // POST: SelfEvaluationController1/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

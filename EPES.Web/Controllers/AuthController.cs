@@ -39,7 +39,7 @@ namespace EPES.Web.Controllers
             {
                 LoginResponseDto loginResponseDto =
                     JsonConvert.DeserializeObject<LoginResponseDto>(Convert.ToString(responseDto.Result));
-              //  HttpContext.Session.SetString("email",loginResponseDto.User.Email);
+             
                 await SignInUser(loginResponseDto);
                 _tokenProvider.SetToken(loginResponseDto.Token);
                 return RedirectToAction("Index", "Home");
