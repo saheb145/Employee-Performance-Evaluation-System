@@ -14,10 +14,12 @@ namespace EPES.Services.NotificationsAndAlertsAPI.Controller
     public class EmailController : ControllerBase
     {
         private readonly IEmailService _emailService;
+        private readonly IReminderService _reminderService;
 
-        public EmailController(IEmailService emailService)
+        public EmailController(IEmailService emailService, IReminderService reminderService)
         {
             _emailService = emailService;
+            _reminderService = reminderService;
         }
 
         [HttpPost("schedule")]
@@ -28,14 +30,15 @@ namespace EPES.Services.NotificationsAndAlertsAPI.Controller
             return Ok("Email scheduled successfully");
         }
 
+
         [HttpPost("send-test-email")]
         public async Task<IActionResult> SendTestEmail()
         {
             // Hardcode a sample employee's email address (replace with your email)
-            string toEmail = "jimteshjimu4444@gmail.com";
+            string toEmail = "bhargxv33@gmail.com";
 
             // Create a sample employee
-            var sampleEmployee = new EmployeeDto
+            var sampleEmployee = new UserDto
             {
                 ID = "1",
                 Email = toEmail,
@@ -55,6 +58,22 @@ namespace EPES.Services.NotificationsAndAlertsAPI.Controller
             await _emailService.SendEmailAsync(emailRequest.To, emailRequest.Subject, emailRequest.Body);
 
             return Ok("Test email sent successfully");
+        }
+        [HttpPost("send-reminder-emails")]
+        public async Task<IActionResult> SendReminderEmails()
+        {
+            try
+            {
+                // Call the SendReminderEmailsAsync method from the IReminderService
+                await _reminderService.SendReminderEmailsAsync();
+
+                return Ok("Reminder emails sent successfully");
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions here, e.g., log the error
+                return StatusCode(500, "An error occurred while sending reminder emails");
+            }
         }
     }
 }
