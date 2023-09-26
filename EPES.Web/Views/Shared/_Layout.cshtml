@@ -12,25 +12,7 @@
 </head>
 <body>
 	<header>
-		@* <script>
-		window.addEventListener('beforeunload', function (e) {
-		// Check if the user is authenticated before triggering logout
-		if (@User.Identity.IsAuthenticated.ToString().ToLower()) {
-		// Make an AJAX request to the logout action
-		$.ajax({
-		url: '/Auth/Logout', // Adjust the URL to your logout action
-		type: 'POST', // or 'GET' depending on your logout action
-		success: function (data) {
-		// Handle the success response, e.g., redirect to the login page
-		window.location.href = '/Auth/Login'; // Adjust the URL
-		},
-		error: function () {
-		// Handle any errors if needed
-		}
-		});
-		}
-		});
-		</script> *@
+		
 		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark box-shadow mb-3">
 			<div class="container-fluid">
 				<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EPES.Web</a>
@@ -101,9 +83,7 @@
 								<li class="nav-item">
 									<a class="nav-link " href="#">Hello @User.Identity.Name</a>
 								</li>
-								@* 	<li class="nav-item">
-								<a class="nav-link " asp-controller="Auth" asp-action="Logout">Logout</a>
-							</li> *@
+								
 							}
 						</ul>
 					</div>
