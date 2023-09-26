@@ -64,10 +64,10 @@ namespace EPES.Web.Controllers
 		}
 		[HttpGet]
 
-		public async Task<IActionResult> ManagerEvaluationByEmail(string email)
+		public async Task<IActionResult> ManagerEvaluationByEmail()
 		{
-			
-			ResponseDto? response = await _managerevaluationService.GetManagerEvaluationByIdAsync(email);
+            string email = User.Identity.Name;
+            ResponseDto? response = await _managerevaluationService.GetManagerEvaluationByIdAsync(email);
 
 			ManagerEvaluationDto obj = new ManagerEvaluationDto();		
 			if (response != null && response.IsSuccess)

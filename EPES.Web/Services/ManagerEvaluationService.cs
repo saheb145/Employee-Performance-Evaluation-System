@@ -20,7 +20,7 @@ namespace EPES.Web.Services
 				Url = SD.ManagerEvaluationAPIBase + "/api/managerevaluation"
 			});
 		}
-
+       
 		public async Task<ResponseDto?> GetAllManagerEvaluationsAsync()
 		{
 			return await _baseService.SendAsync(new RequestDto()
@@ -35,9 +35,10 @@ namespace EPES.Web.Services
 			return await _baseService.SendAsync(new RequestDto()
 			{
 				ApiType = SD.ApiType.GET,
-				Url = SD.ManagerEvaluationAPIBase + "/api/managerevaluation?employeeEmail="+email
+				Url = SD.ManagerEvaluationAPIBase + "/api/managerevaluation/"+email
 			});
+       
 
-		}
+        }
 	}
 }

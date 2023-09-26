@@ -70,11 +70,13 @@
 									{
 										<li><a class="dropdown-item " asp-controller="SelfEvaluation" asp-action="CreateSelfEvaluation">Create Self Evaluation</a></li>
 										<li><a class="dropdown-item " asp-controller="SelfEvaluation" asp-action="SelfEvaluationByEmail">my Self Evaluation</a></li>
+									
+
 									}
 									else
 									{
 										<li><a class="dropdown-item " asp-controller="SelfEvaluation" asp-action="SelfEvaluationIndex">Self Evaluation Data</a></li>
-										<li><a class="dropdown-item " asp-controller="ManagerEvaluation" asp-action="CreateManagerEvaluation">Create ManagerEvaluation</a></li>
+										
 									}
 								</ul>
 							</li>
@@ -111,7 +113,7 @@
 
 	</header>
 
-	<div class="container">
+	<div>
 		<main role="main" class="pb-3">
 			@RenderBody()
 			<partial name="_Notifications" />

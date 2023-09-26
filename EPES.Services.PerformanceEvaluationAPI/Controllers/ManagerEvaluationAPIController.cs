@@ -4,7 +4,6 @@ using EPES.Services.PerformanceEvaluationAPI.Models;
 using EPES.Services.PerformanceEvaluationAPI.Models.Dto;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 {
@@ -23,7 +22,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
             _mapper = mapper;
             _response = new ResponseDto();
         }
-        // GET: api/<ManagerEvaluationAPIController>
+        
         [HttpGet]
 		[Authorize(Roles = "MANAGER")]
 		public ResponseDto Get()
@@ -58,7 +57,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 			}
 			return _response;
 		}
-		// POST api/<ManagerEvaluationAPIController>
+		
 		[HttpPost]
 		[Authorize(Roles = "MANAGER")]
 		public ResponseDto Post(ManagerEvaluationDto managerEvaluationDto)
@@ -95,15 +94,10 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 					return _response;
 				}
 
-				// Update the properties of the found SelfEvaluation record
-				// You can map and update the properties here as needed
 				obj.EmployeeEmail = managerEvaluationDto.EmployeeEmail;
 				obj.Remarks = managerEvaluationDto.Remarks;
 				obj.Score = managerEvaluationDto.Score;
 				
-
-				// ... continue updating other properties
-
 				_db.ManagerEvaluations.Update(obj);
 				_db.SaveChanges();
 
@@ -117,14 +111,14 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 			return _response;
 		}
 
-		// DELETE api/<ManagerEvaluationAPIController>/5
+		
 		[HttpDelete("{employeeEmail}")]
 		[Authorize(Roles = "MANAGER")]
 		public ResponseDto Delete(string employeeEmail)
 		{
 			try
 			{
-				// Find the SelfEvaluation record by email
+				
 				ManagerEvaluation obj = _db.ManagerEvaluations.SingleOrDefault(e => e.EmployeeEmail == employeeEmail);
 
 				if (obj == null)
@@ -135,7 +129,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 					return _response;
 				}
 
-				// Remove the found SelfEvaluation record
+				
 				_db.ManagerEvaluations.Remove(obj);
 				_db.SaveChanges();
 			}

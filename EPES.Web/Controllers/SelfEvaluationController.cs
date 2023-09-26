@@ -74,18 +74,20 @@ namespace EPES.Web.Controllers
             return View(model);
         }
 
-		/*[HttpGet("{email}")]*/
-
-		public async Task<IActionResult> SelfEvaluationByEmail(string email)
+        /*[HttpGet("{email}")]*/
+     
+        public async Task<IActionResult> SelfEvaluationByEmail()
 		{
-			/*string email = User.Identity.Name;*/
+            string email = User.Identity.Name;
 
-			SelfEvaluationDto obj = new();
+
+            SelfEvaluationDto obj = new();
 
 			ResponseDto? response = await _evaluationService.GetEvaluationByEmialAsync(email);
 
 
-			if (response != null && response.IsSuccess)
+
+            if (response != null && response.IsSuccess)
 			{
 				obj = JsonConvert.DeserializeObject<SelfEvaluationDto>(Convert.ToString(response.Result));
 			}

@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 {
-    [Route("api/selfevaluation")]
-    [ApiController]
-    [Authorize]
+   [Route("api/selfevaluation")]
+   [ApiController]
+   [Authorize]
    
     public class SelfEvaluationAPIController : ControllerBase
     {
@@ -27,7 +27,6 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
             _response = new ResponseDto();
 			
         }
-        // GET: api/<SelfEvaluationAPIController>
         [HttpGet]
         [Authorize(Roles = "MANAGER")]
         public ResponseDto Get()
@@ -46,7 +45,6 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
             return _response;
         }
 
-        // GET api/<SelfEvaluationAPIController>/5
         [HttpGet("{employeeEmail}")]
         [Authorize(Roles = "EMPLOYEE")]
         public ResponseDto Get(string employeeEmail)
@@ -64,7 +62,6 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
             return _response;
         }
 
-		// POST api/<SelfEvaluationAPIController>
 		[HttpPost]
 		[Authorize(Roles = "EMPLOYEE")]
 		public ResponseDto Post([FromBody] SelfEvaluationDto selfEvaluationDto)
@@ -103,8 +100,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 					return _response;
 				}
 
-				// Update the properties of the found SelfEvaluation record
-				// You can map and update the properties here as needed
+				
 				obj.SubmissionDate = selfEvaluationDto.SubmissionDate;
 				obj.TaskCompleted = selfEvaluationDto.TaskCompleted;
 				obj.EmployeeEmail = selfEvaluationDto.EmployeeEmail;
@@ -114,7 +110,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 				obj.TimeManagement = selfEvaluationDto.TimeManagement;
 				obj.GoalAchievement = selfEvaluationDto.GoalAchievement;
 
-				// ... continue updating other properties
+				
 
 				_db.SelfEvaluations.Update(obj);
 				_db.SaveChanges();
@@ -135,7 +131,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 		{
 			try
 			{
-				// Find the SelfEvaluation record by email
+				
 				SelfEvaluation obj = _db.SelfEvaluations.SingleOrDefault(e => e.EmployeeEmail == employeeEmail);
 
 				if (obj == null)
@@ -146,7 +142,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 					return _response;
 				}
 
-				// Remove the found SelfEvaluation record
+				
 				_db.SelfEvaluations.Remove(obj);
 				_db.SaveChanges();
 			}
