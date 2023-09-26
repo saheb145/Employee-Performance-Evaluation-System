@@ -22,8 +22,8 @@ SD.AuthAPIBase = builder.Configuration["ServiceUrls:AuthAPI"];
 SD.UserAPIBase = builder.Configuration["ServiceUrls:AuthAPI"];
 SD.ProfileAPIBase = builder.Configuration["ServiceUrls:AuthAPI"];
 
-SD.SelfEvaluationAPIBase = builder.Configuration["ServiceUrls:SelfEvaluationAPI"];
-SD.ManagerEvaluationAPIBase = builder.Configuration["ServiceUrls:ManagerEvaluationAPI"];
+SD.SelfEvaluationAPIBase = builder.Configuration["ServiceUrls:APIGateWayBaseUrl"];
+SD.ManagerEvaluationAPIBase = builder.Configuration["ServiceUrls:APIGateWayBaseUrl"];
 
 
 builder.Services.AddScoped<ITokenProvider, TokenProvider>();

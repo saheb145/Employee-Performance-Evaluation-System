@@ -10,7 +10,46 @@
         }
       ],
       "UpstreamPathTemplate": "/api/selfevaluation",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/selfevaluation/{email}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7004
+        }
+      ],
+      "UpstreamPathTemplate": "/api/selfevaluation/{email}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/managerevaluation",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7004
+        }
+      ],
+      "UpstreamPathTemplate": "/api/managerevaluation",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/managerevaluation/{email}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7004
+        }
+      ],
+      "UpstreamPathTemplate": "/api/managerevaluation/{email}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
 
     }
   ]

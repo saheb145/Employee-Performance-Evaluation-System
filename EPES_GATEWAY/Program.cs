@@ -13,6 +13,24 @@ builder.Services.AddOcelot(builder.Configuration);
 
 
 
+builder.Services.AddCors(options =>
+
+{
+
+    options.AddPolicy("AllowSpecificOrigin",
+
+        builder => builder.WithOrigins("https://localhost:7194")
+
+            .AllowAnyHeader()
+
+            .AllowAnyMethod());
+
+});
+
+
+
+
+
 
 var app = builder.Build();
 
@@ -33,4 +51,5 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 await app.UseOcelot();
+app.UseCors("AllowSpecificOrigin");
 app.Run();
