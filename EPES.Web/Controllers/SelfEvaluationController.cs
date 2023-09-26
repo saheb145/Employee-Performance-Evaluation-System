@@ -74,7 +74,7 @@ namespace EPES.Web.Controllers
             return View(model);
         }
 
-		[HttpGet("{email}")]
+		/*[HttpGet("{email}")]*/
 
 		public async Task<IActionResult> SelfEvaluationByEmail(string email)
 		{
@@ -102,7 +102,6 @@ namespace EPES.Web.Controllers
             return View();
         }
 
-      
         // GET: SelfEvaluationController1/Edit/5
         public ActionResult Edit(int id)
         {
@@ -123,13 +122,11 @@ namespace EPES.Web.Controllers
                 return View();
             }
         }
-
         // GET: SelfEvaluationController1/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
-
         // POST: SelfEvaluationController1/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
