@@ -31,7 +31,7 @@ namespace EPES.Web.Services
             });
         }
 
-        public async  Task<ResponseDto?> GetAllEmployeesAsync()
+        public async Task<ResponseDto?> GetAllEmployeesAsync()
         {
             return await _baseService.SendAsync(new RequestDto()
             {
@@ -49,7 +49,7 @@ namespace EPES.Web.Services
             });
         }
 
-        public  async Task<ResponseDto?> UpdateEmployeeAsync(EmployeeDto employeeDto)
+        public async Task<ResponseDto?> UpdateEmployeeAsync(EmployeeDto employeeDto)
         {
             return await _baseService.SendAsync(new RequestDto()
             {

@@ -4,6 +4,7 @@ using EPES.Services.AuthAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EPES.Services.AuthAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230925121314_EmailTesting")]
+    partial class EmailTesting
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,14 +98,14 @@ namespace EPES.Services.AuthAPI.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d07387df-1215-442a-bb08-a8fbfd69a16a",
+                            ConcurrencyStamp = "f1258201-e6e1-4db9-b269-7b733853d04f",
                             Email = "manager@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "manager",
                             NormalizedEmail = "MANAGER@GMAIL.COM",
                             NormalizedUserName = "MANAGER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMBMFAwT1cEcAmEnJ9Edb39AVJhthhk2NgPUNEVrXdLouAFVbvEwFYkfDYlLAY0+nA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFGFgFXtj91M8tpZ7EFVq2Mg5XNKGxqrc/jAMMATjjYcjwQx+h4Qx+ER1WM0cDRirQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -112,14 +115,14 @@ namespace EPES.Services.AuthAPI.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "85207aea-d4ff-465f-a22b-7a45b45889c4",
+                            ConcurrencyStamp = "ee70f471-c4f1-47dc-a3ff-db4c777e3b5d",
                             Email = "Saheb@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "saheb kumar",
                             NormalizedEmail = "SAHEB@GMAIL.COM",
                             NormalizedUserName = "SAHEBKUMAR",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHKF9Li7543Ew0H2uwnPVNWh+jNMXUsz2pWgCAiQevqu1Bh+sN3oKI7ZNKycXbsQOw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKFB5mf8916JktgEQIQOr0dTtgZ4aDUcuzdWiUn6c+Gr+ZzIuzNDwK+jd0mZsFzC2g==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -129,14 +132,14 @@ namespace EPES.Services.AuthAPI.Migrations
                         {
                             Id = "3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f59b9b3a-c0f2-4f18-b5eb-2bde90d92a40",
+                            ConcurrencyStamp = "9a55b5e6-177d-490d-bddf-f4f8712d6ee6",
                             Email = "ankit@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Ankit Kumar",
                             NormalizedEmail = "ANKIT@GMAIL.COM",
                             NormalizedUserName = "ANKITKUMAR",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJiA9wR1h0AR9n0E+1zOCYNgCdj2iJlyuMIYO/lGITgCemqCH4KdW2blSlY2gWrPTQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAq3vfUPgnyw5PDmSFBbUJSJNFqXMJKRN9tPnZe/DRxI6/s9Df/nxTsHtgr5ZympNQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
