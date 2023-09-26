@@ -1,0 +1,55 @@
+﻿@model ManagerEvaluationDto
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="text-white">Manager Evaluated Data</h1>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6">
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>
+                        Employee EmailId
+                    </th>
+                    <th>
+                        Remarks
+                    </th>
+                    <th>
+                       Score
+                    </th>
+                   
+                    <!-- Add more columns for additional properties as needed -->
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td>
+                        @Model.EmployeeEmail
+                    </td>
+                    <td>
+                        @Model.Remarks
+                    </td>
+                    <td>
+                        @Model.Score
+                    </td>
+                   
+                    @* <td>
+                        <a asp-controller="ManagerEvaluation" asp-action="CreateManagerEvaluation" asp-route-id="@Model.EmployeeEmail" class="btn btn-success">FeedbacksAndRemarks</a>
+
+                    </td> *@
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

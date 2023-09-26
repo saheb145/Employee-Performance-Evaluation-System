@@ -17,7 +17,6 @@ namespace EPES.Services.AuthAPI.Service
 			_configuration= configuration;
 			_dbContext= dbContext;
 
-
 		}
 		public List<UserDto> FetchUserDataByUserId(string userId)
 		{

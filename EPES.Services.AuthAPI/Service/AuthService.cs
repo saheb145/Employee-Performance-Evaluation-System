@@ -30,7 +30,7 @@ namespace EPES.Services.AuthAPI.Service
             {
                 if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
                 {
-                    //create role if it does not exist
+                   
                     _roleManager.CreateAsync(new IdentityRole(roleName)).GetAwaiter().GetResult();
                 }
                 await _userManager.AddToRoleAsync(user, roleName);
@@ -66,7 +66,7 @@ namespace EPES.Services.AuthAPI.Service
             {
                 User = userDTO,
                 Token = token
-                // Token=""
+                
             };
 
             return loginResponseDto;

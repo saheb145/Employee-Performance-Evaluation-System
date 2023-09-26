@@ -6,6 +6,6 @@ namespace EPES.Web.Services.IServices
 	{
 		Task<ResponseDto?> CreateManagerEvaluationAsync(ManagerEvaluationDto managerEvaluationDto);
 		Task<ResponseDto?> GetAllManagerEvaluationsAsync();
-		Task<ResponseDto?> GetManagerEvaluationByIdAsync(int id);
+		Task<ResponseDto?> GetManagerEvaluationByIdAsync(string  email);
 	}
 }

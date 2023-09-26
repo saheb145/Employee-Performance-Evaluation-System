@@ -30,12 +30,12 @@ namespace EPES.Web.Services
 			});
 
 		}
-		public async Task<ResponseDto?> GetManagerEvaluationByIdAsync(int id)
+		public async Task<ResponseDto?> GetManagerEvaluationByIdAsync(string email)
 		{
 			return await _baseService.SendAsync(new RequestDto()
 			{
 				ApiType = SD.ApiType.GET,
-				Url = SD.ManagerEvaluationAPIBase + "/api/managerevaluation"+id
+				Url = SD.ManagerEvaluationAPIBase + "/api/managerevaluation?employeeEmail="+email
 			});
 
 		}

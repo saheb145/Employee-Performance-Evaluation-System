@@ -4,8 +4,8 @@ using EPES.Services.PerformanceEvaluationAPI.Models;
 using EPES.Services.PerformanceEvaluationAPI.Models.Dto;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-
-
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNet.Identity;
 
 namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 {
@@ -19,13 +19,13 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         private readonly AppDbContext _db;
         private ResponseDto _response;
         private IMapper _mapper;
-       
-        public SelfEvaluationAPIController(AppDbContext db, IMapper mapper)
-        {
+	
+		public SelfEvaluationAPIController(AppDbContext db, IMapper mapper)
+		{ 
             _db = db;
             _mapper = mapper;
             _response = new ResponseDto();
-            
+			
         }
         // GET: api/<SelfEvaluationAPIController>
         [HttpGet]
@@ -64,29 +64,28 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
             return _response;
         }
 
-        // POST api/<SelfEvaluationAPIController>
-        [HttpPost]
-       [Authorize(Roles = "EMPLOYEE")]
-        public ResponseDto Post([FromBody] SelfEvaluationDto selfEvaluationDto)
-        {
-     
-            try
-            {
-                SelfEvaluation evaluation = _mapper.Map<SelfEvaluation>(selfEvaluationDto);
-                _db.SelfEvaluations.Add(evaluation);
-                _db.SaveChanges();
-                _response.Result = _mapper.Map<SelfEvaluationDto>(evaluation);
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.Message;
-            }
-            return _response;
-        }
+		// POST api/<SelfEvaluationAPIController>
+		[HttpPost]
+		[Authorize(Roles = "EMPLOYEE")]
+		public ResponseDto Post([FromBody] SelfEvaluationDto selfEvaluationDto)
+		{
 
-        
-      
+			try
+			{
+				SelfEvaluation evaluation = _mapper.Map<SelfEvaluation>(selfEvaluationDto);
+				_db.SelfEvaluations.Add(evaluation);
+				_db.SaveChanges();
+				_response.Result = _mapper.Map<SelfEvaluationDto>(evaluation);
+			}
+			catch (Exception ex)
+			{
+				_response.IsSuccess = false;
+				_response.Message = ex.Message;
+			}
+			return _response;
+		}
+
+
 		[HttpPut("{employeeEmail}")]
 		[Authorize(Roles = "EMPLOYEE")]
 		public ResponseDto Put(string employeeEmail, [FromBody] SelfEvaluationDto selfEvaluationDto)
@@ -131,7 +130,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 		}
 
 		[HttpDelete("{employeeEmail}")]
-		[Authorize(Roles = "employeeEmail")]
+		[Authorize(Roles = "EMPLOYEE")]
 		public ResponseDto Delete(string employeeEmail)
 		{
 			try

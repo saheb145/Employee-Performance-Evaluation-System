@@ -62,8 +62,26 @@ namespace EPES.Web.Controllers
 			}
 			return View(model);
 		}
+		[HttpGet]
 
-		// GET: ManagerEvaluationController/Details/5
+		public async Task<IActionResult> ManagerEvaluationByEmail(string email)
+		{
+			
+			ResponseDto? response = await _managerevaluationService.GetManagerEvaluationByIdAsync(email);
+
+			ManagerEvaluationDto obj = new ManagerEvaluationDto();		
+			if (response != null && response.IsSuccess)
+			{
+				obj = JsonConvert.DeserializeObject<ManagerEvaluationDto>(Convert.ToString(response.Result));
+			}
+			else
+			{
+				TempData["error"] = response?.Message;
+			}
+
+			return View(obj);
+		}
+		/*// GET: ManagerEvaluationController/Details/5
 		public ActionResult Details(int id)
 		{
 			return View();
@@ -127,6 +145,6 @@ namespace EPES.Web.Controllers
 			{
 				return View();
 			}
-		}
+		}*/
 	}
 }

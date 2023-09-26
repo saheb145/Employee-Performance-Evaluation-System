@@ -74,11 +74,11 @@ namespace EPES.Web.Controllers
             return View(model);
         }
 
-        [HttpGet]
+		[HttpGet("{email}")]
 
-		public async Task<IActionResult> SelfEvaluationByEmail()
+		public async Task<IActionResult> SelfEvaluationByEmail(string email)
 		{
-			string email = User.Identity.Name;
+			/*string email = User.Identity.Name;*/
 
 			SelfEvaluationDto obj = new();
 

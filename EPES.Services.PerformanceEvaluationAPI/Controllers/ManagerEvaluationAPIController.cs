@@ -41,23 +41,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
             return _response;
         }
 
-        // GET api/<ManagerEvaluationAPIController>/5
-        /*[HttpGet("{id}")]
-		[Authorize(Roles = "MANAGER")]
-		public ResponseDto Get(int id)
-        {
-            try
-            {
-                ManagerEvaluation obj = _db.ManagerEvaluations.First(u => u.Id == id); // we will get the selfEvaluation data by EmployeeId
-                _response.Result = _mapper.Map<ManagerEvaluationDto>(obj);
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.Message;
-            }
-            return _response;
-        }*/
+       
 		[HttpGet("{employeeEmail}")]
 		[Authorize(Roles = "EMPLOYEE")]
 		public ResponseDto Get(string employeeEmail)
@@ -77,14 +61,15 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 		// POST api/<ManagerEvaluationAPIController>
 		[HttpPost]
 		[Authorize(Roles = "MANAGER")]
-		public ResponseDto Post(ManagerEvaluationDto ManagerEvaluationDto)
+		public ResponseDto Post(ManagerEvaluationDto managerEvaluationDto)
         {   
             try
             {
-                ManagerEvaluation evaluation = _mapper.Map<ManagerEvaluation>(ManagerEvaluationDto);
+                ManagerEvaluation evaluation = _mapper.Map<ManagerEvaluation>(managerEvaluationDto);
                 _db.ManagerEvaluations.Add(evaluation);
                 _db.SaveChanges();
-            }
+				_response.Result = _mapper.Map<ManagerEvaluationDto>(evaluation);
+			}
             catch (Exception ex)
             {
                 _response.IsSuccess = false;
@@ -93,29 +78,73 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
             return _response;
         }
 
-        // PUT api/<ManagerEvaluationAPIController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ManagerEvaluationAPIController>/5
-        [HttpDelete("{id}")]
+		[HttpPut("{employeeEmail}")]
 		[Authorize(Roles = "MANAGER")]
-		public ResponseDto Delete(int id)
-        {
-            try
-            {
-                ManagerEvaluation obj = _db.ManagerEvaluations.First(u => u.Id == id); // will delete by selfEvaluation Id
-                _db.ManagerEvaluations.Remove(obj);
-                _db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.Message;
-            }
-            return _response;
-        }
-    }
+		public ResponseDto Put(string employeeEmail, [FromBody] ManagerEvaluationDto managerEvaluationDto)
+		{
+			try
+			{
+
+				ManagerEvaluation obj = _db.ManagerEvaluations.SingleOrDefault(e => e.EmployeeEmail == employeeEmail);
+
+				if (obj == null)
+				{
+
+					_response.IsSuccess = false;
+					_response.Message = "ManagerEvaluation record not found for the provided email.";
+					return _response;
+				}
+
+				// Update the properties of the found SelfEvaluation record
+				// You can map and update the properties here as needed
+				obj.EmployeeEmail = managerEvaluationDto.EmployeeEmail;
+				obj.Remarks = managerEvaluationDto.Remarks;
+				obj.Score = managerEvaluationDto.Score;
+				
+
+				// ... continue updating other properties
+
+				_db.ManagerEvaluations.Update(obj);
+				_db.SaveChanges();
+
+				_response.Result = _mapper.Map<SelfEvaluationDto>(obj);
+			}
+			catch (Exception ex)
+			{
+				_response.IsSuccess = false;
+				_response.Message = ex.Message;
+			}
+			return _response;
+		}
+
+		// DELETE api/<ManagerEvaluationAPIController>/5
+		[HttpDelete("{employeeEmail}")]
+		[Authorize(Roles = "MANAGER")]
+		public ResponseDto Delete(string employeeEmail)
+		{
+			try
+			{
+				// Find the SelfEvaluation record by email
+				ManagerEvaluation obj = _db.ManagerEvaluations.SingleOrDefault(e => e.EmployeeEmail == employeeEmail);
+
+				if (obj == null)
+				{
+
+					_response.IsSuccess = false;
+					_response.Message = "SelfEvaluation record not found for the provided email.";
+					return _response;
+				}
+
+				// Remove the found SelfEvaluation record
+				_db.ManagerEvaluations.Remove(obj);
+				_db.SaveChanges();
+			}
+			catch (Exception ex)
+			{
+				_response.IsSuccess = false;
+				_response.Message = ex.Message;
+			}
+			return _response;
+		}
+	}
 }
