@@ -22,16 +22,7 @@ namespace EPES.Web.Controllers
 
 		}
 
-       /* public  GetLoggedInUserProfile()
-        {
-
-            string email = User.Identity.Name;
-            var loggedInUser = _profileService.GetProfileByEmail(email);
-            UserDto userDto = new UserDto();
-
-
-            return View(user);
-        }*/
+      
         public ActionResult Index()
         {
             return View();
@@ -54,12 +45,6 @@ namespace EPES.Web.Controllers
 
             return View(list);
         }
-
-       /* public class SelfEvaluationViewModel
-        {
-            public SelfEvaluationDto SelfEvaluation { get; set; }
-            public UserDto User { get; set; }
-        }*/
 
         public async Task<IActionResult> CreateSelfEvaluation()
         {
@@ -89,9 +74,30 @@ namespace EPES.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
 
-        // GET: SelfEvaluationController1/Details/5
-        public ActionResult Details(int id)
+		public async Task<IActionResult> SelfEvaluationByEmail()
+		{
+			string email = User.Identity.Name;
+
+			SelfEvaluationDto obj = new();
+
+			ResponseDto? response = await _evaluationService.GetEvaluationByEmialAsync(email);
+
+
+			if (response != null && response.IsSuccess)
+			{
+				obj = JsonConvert.DeserializeObject<SelfEvaluationDto>(Convert.ToString(response.Result));
+			}
+			else
+			{
+				TempData["error"] = response?.Message;
+			}
+
+			return View(obj);
+		}
+		// GET: SelfEvaluationController1/Details/5
+		public ActionResult Details(int id)
         {
             return View();
         }

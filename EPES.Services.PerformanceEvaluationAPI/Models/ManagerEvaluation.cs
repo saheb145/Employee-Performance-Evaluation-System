@@ -9,7 +9,6 @@ namespace EPES.Services.PerformanceEvaluationAPI.Models
         public int Id { get; set; }
         public string EmployeeEmail {  get; set; }
         public string Remarks { get; set; }
-
         public int Score  { get; set; }
 
 		[ForeignKey("EmployeeEmail")]

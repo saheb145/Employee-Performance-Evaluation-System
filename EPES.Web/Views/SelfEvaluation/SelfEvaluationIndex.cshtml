@@ -17,9 +17,7 @@
 		<table class="table">
 			<thead>
 				<tr>
-					@* <th>
-						Id
-					</th> *@
+					
 					<th>
 						UserDtoEmail
 					</th>
@@ -52,9 +50,7 @@
 				@foreach (var item in Model)
 				{
 					<tr>
-						@* <td>
-							@item.Id
-						</td> *@
+						
 						<td>
 							@item.EmployeeEmail
 						</td>
@@ -81,7 +77,8 @@
 						</td>
 						<!-- Add more <td> elements for additional properties as needed -->
 						<td>
-							
+							<!-- Button for ManagerEvaluation -->
+							<a asp-controller="ManagerEvaluation" asp-action="CreateManagerEvaluation" asp-route-id="@item.EmployeeEmail" class="btn btn-success">ManagerEvaluation</a>
 						</td>
 					</tr>
 				}

@@ -69,6 +69,7 @@
 									@if (User.IsInRole("EMPLOYEE"))
 									{
 										<li><a class="dropdown-item " asp-controller="SelfEvaluation" asp-action="CreateSelfEvaluation">Create Self Evaluation</a></li>
+										<li><a class="dropdown-item " asp-controller="SelfEvaluation" asp-action="SelfEvaluationByEmail">my Self Evaluation</a></li>
 									}
 									else
 									{

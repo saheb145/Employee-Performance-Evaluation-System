@@ -86,7 +86,7 @@ namespace EPES.Web.Controllers
                 assingRole = await _authService.AssignRoleAsync(obj);
                 if (assingRole != null && assingRole.IsSuccess)
                 {
-                    TempData["success"] = "Registration Successful";
+                    TempData["success"] = "Employee Created Successful";
                     return RedirectToAction(nameof(Login));
                 }
             }

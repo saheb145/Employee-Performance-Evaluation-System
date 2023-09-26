@@ -35,14 +35,11 @@ namespace EPES.Services.AuthAPI.Controllers
 			{
 				List<UserDto> profiles = _profileByEmail.FetchUserDataByUserId(userId);
 
-
-
 				if (profiles != null && profiles.Count > 0)
 				{
 					var employeeDtos = _mapper.Map<IEnumerable<UserDto>>(profiles);
 					_response.Result = employeeDtos;
 				}
-				
 			}
 			catch (Exception ex)
 			{

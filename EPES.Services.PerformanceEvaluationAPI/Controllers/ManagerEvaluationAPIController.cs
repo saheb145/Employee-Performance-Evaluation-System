@@ -42,7 +42,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
 
         // GET api/<ManagerEvaluationAPIController>/5
-        [HttpGet("{id}")]
+        /*[HttpGet("{id}")]
 		[Authorize(Roles = "MANAGER")]
 		public ResponseDto Get(int id)
         {
@@ -57,7 +57,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
                 _response.Message = ex.Message;
             }
             return _response;
-        }
+        }*/
 		[HttpGet("{employeeEmail}")]
 		[Authorize(Roles = "EMPLOYEE")]
 		public ResponseDto Get(string employeeEmail)

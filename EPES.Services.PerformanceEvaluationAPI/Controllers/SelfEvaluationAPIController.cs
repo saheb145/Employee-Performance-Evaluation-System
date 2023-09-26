@@ -70,7 +70,6 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         public ResponseDto Post([FromBody] SelfEvaluationDto selfEvaluationDto)
         {
      
-            
             try
             {
                 SelfEvaluation evaluation = _mapper.Map<SelfEvaluation>(selfEvaluationDto);
@@ -87,43 +86,79 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
         }
 
         
-        [HttpPut("{id:int}")]
-        [Authorize(Roles = "EMPLOYEE")]
-        public ResponseDto Put([FromBody] SelfEvaluationDto selfEvaluationDto)
-        {
-            try
-            {
-                SelfEvaluation obj = _mapper.Map<SelfEvaluation>(selfEvaluationDto);
-                _db.SelfEvaluations.Update(obj);
-                _db.SaveChanges();
+      
+		[HttpPut("{employeeEmail}")]
+		[Authorize(Roles = "EMPLOYEE")]
+		public ResponseDto Put(string employeeEmail, [FromBody] SelfEvaluationDto selfEvaluationDto)
+		{
+			try
+			{
+				
+				SelfEvaluation obj = _db.SelfEvaluations.SingleOrDefault(e => e.EmployeeEmail == employeeEmail);
 
-                _response.Result = _mapper.Map<SelfEvaluationDto>(obj);
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.Message;
-            }
-            return _response;
-        }
+				if (obj == null)
+				{
+					
+					_response.IsSuccess = false;
+					_response.Message = "SelfEvaluation record not found for the provided email.";
+					return _response;
+				}
 
-		// DELETE api/<SelfEvaluationAPIController>/5	
-		/*[HttpGet("{id:int}")]
-		public ResponseDto Delete(int id)
-        {
-            try
-            {
-                SelfEvaluation obj = _db.SelfEvaluations.First(u => u.Id == id); // will delete by selfEvaluation Id
-                _db.SelfEvaluations.Remove(obj);
-                _db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.Message;
-            }
-            return _response;
-        }*/
-    }
+				// Update the properties of the found SelfEvaluation record
+				// You can map and update the properties here as needed
+				obj.SubmissionDate = selfEvaluationDto.SubmissionDate;
+				obj.TaskCompleted = selfEvaluationDto.TaskCompleted;
+				obj.EmployeeEmail = selfEvaluationDto.EmployeeEmail;
+				obj.Technical = selfEvaluationDto.Technical;
+				obj.Communication = selfEvaluationDto.Communication;
+				obj.Adaptability = selfEvaluationDto.Adaptability;
+				obj.TimeManagement = selfEvaluationDto.TimeManagement;
+				obj.GoalAchievement = selfEvaluationDto.GoalAchievement;
+
+				// ... continue updating other properties
+
+				_db.SelfEvaluations.Update(obj);
+				_db.SaveChanges();
+
+				_response.Result = _mapper.Map<SelfEvaluationDto>(obj);
+			}
+			catch (Exception ex)
+			{
+				_response.IsSuccess = false;
+				_response.Message = ex.Message;
+			}
+			return _response;
+		}
+
+		[HttpDelete("{employeeEmail}")]
+		[Authorize(Roles = "employeeEmail")]
+		public ResponseDto Delete(string employeeEmail)
+		{
+			try
+			{
+				// Find the SelfEvaluation record by email
+				SelfEvaluation obj = _db.SelfEvaluations.SingleOrDefault(e => e.EmployeeEmail == employeeEmail);
+
+				if (obj == null)
+				{
+					
+					_response.IsSuccess = false;
+					_response.Message = "SelfEvaluation record not found for the provided email.";
+					return _response;
+				}
+
+				// Remove the found SelfEvaluation record
+				_db.SelfEvaluations.Remove(obj);
+				_db.SaveChanges();
+			}
+			catch (Exception ex)
+			{
+				_response.IsSuccess = false;
+				_response.Message = ex.Message;
+			}
+			return _response;
+		}
+
+	}
 
 }
