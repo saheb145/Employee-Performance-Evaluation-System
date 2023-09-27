@@ -24,7 +24,16 @@ builder.Services.AddTransient<EmailService>();
 
 builder.Services.AddScoped<IReminderService, ReminderService>();
 
-
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("AllowSpecificOrigin", builder =>
+	{
+		builder
+			.WithOrigins("https://localhost:7194") // Replace with your frontend origin(s)
+			.AllowAnyMethod()
+			.AllowAnyHeader();
+	});
+});
 
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
@@ -47,6 +56,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHangfireServer();
 app.UseHangfireDashboard();

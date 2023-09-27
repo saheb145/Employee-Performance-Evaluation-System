@@ -34,31 +34,81 @@ namespace EPES.Services.NotificationsAndAlertsAPI.Controller
         [HttpPost("send-test-email")]
         public async Task<IActionResult> SendTestEmail()
         {
-            // Hardcode a sample employee's email address (replace with your email)
-            string toEmail = "bhargxv33@gmail.com";
 
-            // Create a sample employee
-            var sampleEmployee = new UserDto
-            {
-                ID = "1",
-                Email = toEmail,
-                Name = "Sample Employee",
-                PhoneNumber = "123-456-7890"
-            };
 
-            // Construct a sample email request
-            var emailRequest = new EmailRequest
-            {
-                To = sampleEmployee.Email,
-                Subject = "Test Email Subject",
-                Body = "This is a test email body sent by Bhargav."
-            };
+			//         // Hardcode a sample employee's email address (replace with your email)
+			//         string toEmail = "bhargxv33@gmail.com";
 
-            // Send the test email immediately
-            await _emailService.SendEmailAsync(emailRequest.To, emailRequest.Subject, emailRequest.Body);
+			//         // Create a sample employee
+			//         var sampleEmployee = new UserDto
+			//         {
+			//             ID = "1",
+			//             Email = toEmail,
+			//             Name = "Sample Employee",
+			//             PhoneNumber = "123-456-7890"
+			//         };
 
-            return Ok("Test email sent successfully");
-        }
+			//// Construct a sample email request
+			//var emailRequest = new EmailRequest
+			//         {
+			//             To = sampleEmployee.Email,
+			//             Subject = "Test Email Subject",
+			//             Body = "This is a test email body sent by Bhargav."
+			//         };
+
+			//         // Send the test email immediately
+			//         await _emailService.SendEmailAsync(emailRequest.To, emailRequest.Subject, emailRequest.Body);
+
+			//         return Ok("Test email sent successfully");
+			try
+			{
+				// Replace with the actual URL of the API that provides employee data
+				string apiUrl = "https://localhost:7002/api/user";
+
+				// Make an HTTP GET request to the API
+				using (var httpClient = new HttpClient())
+				{
+					// Send the GET request to the API to fetch employee data
+					HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
+
+					// Check if the request was successful
+					if (response.IsSuccessStatusCode)
+					{
+						// Deserialize the response content to a list of employees
+						var employees = await response.Content.ReadAsAsync<ApiResponseDto>();
+
+						// For this example, let's assume the API returns a list of EmployeeDto objects
+						var result = employees.Result;
+						// Now, you can send emails to all employees or perform any other operations you need
+						foreach (var employee in result)
+						{
+							var emailRequest = new EmailRequest
+							{
+								To = employee.Email,
+								Subject = "Test Email Subject",
+								Body = "This is a test email body sent by Bhargav."
+							};
+
+							// Send the email using your _emailService
+							await _emailService.SendEmailAsync(emailRequest.To, emailRequest.Subject, emailRequest.Body);
+						}
+
+						return Ok("Test emails sent successfully to all employees");
+					}
+					else
+					{
+						// Handle the API error response here if needed
+						return StatusCode((int)response.StatusCode, "Failed to fetch employee data from the API");
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				// Handle exceptions that may occur during the API request or email sending process
+				return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
+			}
+		
+	}
         [HttpPost("send-reminder-emails")]
         public async Task<IActionResult> SendReminderEmails()
         {

@@ -98,9 +98,9 @@
 								<li class="nav-item">
 									<a class="nav-link " href="#">Hello @User.Identity.Name</a>
 								</li>
-								@* 	<li class="nav-item">
-								<a class="nav-link " asp-controller="Auth" asp-action="Logout">Logout</a>
-							</li> *@
+									<li class="nav-item">
+									<button id="sendEmailButton">Send Email</button>
+								</li>
 							}
 						</ul>
 					</div>
@@ -122,10 +122,38 @@
 			<i class="bi bi-heart-fill"></i> Employee Performance Evaluation System WebApp <i class="bi bi-heart-fill"></i>
 		</div>
 	</footer>
+
+	
+
+
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			$('#sendEmailButton').click(function () {
+				// Define your API endpoint URL
+				var apiUrl = 'https://localhost:7005/api/Email/send-test-email';
+
+				// Send the POST request using jQuery's $.ajax method
+				$.ajax({
+					url: apiUrl,
+					type: 'POST',
+					success: function (response) {
+						// Handle the success response from the API here
+						console.log('POST request sent successfully:', response);
+					},
+					error: function (error) {
+						// Handle any errors that occur during the request
+						console.error('Error sending POST request:', error);
+					}
+				});
+			});
+		});
+	</script>
 	@await RenderSectionAsync("Scripts", required: false)
 
 </body>
