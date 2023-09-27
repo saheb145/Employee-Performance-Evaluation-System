@@ -82,7 +82,6 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 			return _response;
 		}
 
-
 		[HttpPut("{employeeEmail}")]
 		[Authorize(Roles = "EMPLOYEE")]
 		public ResponseDto Put(string employeeEmail, [FromBody] SelfEvaluationDto selfEvaluationDto)
@@ -99,8 +98,6 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 					_response.Message = "SelfEvaluation record not found for the provided email.";
 					return _response;
 				}
-
-				
 				obj.SubmissionDate = selfEvaluationDto.SubmissionDate;
 				obj.TaskCompleted = selfEvaluationDto.TaskCompleted;
 				obj.EmployeeEmail = selfEvaluationDto.EmployeeEmail;
@@ -109,8 +106,6 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 				obj.Adaptability = selfEvaluationDto.Adaptability;
 				obj.TimeManagement = selfEvaluationDto.TimeManagement;
 				obj.GoalAchievement = selfEvaluationDto.GoalAchievement;
-
-				
 
 				_db.SelfEvaluations.Update(obj);
 				_db.SaveChanges();
