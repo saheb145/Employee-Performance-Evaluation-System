@@ -61,10 +61,8 @@ namespace EPES.Services.NotificationsAndAlertsAPI.Controller
 							{
 								To = employee.Email,
 								Subject = "Remainder For SelfEvaluation",
-								Body = "Hii folks, Manager of EPES this side . Your deadline is about to over .Please Re-SelfEvaluate your self befor deadline"+
-								"Thanks and Regards "
-								+
-								"Manager EPES "
+								Body = "Hii folks, Manager of EPES this side . Your deadline is about to over .Please Re-SelfEvaluate your self befor deadline  Thanks and Regards  Manager EPES"
+								
 
 							};
 

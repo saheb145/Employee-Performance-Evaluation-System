@@ -4,6 +4,7 @@ using EPES.Services.AuthAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EPES.Services.AuthAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230927080230_SeededataEmployeeRemove")]
+    partial class SeededataEmployeeRemove
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,16 +98,15 @@ namespace EPES.Services.AuthAPI.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f4d63f69-14c0-4a0e-ac0f-b966656e8a79",
+                            ConcurrencyStamp = "4e831ce0-29c4-499f-9903-09cd4b87ff3f",
                             Email = "manager@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "manager",
                             NormalizedEmail = "MANAGER@GMAIL.COM",
                             NormalizedUserName = "MANAGER@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBf9Q/Fog5kYBXPa0/A54AXXUE7vIq4KIy6oMO2qjvSdurgFRA1JKRaZkACdqpmV2Q==",
-                            PhoneNumber = "7903373058",
-                            PhoneNumberConfirmed = true,
+                            PasswordHash = "AQAAAAIAAYagAAAAEEvX+qVnMuUWTdaOSVMkCUndQL6XpfmXOrCdgxfMPfrVu+BSjzOFkWPg/WWfHH6cXA==",
+                            PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "manager@gmail.com"
