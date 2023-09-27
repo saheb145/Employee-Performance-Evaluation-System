@@ -70,15 +70,15 @@ namespace EPES.Services.AuthAPI.Data
 			// Define the roles
 			var managerRole = new IdentityRole
 			{
-				Id = "1", // Replace with a unique ID for the Manager role
-				Name = "MANAGER", // Replace with your desired role name
+				Id = "1", 
+				Name = "MANAGER",
 				NormalizedName = "MANAGER"
 			};
 
 			var employeeRole = new IdentityRole
 			{
-				Id = "2", // Replace with a unique ID for the Employee role
-				Name = "EMPLOYEE", // Replace with your desired role name
+				Id = "2", 
+				Name = "EMPLOYEE",
 				NormalizedName = "EMPLOYEE"
 			};
 
