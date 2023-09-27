@@ -39,7 +39,7 @@ namespace EPES.Web.Controllers
             {
                 LoginResponseDto loginResponseDto =
                     JsonConvert.DeserializeObject<LoginResponseDto>(Convert.ToString(responseDto.Result));
-
+             
                 await SignInUser(loginResponseDto);
                 _tokenProvider.SetToken(loginResponseDto.Token);
                 return RedirectToAction("Index", "Home");
@@ -86,7 +86,7 @@ namespace EPES.Web.Controllers
                 assingRole = await _authService.AssignRoleAsync(obj);
                 if (assingRole != null && assingRole.IsSuccess)
                 {
-                    TempData["success"] = "Registration Successful";
+                    TempData["success"] = "Employee Created Successful";
                     return RedirectToAction(nameof(Login));
                 }
             }
@@ -97,7 +97,7 @@ namespace EPES.Web.Controllers
 
             var roleList = new List<SelectListItem>()
              {
-               //  new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
+                // new SelectListItem{Text=SD.RoleManager,Value=SD.RoleManager},
                  new SelectListItem{Text=SD.RoleEmployee,Value=SD.RoleEmployee},
              };
 
@@ -111,7 +111,7 @@ namespace EPES.Web.Controllers
             await HttpContext.SignOutAsync();
             _tokenProvider.ClearToken();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Auth");
 
         }
 

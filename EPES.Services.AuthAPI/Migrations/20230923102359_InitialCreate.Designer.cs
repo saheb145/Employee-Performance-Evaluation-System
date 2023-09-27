@@ -12,8 +12,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EPES.Services.AuthAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
+<<<<<<<< HEAD:EPES.Services.AuthAPI/Migrations/20230923102359_InitialCreate.Designer.cs
     [Migration("20230923102359_InitialCreate")]
     partial class InitialCreate
+========
+    [Migration("20230925033606_initialCreate")]
+    partial class initialCreate
+>>>>>>>> final_temp55:EPES.Services.AuthAPI/Migrations/20230925033606_initialCreate.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,14 +103,22 @@ namespace EPES.Services.AuthAPI.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
+<<<<<<<< HEAD:EPES.Services.AuthAPI/Migrations/20230923102359_InitialCreate.Designer.cs
                             ConcurrencyStamp = "add3870b-6197-4d1b-b3e4-d3546192be7e",
+========
+                            ConcurrencyStamp = "d07387df-1215-442a-bb08-a8fbfd69a16a",
+>>>>>>>> final_temp55:EPES.Services.AuthAPI/Migrations/20230925033606_initialCreate.Designer.cs
                             Email = "manager@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "manager",
                             NormalizedEmail = "MANAGER@GMAIL.COM",
                             NormalizedUserName = "MANAGER",
+<<<<<<<< HEAD:EPES.Services.AuthAPI/Migrations/20230923102359_InitialCreate.Designer.cs
                             PasswordHash = "AQAAAAIAAYagAAAAEPNiF9AGWZlODvWMo9mAmKG/48dReuitQqoShDTDwPbtzb5QktPsEfI6qEmi4ilPPg==",
+========
+                            PasswordHash = "AQAAAAIAAYagAAAAEMBMFAwT1cEcAmEnJ9Edb39AVJhthhk2NgPUNEVrXdLouAFVbvEwFYkfDYlLAY0+nA==",
+>>>>>>>> final_temp55:EPES.Services.AuthAPI/Migrations/20230925033606_initialCreate.Designer.cs
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -115,14 +128,22 @@ namespace EPES.Services.AuthAPI.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
+<<<<<<<< HEAD:EPES.Services.AuthAPI/Migrations/20230923102359_InitialCreate.Designer.cs
                             ConcurrencyStamp = "b408a5d8-af2d-4722-acd8-0b3c478d2d75",
+========
+                            ConcurrencyStamp = "85207aea-d4ff-465f-a22b-7a45b45889c4",
+>>>>>>>> final_temp55:EPES.Services.AuthAPI/Migrations/20230925033606_initialCreate.Designer.cs
                             Email = "Saheb@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "saheb kumar",
                             NormalizedEmail = "SAHEB@GMAIL.COM",
                             NormalizedUserName = "SAHEBKUMAR",
+<<<<<<<< HEAD:EPES.Services.AuthAPI/Migrations/20230923102359_InitialCreate.Designer.cs
                             PasswordHash = "AQAAAAIAAYagAAAAEL2b1/Toq2NKJUAnLYbYvC8Yov3YUiDiRVm3QkRb6pbCJvLJs1+DbgXHi5y8CqYXlA==",
+========
+                            PasswordHash = "AQAAAAIAAYagAAAAEHKF9Li7543Ew0H2uwnPVNWh+jNMXUsz2pWgCAiQevqu1Bh+sN3oKI7ZNKycXbsQOw==",
+>>>>>>>> final_temp55:EPES.Services.AuthAPI/Migrations/20230925033606_initialCreate.Designer.cs
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -132,14 +153,22 @@ namespace EPES.Services.AuthAPI.Migrations
                         {
                             Id = "3",
                             AccessFailedCount = 0,
+<<<<<<<< HEAD:EPES.Services.AuthAPI/Migrations/20230923102359_InitialCreate.Designer.cs
                             ConcurrencyStamp = "0639278d-1579-4db9-b1b9-2b78ed1beb2d",
+========
+                            ConcurrencyStamp = "f59b9b3a-c0f2-4f18-b5eb-2bde90d92a40",
+>>>>>>>> final_temp55:EPES.Services.AuthAPI/Migrations/20230925033606_initialCreate.Designer.cs
                             Email = "ankit@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Ankit Kumar",
                             NormalizedEmail = "ANKIT@GMAIL.COM",
                             NormalizedUserName = "ANKITKUMAR",
+<<<<<<<< HEAD:EPES.Services.AuthAPI/Migrations/20230923102359_InitialCreate.Designer.cs
                             PasswordHash = "AQAAAAIAAYagAAAAEKDxUCfT3UNoiVqkCQs++vfaXXtANFXfCVT/YiA19cyiOrg7gUauyB3oVP/x/0Gzzg==",
+========
+                            PasswordHash = "AQAAAAIAAYagAAAAEJiA9wR1h0AR9n0E+1zOCYNgCdj2iJlyuMIYO/lGITgCemqCH4KdW2blSlY2gWrPTQ==",
+>>>>>>>> final_temp55:EPES.Services.AuthAPI/Migrations/20230925033606_initialCreate.Designer.cs
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

@@ -1,0 +1,83 @@
+﻿@model SelfEvaluationDto
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="text-white">Self-Evaluated Data</h1>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6">
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>
+                        Employee EmailId
+                    </th>
+                    <th>
+                        Submission Date
+                    </th>
+                    <th>
+                        Task Completed
+                    </th>
+                    <th>
+                        Technical
+                    </th>
+                    <th>
+                        Communication
+                    </th>
+                    <th>
+                        Adaptability
+                    </th>
+                    <th>
+                        Time Management
+                    </th>
+                    <th>
+                        Goal Achievement
+                    </th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td>
+                        @Model.EmployeeEmail
+                    </td>
+                    <td>
+                        @Model.SubmissionDate
+                    </td>
+                    <td>
+                        @Model.TaskCompleted
+                    </td>
+                    <td>
+                        @Model.Technical
+                    </td>
+                    <td>
+                        @Model.Communication
+                    </td>
+                    <td>
+                        @Model.Adaptability
+                    </td>
+                    <td>
+                        @Model.TimeManagement
+                    </td>
+                    <td>
+                        @Model.GoalAchievement
+                    </td>
+
+                    <td>
+                        <a asp-controller="ManagerEvaluation" asp-action="ManagerEvaluationByEmail" asp-route-id="@Model.EmployeeEmail" class="btn btn-success">FeedbacksAndRemarks</a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

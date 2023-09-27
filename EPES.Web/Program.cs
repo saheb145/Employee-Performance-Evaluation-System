@@ -10,17 +10,32 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient();
 
-
-
-
 builder.Services.AddHttpClient<IAuthService, AuthService>();
+builder.Services.AddHttpClient<IUserService, UserService>();
+builder.Services.AddHttpClient<IProfileService, ProfileService>();
+
+builder.Services.AddHttpClient<IEvaluationService, EvaluationService>();
+builder.Services.AddHttpClient<IManagerEvaluationService, ManagerEvaluationService>();
+
 
 SD.AuthAPIBase = builder.Configuration["ServiceUrls:AuthAPI"];
-SD.UserMangementAPIBase = builder.Configuration["ServiceUrls:UserMangementAPI"];
+SD.UserAPIBase = builder.Configuration["ServiceUrls:AuthAPI"];
+SD.ProfileAPIBase = builder.Configuration["ServiceUrls:AuthAPI"];
+
+SD.SelfEvaluationAPIBase = builder.Configuration["ServiceUrls:APIGateWayBaseUrl"];
+SD.ManagerEvaluationAPIBase = builder.Configuration["ServiceUrls:APIGateWayBaseUrl"];
+
 
 builder.Services.AddScoped<ITokenProvider, TokenProvider>();
-builder.Services.AddScoped<IBaseService, BaseService>();;
+builder.Services.AddScoped<IBaseService, BaseService>();
+
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IProfileService, ProfileService>();
+builder.Services.AddScoped<IEvaluationService, EvaluationService>();
+builder.Services.AddScoped<IManagerEvaluationService, ManagerEvaluationService>();
+
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
@@ -46,9 +61,8 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Auth}/{action=Login}/{id?}");
 
 app.Run();
