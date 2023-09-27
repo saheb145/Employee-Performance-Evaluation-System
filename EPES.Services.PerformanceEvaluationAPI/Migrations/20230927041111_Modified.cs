@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace EPES.Services.NotificationsAndAlertsAPI.Migrations
+namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class EmailTesting : Migration
+    public partial class Modified : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,7 +16,6 @@ namespace EPES.Services.NotificationsAndAlertsAPI.Migrations
                 columns: table => new
                 {
                     EmployeeEmail = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false),
                     SubmissionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     TaskCompleted = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Technical = table.Column<int>(type: "int", nullable: false),
@@ -31,28 +30,41 @@ namespace EPES.Services.NotificationsAndAlertsAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "ManagerEvaluations",
                 columns: table => new
                 {
-                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeEmail = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Remarks = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Score = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Email);
+                    table.PrimaryKey("PK_ManagerEvaluations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ManagerEvaluations_SelfEvaluations_EmployeeEmail",
+                        column: x => x.EmployeeEmail,
+                        principalTable: "SelfEvaluations",
+                        principalColumn: "EmployeeEmail",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ManagerEvaluations_EmployeeEmail",
+                table: "ManagerEvaluations",
+                column: "EmployeeEmail",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "SelfEvaluations");
+                name: "ManagerEvaluations");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "SelfEvaluations");
         }
     }
 }
