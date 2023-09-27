@@ -16,12 +16,12 @@ namespace EPES.Services.NotificationsAndAlertsAPI.Data
         {
         }
 
-       /* public DbSet<SelfEvaluation> SelfEvaluations { get; set; }*/
+     
         public DbSet<User> Users { get; set; }
 
        
 
-        // DbSet properties...
+       
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

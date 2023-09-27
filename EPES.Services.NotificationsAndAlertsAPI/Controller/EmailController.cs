@@ -35,31 +35,6 @@ namespace EPES.Services.NotificationsAndAlertsAPI.Controller
         public async Task<IActionResult> SendTestEmail()
         {
 
-
-			//         // Hardcode a sample employee's email address (replace with your email)
-			//         string toEmail = "bhargxv33@gmail.com";
-
-			//         // Create a sample employee
-			//         var sampleEmployee = new UserDto
-			//         {
-			//             ID = "1",
-			//             Email = toEmail,
-			//             Name = "Sample Employee",
-			//             PhoneNumber = "123-456-7890"
-			//         };
-
-			//// Construct a sample email request
-			//var emailRequest = new EmailRequest
-			//         {
-			//             To = sampleEmployee.Email,
-			//             Subject = "Test Email Subject",
-			//             Body = "This is a test email body sent by Bhargav."
-			//         };
-
-			//         // Send the test email immediately
-			//         await _emailService.SendEmailAsync(emailRequest.To, emailRequest.Subject, emailRequest.Body);
-
-			//         return Ok("Test email sent successfully");
 			try
 			{
 				// Replace with the actual URL of the API that provides employee data
@@ -85,8 +60,12 @@ namespace EPES.Services.NotificationsAndAlertsAPI.Controller
 							var emailRequest = new EmailRequest
 							{
 								To = employee.Email,
-								Subject = "Test Email Subject",
-								Body = "This is a test email body sent by Bhargav."
+								Subject = "Remainder For SelfEvaluation",
+								Body = "Hii folks, Manager of EPES this side . Your deadline is about to over .Please Re-SelfEvaluate your self befor deadline"+
+								"Thanks and Regards "
+								+
+								"Manager EPES "
+
 							};
 
 							// Send the email using your _emailService
