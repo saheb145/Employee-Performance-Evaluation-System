@@ -73,9 +73,9 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 
 				if (existingEvaluation != null)
 				{
+					DateTime curretntDate = (DateTime)selfEvaluationDto.SubmissionDate;
 					// Check if SubmissionDate is more than six months ago
-					if (existingEvaluation.SubmissionDate.HasValue &&
-						existingEvaluation.SubmissionDate.Value.AddMonths(6) <= DateTime.UtcNow)
+					if (existingEvaluation.SubmissionDate.Value.AddMonths(6) <= curretntDate)
 					{
 						_db.SelfEvaluations.Remove(existingEvaluation);
 						_db.SaveChanges();
