@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="col-12 pb-3">
 				<label class="control-label pt-2" style="font-size: 20px;">Employee Email</label>
-				<input asp-for="EmployeeEmail" class="form-control" />
+				<input asp-for="EmployeeEmail" class="form-control" readonly/>
 				<span asp-validation-for="EmployeeEmail" class="text-danger"></span>
 			</div>
 			<div class="col-12 pb-3">
@@ -36,3 +36,7 @@
 @section Scripts {
 	<partial name="_ValidationScriptsPartial" />
 }
+<script>
+	// Use JavaScript to output the value to the console
+	console.log(@Json.Serialize(Model));
+</script>

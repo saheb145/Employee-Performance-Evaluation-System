@@ -37,9 +37,19 @@ namespace EPES.Web.Controllers
 
 			return View(list);
 		}
-		public async Task<IActionResult> CreateManagerEvaluation()
+		//public async Task<IActionResult> CreateManagerEvaluation()
+		//{
+		//	return View();
+		//}
+		[HttpGet]
+		public IActionResult CreateManagerEvaluation(string employeeEmail)
 		{
-			return View();
+			var model = new ManagerEvaluationDto
+			{
+				EmployeeEmail = employeeEmail
+			};
+
+			return View(model);
 		}
 
 		[HttpPost]
@@ -52,7 +62,7 @@ namespace EPES.Web.Controllers
 				if (response != null && response.IsSuccess)
 				{
 					TempData["success"] = "ManagerEvaluation created successfully";
-					return RedirectToAction("Index","Home");
+					return RedirectToAction("Index", "Home");
 				}
 				else
 				{
