@@ -37,10 +37,6 @@ namespace EPES.Web.Controllers
 
 			return View(list);
 		}
-		//public async Task<IActionResult> CreateManagerEvaluation()
-		//{
-		//	return View();
-		//}
 		[HttpGet]
 		public IActionResult CreateManagerEvaluation(string employeeEmail)
 		{
@@ -48,6 +44,8 @@ namespace EPES.Web.Controllers
 			{
 				EmployeeEmail = employeeEmail
 			};
+
+
 
 			return View(model);
 		}

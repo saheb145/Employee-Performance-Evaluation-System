@@ -12,9 +12,10 @@
 			<div class="card ">
 				<p class="text-center mb-4">Rate yourself on the basis of following skills on the scale of 10</p>
 				<form class="form-card" asp-action="CreateSelfEvaluation">
+					<div class="form-group col-sm-6 flex-column d-flex"> <label asp-for="EmployeeEmail" hidden class="form-control-label px-3">EmployeeEmail<span class="text-danger"> *</span></label> <input asp-for="EmployeeEmail" id="EmployeeEmail" name="EmployeeEmail" value="@User.Identity.Name" hidden placeholder="Enter your Email"> </div>
+
 					<div class="row justify-content-between text-left">
 
-						<div class="form-group col-sm-6 flex-column d-flex"> <label asp-for="EmployeeEmail" class="form-control-label px-3">EmployeeEmail<span class="text-danger"> *</span></label> <input asp-for="EmployeeEmail" id="EmployeeEmail" name="EmployeeEmail" value="@User.Identity.Name" readonly placeholder="Enter your Email"> </div>
 						<div class="form-group col-sm-6 flex-column d-flex"> <label asp-for="SubmissionDate" class="form-control-label px-3">submission Date<span class="text-danger"> *</span></label> <input asp-for="SubmissionDate" id="SubmissionDate" name="SubmissionDate" placeholder="Write your submission Date"> </div>
 						<div class="form-group col-sm-6 flex-column d-flex"> <label asp-for="Technical" class="form-control-label px-3">Technical skills<span class="text-danger"> *</span></label> <input asp-for="Technical" id="Technical" name="Technical" placeholder="Rate your Technical Skills"> </div>
 						<div class="form-group col-sm-6 flex-column d-flex">
@@ -29,7 +30,7 @@
 
 						<div class="row justify-content-between">
 							<div class="form-group col-sm-6">
-								<a asp-action="SelfEvaluationIndex" class="btn btn-outline-secondary">Back to List</a>
+								<a asp-action="SelfEvaluationByEmail" class="btn btn-outline-secondary">Back to List</a>
 							</div>
 							<div class="form-group col-sm-6">
 								<button type="submit" value="Create" class="btn-block btn-primary">Submit</button>
