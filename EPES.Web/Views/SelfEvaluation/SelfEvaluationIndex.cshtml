@@ -78,7 +78,7 @@
                         <!-- Add more <td> elements for additional properties as needed -->
                         <td>
                             <!-- Button for Manager Evaluation -->
-                            <a asp-controller="ManagerEvaluation" asp-action="CreateManagerEvaluation" asp-route-id="@item.EmployeeEmail" class="btn btn-success">Manager Evaluation</a>
+                            <a asp-controller="ManagerEvaluation" asp-action="CreateManagerEvaluation" asp-route-employeeEmail="@item.EmployeeEmail" class="btn btn-success">Manager Evaluation</a>
                         </td>
                     </tr>
                 }

@@ -37,9 +37,17 @@ namespace EPES.Web.Controllers
 
 			return View(list);
 		}
-		public async Task<IActionResult> CreateManagerEvaluation()
+		[HttpGet]
+		public IActionResult CreateManagerEvaluation(string employeeEmail)
 		{
-			return View();
+			var model = new ManagerEvaluationDto
+			{
+				EmployeeEmail = employeeEmail
+			};
+
+
+
+			return View(model);
 		}
 
 		[HttpPost]
