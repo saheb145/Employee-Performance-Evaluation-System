@@ -27,7 +27,7 @@ namespace EPES.Services.AuthAPI.Controllers
             if (!string.IsNullOrEmpty(errorMessage))
             {
                 _response.IsSuccess = false;
-                _response.Message = errorMessage;
+                _response.Message = "Employee already Exist";
                 return BadRequest(_response);
             }
            

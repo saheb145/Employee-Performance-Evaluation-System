@@ -72,7 +72,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
             catch (Exception ex)
             {
                 _response.IsSuccess = false;
-                _response.Message = ex.Message;
+                _response.Message = "Already Done for this Employee";
             }
             return _response;
         }
