@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EPES.Services.PerformanceEvaluationAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Modified : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
