@@ -66,12 +66,34 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 		[Authorize(Roles = "EMPLOYEE")]
 		public ResponseDto Post([FromBody] SelfEvaluationDto selfEvaluationDto)
 		{
-
 			try
 			{
+				SelfEvaluation existingEvaluation = _db.SelfEvaluations
+					.FirstOrDefault(e => e.EmployeeEmail == selfEvaluationDto.EmployeeEmail);
+
+				if (existingEvaluation != null)
+				{
+					// Check if SubmissionDate is more than six months ago
+					if (existingEvaluation.SubmissionDate.HasValue &&
+						existingEvaluation.SubmissionDate.Value.AddMonths(6) <= DateTime.UtcNow)
+					{
+						_db.SelfEvaluations.Remove(existingEvaluation);
+						_db.SaveChanges();
+					}
+					else
+					{
+						// If SubmissionDate is less than six months ago, return from the function
+						_response.IsSuccess = false;
+						_response.Message = "An evaluation record already exists within six months.";
+						return _response;
+					}
+				}
+
+				// Create a new SelfEvaluation from the DTO
 				SelfEvaluation evaluation = _mapper.Map<SelfEvaluation>(selfEvaluationDto);
 				_db.SelfEvaluations.Add(evaluation);
 				_db.SaveChanges();
+
 				_response.Result = _mapper.Map<SelfEvaluationDto>(evaluation);
 			}
 			catch (Exception ex)
@@ -81,6 +103,7 @@ namespace EPES.Services.PerformanceEvaluationAPI.Controllers
 			}
 			return _response;
 		}
+
 
 		[HttpPut("{employeeEmail}")]
 		[Authorize(Roles = "EMPLOYEE")]
