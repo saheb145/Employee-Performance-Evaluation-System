@@ -12,12 +12,12 @@ namespace EPES.Web.Services
             _baseService = baseService;
         }
 
-        public async Task<ResponseDto?> CreateEvaluationAsync(FeedbackDto feedbackDto)
+        public async Task<ResponseDto?> CreateEvaluationAsync(SelfEvaluationDto selfEvaluationDto)
         {
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.POST,
-                Data = feedbackDto,
+                Data = selfEvaluationDto,
                 Url = SD.SelfEvaluationAPIBase + "/api/selfevaluation"
             });
         }
