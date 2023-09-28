@@ -6,13 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EPES.Services.FeedbackAndCommentAPI.Controllers
 {
-	public class FeedbackAndComment : Controller
+	[Route("api/feedback")]
+	[ApiController]
+	public class FeedbackAndCommentAPIController : Controller
 	{
 		private readonly AppDbContext _db;
 		private ResponseDto _response;
 		private IMapper _mapper;
 
-		public FeedbackAndComment(AppDbContext db, IMapper mapper)
+		public FeedbackAndCommentAPIController(AppDbContext db, IMapper mapper)
 		{
 			_db = db;
 			_mapper = mapper;
@@ -53,39 +55,52 @@ namespace EPES.Services.FeedbackAndCommentAPI.Controllers
 			}
 			return _response;
 		}
+	
+
 		[HttpPost]
-	//	[Authorize(Roles = "EMPLOYEE")]
+		// [Authorize(Roles = "EMPLOYEE")] 
 		public ResponseDto Post([FromBody] FeedbackDto feedbackDto)
 		{
 			try
 			{
+				// Check if a feedback record already exists for the employee
 				Feedback existingEvaluation = _db.Feedbacks.FirstOrDefault(e => e.EmployeeEmail == feedbackDto.EmployeeEmail);
 
 				if (existingEvaluation != null)
 				{
-					DateTime curretntDate = (DateTime)feedbackDto.CreatedDate;
-					// Check if SubmissionDate is more than six months ago
-					if (existingEvaluation.CreatedDate.AddMonths(6) <= curretntDate)
-					{
-						_db.Feedbacks.Remove(existingEvaluation);
 
+					DateTime currentDate = (DateTime)feedbackDto.CreatedDate; // Use UTC to avoid timezone issues
+					DateTime sixMonthsAgo = currentDate.AddMonths(-6);
+
+					// Check if the existing record was created more than six months ago
+					if (existingEvaluation.CreatedDate <= sixMonthsAgo)
+					{
+						Feedback feedback = _mapper.Map<Feedback>(feedbackDto);
+						_db.Feedbacks.Add(feedback);
 						_db.SaveChanges();
+
+						_response.IsSuccess = true;
+						_response.Message = "Feedback record created successfully.";
+						_response.Result = _mapper.Map<FeedbackDto>(feedback);
 					}
 					else
 					{
-						// If SubmissionDate is less than six months ago, return from the function
+						// If a record exists within six months, return an error response
 						_response.IsSuccess = false;
 						_response.Message = "An evaluation record already exists within six months.";
-						return _response;
 					}
 				}
+				else
+				{
+					// Create a new Feedback record if no previous record exists
+					Feedback feedback = _mapper.Map<Feedback>(feedbackDto);
+					_db.Feedbacks.Add(feedback);
+					_db.SaveChanges();
 
-				// Create a new SelfEvaluation from the DTO
-				Feedback feedback = _mapper.Map<Feedback>(feedbackDto);
-				_db.Feedbacks.Add(feedback);
-				_db.SaveChanges();
-
-				_response.Result = _mapper.Map<FeedbackDto>(feedback);
+					_response.IsSuccess = true;
+					_response.Message = "Feedback record created successfully.";
+					_response.Result = _mapper.Map<FeedbackDto>(feedback);
+				}
 			}
 			catch (Exception ex)
 			{

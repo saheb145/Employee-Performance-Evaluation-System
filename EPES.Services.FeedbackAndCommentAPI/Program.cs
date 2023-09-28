@@ -1,7 +1,20 @@
+using AutoMapper;
+using EPES.Services.FeedbackAndCommentAPI;
+using EPES.Services.FeedbackAndCommentAPI.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<AppDbContext>(option =>
+{
+	option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
+IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+// Add services to the container
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
